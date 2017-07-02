@@ -55,10 +55,10 @@ If you wish you can use these steps to add the dependency using Maven without ac
 In order to use any of the extensions or methods of KotlinExtensions you only need to import them.
 
 ### Import a single method
-`import me.carleslc.kotlin-extensions.number.even`
+`import me.carleslc.kotlin.extensions.number.even`
 
 ### Import all methods of a package
-`import me.carleslc.kotlin-extensions.number.*`
+`import me.carleslc.kotlin.extensions.number.*`
 
 ## Packages available
 

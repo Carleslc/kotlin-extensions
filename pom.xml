@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>me.carleslc</groupId>
-	<artifactId>KotlinExtensions</artifactId>
+	<artifactId>kotlin-extensions</artifactId>
 	<version>0.1</version>
 	<packaging>jar</packaging>
 
