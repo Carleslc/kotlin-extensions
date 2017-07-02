@@ -1,4 +1,4 @@
-package me.carleslc.extensions.any
+package me.carleslc.kotlin.extensions.any
 
 public fun <E, T> E.transform(transform: (E) -> T) = transform(this)
 

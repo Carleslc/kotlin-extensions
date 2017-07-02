@@ -1,4 +1,4 @@
-package me.carleslc.extensions.collections
+package me.carleslc.kotlin.extensions.collections
 
 import java.util.Random
 

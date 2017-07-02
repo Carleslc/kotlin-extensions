@@ -1,4 +1,4 @@
-package me.carleslc.extensions.utils
+package me.carleslc.kotlin.extensions.utils
 
 public inline fun <T> Int.timesIndexed(predicate: (Int) -> T) = (1..this).forEach { predicate(it) }
 

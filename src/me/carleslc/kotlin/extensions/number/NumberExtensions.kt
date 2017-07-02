@@ -1,4 +1,4 @@
-package me.carleslc.extensions.number
+package me.carleslc.kotlin.extensions.number
 
 public fun Int.even() = this % 2 == 0
 

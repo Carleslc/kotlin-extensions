@@ -1,6 +1,6 @@
-package me.carleslc.extensions.arrays
+package me.carleslc.kotlin.extensions.arrays
 
-import me.carleslc.extensions.collections.timesIndexedToListOf
+import me.carleslc.kotlin.extensions.collections.timesIndexedToListOf
 
 typealias Matrix<T> = Array<Array<T>>
 

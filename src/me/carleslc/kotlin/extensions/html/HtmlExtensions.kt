@@ -1,7 +1,7 @@
-package me.carleslc.extensions.html
+package me.carleslc.kotlin.extensions.html
 
-import me.carleslc.extensions.map.joinToString
-import me.carleslc.extensions.tuples.joinToString
+import me.carleslc.kotlin.extensions.map.joinToString
+import me.carleslc.kotlin.extensions.tuples.joinToString
 
 typealias Attributes = Map<String, String>
 

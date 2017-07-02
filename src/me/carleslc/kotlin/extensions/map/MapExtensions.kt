@@ -1,6 +1,6 @@
-package me.carleslc.extensions.map
+package me.carleslc.kotlin.extensions.map
 
-import me.carleslc.extensions.tuples.joinToString
+import me.carleslc.kotlin.extensions.tuples.joinToString
 
 public fun <K, V> Map<K, V>.joinToString(
 		separator: CharSequence = ", ",
