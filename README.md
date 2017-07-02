@@ -3,10 +3,6 @@ Utility extensions, properties and useful methods to boost your programming with
 
 ## How to install
 
-#### Maven Manual (without remote repository)
-
-Then you can add KotlinExtensions to your project 
-
 ### Maven
 Add the following repository to your `pom.xml`:
 ```
