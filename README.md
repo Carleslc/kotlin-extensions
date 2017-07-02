@@ -3,27 +3,57 @@ Utility extensions, properties and useful methods to boost your programming with
 
 ## How to install
 
-First steps:
+#### Maven Manual (without remote repository)
 
-1. `git clone https://github.com/Carleslc/KotlinExtensions.git`
-2. `cd KotlinExtensions`
-2. Build the KotlinExtensions with `mvn clean install` to add this project to your local Maven repository.
-
-Then you can add KotlinExtensions to your project:
+Then you can add KotlinExtensions to your project 
 
 ### Maven
-Add the following dependency to your `pom.xml`
+Add the following repository to your `pom.xml`:
 ```
-<dependency>
-    <groupId>me.carleslc.kotlinextensions</groupId>
-    <artifactId>KotlinExtensions</artifactId>
-    <version>0.1</version>
-    <scope>compile</scope>
-</dependency>
+<repositories>
+    <repository>
+        <id>central</id>
+        <name>ip-172-31-10-140-releases</name>
+        <url>http://34.210.110.148:8081/artifactory/libs-release</url>
+    </repository>
+</repositories>
+```
+
+Add the following dependency to your `pom.xml`:
+```
+<dependencies>
+    <dependency>
+        <groupId>me.carleslc.kotlinextensions</groupId>
+        <artifactId>KotlinExtensions</artifactId>
+        <version>0.1</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+```
+
+### Gradle
+
+Add the following repository to your `build.gradle`:
+
+```
+repositories {
+    url 'http://34.210.110.148:8081/artifactory/libs-release'
+}
+```
+
+Add the following dependency to your `build.gradle`:
+```
+compile(group: 'me.carleslc.kotlinextensions', name: 'KotlinExtensions', version: '0.1')
 ```
 
 ### Other
-Add the `KotlinExtensions-0.1.jar` from `target` folder as a dependency of your project.
+
+1. `git clone https://github.com/Carleslc/KotlinExtensions.git`
+2. `cd KotlinExtensions`
+3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
+4. Add the `KotlinExtensions-0.1.jar` from `target` folder as a dependency of your project.
+
+If you wish you can use these steps to add the dependency using Maven without accessing to the remote repository.
 
 ## How to use
 
