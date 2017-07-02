@@ -9,7 +9,6 @@ Add the following repository to your `pom.xml`:
 <repositories>
     <repository>
         <id>central</id>
-        <name>ip-172-31-10-140-releases</name>
         <url>http://34.210.110.148:8081/artifactory/libs-release</url>
     </repository>
 </repositories>
@@ -19,8 +18,8 @@ Add the following dependency to your `pom.xml`:
 ```
 <dependencies>
     <dependency>
-        <groupId>me.carleslc.kotlinextensions</groupId>
-        <artifactId>KotlinExtensions</artifactId>
+        <groupId>me.carleslc</groupId>
+        <artifactId>kotlin-extensions</artifactId>
         <version>0.1</version>
         <scope>compile</scope>
     </dependency>
@@ -39,15 +38,15 @@ repositories {
 
 Add the following dependency to your `build.gradle`:
 ```
-compile(group: 'me.carleslc.kotlinextensions', name: 'KotlinExtensions', version: '0.1')
+compile(group: 'me.carleslc', name: 'kotlin-extensions', version: '0.1')
 ```
 
 ### Other
 
-1. `git clone https://github.com/Carleslc/KotlinExtensions.git`
-2. `cd KotlinExtensions`
+1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
+2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-4. Add the `KotlinExtensions-0.1.jar` from `target` folder as a dependency of your project.
+4. Add the `kotlin-extensions-0.1.jar` from `target` folder as a dependency of your project.
 
 If you wish you can use these steps to add the dependency using Maven without accessing to the remote repository.
 
@@ -56,10 +55,10 @@ If you wish you can use these steps to add the dependency using Maven without ac
 In order to use any of the extensions or methods of KotlinExtensions you only need to import them.
 
 ### Import a single method
-`import me.carleslc.extensions.number.even`
+`import me.carleslc.kotlin-extensions.number.even`
 
 ### Import all methods of a package
-`import me.carleslc.extensions.number.*`
+`import me.carleslc.kotlin-extensions.number.*`
 
 ## Packages available
 
