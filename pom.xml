@@ -2,13 +2,34 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>me.carleslc.kotlinextensions</groupId>
+	<groupId>me.carleslc</groupId>
 	<artifactId>KotlinExtensions</artifactId>
 	<version>0.1</version>
 	<packaging>jar</packaging>
 
 	<name>KotlinExtensions</name>
 	<description>Utility extensions to boost your programming with Kotlin</description>
+	<url>https://github.com/carleslc/kotlin-extensions</url>
+
+	<developers>
+		<developer>
+			<name>Carlos Lázaro</name>
+			<email>lazaro.costa.carles@gmail.com</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/carleslc/kotlin-extensions.git</connection>
+		<developerConnection>scm:git:ssh://github.com/carleslc/kotlin-extensions.git</developerConnection>
+		<url>https://github.com/carleslc/kotlin-extensions/tree/master</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
