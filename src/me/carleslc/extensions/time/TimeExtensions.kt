@@ -1,4 +1,4 @@
-package me.carleslc.extensions
+package me.carleslc.extensions.time
 
 private val SECOND = 1000f
 private val MINUTE = 60 * SECOND

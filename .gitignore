@@ -1,10 +1,11 @@
-#**/*target*
-#*.jar
+**/target
+**/bin
+**/*.jar
 **/*.war
 **/*.ear
 **/*.class
 
-# eclipse specific git ignore
+# Eclipse IDEA
 **/*.pydevproject
 #**/.project
 **/.metadata
@@ -16,16 +17,19 @@
 **/*.swp
 **/*~.nib
 **/local.properties
-#**/.classpath
+**/.classpath
 **/.settings/
 **/.loadpath
+**/*.launch
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
 
 # External tool builders
 **/.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-**/*.launch
-*.classpath
 
 # Mac directory listing
 .DS_Store
