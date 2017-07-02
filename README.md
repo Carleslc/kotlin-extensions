@@ -7,7 +7,7 @@ First steps:
 
 1. `git clone https://github.com/Carleslc/KotlinExtensions.git`
 2. `cd KotlinExtensions`
-2. Build the KotlinExtensions with `mvn clean install` to add this project to your local Maven repository
+2. Build the KotlinExtensions with `mvn clean install` to add this project to your local Maven repository.
 
 Then you can add KotlinExtensions to your project:
 
@@ -23,7 +23,7 @@ Add the following dependency to your `pom.xml`
 ```
 
 ### Other
-Add the `KotlinExtensions-0.1.jar` from `target` folder as a dependency of your project
+Add the `KotlinExtensions-0.1.jar` from `target` folder as a dependency of your project.
 
 ## How to use
 
@@ -51,7 +51,7 @@ Extensions for collections and other static methods to create collections.
 Extensions for lambda functions and other static methods to work with functions (e.g. function composition).
 
 ### HTML
-Extensions to generate HTML more readable.
+Extensions to generate HTML in a more readable way.
 
 ### Map
 Extensions for maps.
