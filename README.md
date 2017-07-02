@@ -21,7 +21,6 @@ Add the following dependency to your `pom.xml`:
         <groupId>me.carleslc</groupId>
         <artifactId>kotlin-extensions</artifactId>
         <version>0.1</version>
-        <scope>compile</scope>
     </dependency>
 </dependencies>
 ```
@@ -38,7 +37,9 @@ repositories {
 
 Add the following dependency to your `build.gradle`:
 ```
-compile(group: 'me.carleslc', name: 'kotlin-extensions', version: '0.1')
+dependencies {
+    compile(group: 'me.carleslc', name: 'kotlin-extensions', version: '0.1')
+}
 ```
 
 ### Other
