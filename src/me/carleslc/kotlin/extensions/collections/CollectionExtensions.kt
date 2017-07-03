@@ -7,9 +7,7 @@ public fun <T1, T2> Collection<T1>.combine(other: Iterable<T2>): List<Pair<T1, T
 public fun <T1, T2, R> Collection<T1>.combine(other: Iterable<T2>, transform: (thisItem: T1, otherItem:T2) -> R): List<R>
 		= flatMap { thisItem -> other.map { otherItem -> transform(thisItem, otherItem) } }
 
-public inline fun <T> Int.timesIndexedToListOf(predicate: (Int) -> T) = (1..this).map { predicate(it) }
-
-public inline fun <T> Int.timesToListOf(predicate: () -> T) = timesIndexedToListOf { predicate() }
+public inline fun <T> Int.timesToListOf(predicate: (Int) -> T) = (0..this - 1).map { predicate(it) }
 
 public fun randomIntList(size: Int, generator: Random = Random()) = size.timesToListOf { generator.nextInt() }
 

@@ -1,6 +1,6 @@
 package me.carleslc.kotlin.extensions.arrays
 
-import me.carleslc.kotlin.extensions.collections.timesIndexedToListOf
+import me.carleslc.kotlin.extensions.collections.timesToListOf
 
 typealias Matrix<T> = Array<Array<T>>
 
@@ -8,9 +8,7 @@ public object A {
     inline operator fun <reified T> get(vararg ts: T): Array<T> = Array<T>(ts.size) { i -> ts[i] }
 }
 
-public inline fun <reified T> Int.timesIndexedToArrayOf(predicate: (Int) -> T) = timesIndexedToListOf { predicate(it) }.toTypedArray()
-
-public inline fun <reified T> Int.timesToArrayOf(predicate: () -> T) = timesIndexedToArrayOf { predicate() }
+public inline fun <reified T> Int.timesToArrayOf(predicate: (Int) -> T) = timesToListOf(predicate).toTypedArray()
 
 public fun <T> Array<T?>.anyNull(): Boolean = any { it == null }
 

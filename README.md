@@ -92,4 +92,4 @@ Static methods to format time easily.
 Extensions for tuples (pairs).
 
 ### Utils
-General purpose extensions and static methods that do not match any other package category (e.g. loops with `Int.times`).
+General purpose extensions and static methods that do not match any other package category (e.g. looping with `Int.times`).
