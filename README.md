@@ -79,21 +79,21 @@ In order to use any of the extensions or methods of KotlinExtensions you only ne
 [funKTionale](https://github.com/MarioAriasC/funKTionale) library is included, so you can use any methods of that library.
 
 ```
-import org.funktionale.collections
-import org.funktionale.complement
-import org.funktionale.composition
-import org.funktionale.currying
-import org.funktionale.either
-import org.funktionale.memoization
-import org.funktionale.option
-import org.funktionale.pairing
-import org.funktionale.partials
-import org.funktionale.pipe
-import org.funktionale.reverse
-import org.funktionale.state
-import org.funktionale.tries
-import org.funktionale.utils
-import org.funktionale.validation
+import org.funktionale.collections.*
+import org.funktionale.complement.*
+import org.funktionale.composition.*
+import org.funktionale.currying.*
+import org.funktionale.either.*
+import org.funktionale.memoization.*
+import org.funktionale.option.*
+import org.funktionale.pairing.*
+import org.funktionale.partials.*
+import org.funktionale.pipe.*
+import org.funktionale.reverse.*
+import org.funktionale.state.*
+import org.funktionale.tries.*
+import org.funktionale.utils.*
+import org.funktionale.validation.*
 ```
 
 ### Arrays
@@ -139,4 +139,4 @@ Global methods to format time easily.
 ### Standard
 `import me.carleslc.kotlin.extensions.standard.*`
 
-General purpose extensions and global methods that do not match any other package category (e.g. looping with `10 times { /* code */ }` as an alias for `repeat(10) { /* code */ }`).
+General purpose extensions and global methods that do not match any other package category (_e.g._ looping with `10 times { /* code */ }` as an alias for `repeat(10) { /* code */ }`).
