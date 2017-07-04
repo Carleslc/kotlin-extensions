@@ -4,7 +4,7 @@
 
 	<groupId>me.carleslc</groupId>
 	<artifactId>kotlin-extensions</artifactId>
-	<version>0.1.2</version>
+	<version>0.2</version>
 	<packaging>jar</packaging>
 
 	<name>KotlinExtensions</name>
@@ -37,12 +37,26 @@
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>bintray</name>
+			<url>http://jcenter.bintray.com</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<!-- Kotlin -->
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-stdlib-jre8</artifactId>
 			<version>${kotlin.version}</version>
+		</dependency>
+		<!-- funKTionale -->
+		<dependency>
+			<groupId>org.funktionale</groupId>
+			<artifactId>funktionale-all</artifactId>
+			<version>1.1</version>
 		</dependency>
 	</dependencies>
 
@@ -53,6 +67,7 @@
 				<directory>src</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
+					<exclude>**/*.kt</exclude>
 				</excludes>
 			</resource>
 		</resources>

@@ -1,5 +1,7 @@
 package me.carleslc.kotlin.extensions.number
 
+import org.funktionale.tries.Try
+
 public fun Int.even() = this % 2 == 0
 
 public fun Int.odd() = !even()
@@ -17,3 +19,39 @@ public fun Boolean.toInt() = when (this) {
 public fun Boolean.toDouble() = toInt().toDouble()
 
 public fun Double.toBoolean() = toInt().toBoolean()
+
+public fun zero() = 0.toDouble()
+
+public fun zerof() = 0.toFloat()
+
+public fun one() = 1.toDouble()
+
+public fun onef() = 1.toFloat()
+
+public infix fun Int.fdiv(y: Int) = toFloat() / y.toFloat()
+
+public infix fun Int.ddiv(y: Int) = toDouble() / y.toDouble()
+
+public fun (() -> Unit).returnInt(): () -> Int = { this(); 0 }
+
+public fun (() -> Unit).returnLong(): () -> Long = { this(); 0L }
+
+public fun (() -> Unit).returnFloat(): () -> Float = { this(); zerof() }
+
+public fun (() -> Unit).returnDouble(): () -> Double = { this(); zero() }
+
+public fun String.toIntOrRun(defaultBlock: () -> Int): Int = Try { toInt() }.getOrElse { run(defaultBlock) }
+
+public fun String.toIntOrDefault(default: Int = 0): Int = toIntOrRun { default }
+
+public fun String.toLongOrRun(defaultBlock: () -> Long): Long = Try { toLong() }.getOrElse { run(defaultBlock) }
+
+public fun String.toLongOrDefault(default: Long = 0): Long = toLongOrRun { default }
+
+public fun String.toFloatOrRun(defaultBlock: () -> Float): Float = Try { toFloat() }.getOrElse { run(defaultBlock) }
+
+public fun String.toFloatOrDefault(default: Float = zerof()): Float = toFloatOrRun { default }
+
+public fun String.toDoubleOrRun(defaultBlock: () -> Double): Double = Try { toDouble() }.getOrElse { run(defaultBlock) }
+
+public fun String.toDoubleOrDefault(default: Double = zero()): Double = toDoubleOrRun { default }
