@@ -1,7 +1,6 @@
 package me.carleslc.kotlin.extensions.html
 
 import me.carleslc.kotlin.extensions.map.joinToString
-import me.carleslc.kotlin.extensions.tuples.joinToString
 
 typealias Attributes = Map<String, String>
 

@@ -2,10 +2,10 @@ package me.carleslc.kotlin.extensions.arrays
 
 import me.carleslc.kotlin.extensions.collections.timesToListOf
 
-typealias Matrix<T> = Array<Array<T>>
+public typealias Matrix<T> = Array<Array<T>>
 
 public object A {
-    inline operator fun <reified T> get(vararg ts: T): Array<T> = Array<T>(ts.size) { i -> ts[i] }
+    public inline operator fun <reified T> get(vararg ts: T) = Array<T>(ts.size) { i -> ts[i] }
 }
 
 public inline fun <reified T> Int.timesToArrayOf(predicate: (Int) -> T) = timesToListOf(predicate).toTypedArray()

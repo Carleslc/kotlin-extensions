@@ -55,41 +55,35 @@ If you wish you can use these steps to add the dependency using Maven without ac
 
 In order to use any of the extensions or methods of KotlinExtensions you only need to import them.
 
-### Import a single method
-`import me.carleslc.kotlin.extensions.number.even`
+### Import a single extension
+`import me.carleslc.kotlin.extensions.standard.UtilsExtensions.times`
 
-### Import all methods of a package
-`import me.carleslc.kotlin.extensions.number.*`
+### Import all extensions of a package
+`import me.carleslc.kotlin.extensions.standard.*`
 
 ## Packages available
-
-### Any
-Extensions for Any objects.
 
 ### Arrays
 Extensions for arrays, a syntactic-sugar way to create literal arrays like `A[1, 2, 3]` instead typical `arrayOf(1, 2, 3)`
 and methods to work with 2D arrays and matrices (2D arrays with fixed columns size) easier.
 
 ### Collections
-Extensions for collections and other static methods to create collections.
-
-### Functions
-Extensions for lambda functions and other static methods to work with functions (e.g. function composition).
+Extensions for collections and other global methods to create collections.
 
 ### HTML
 Extensions to generate HTML in a more readable way.
 
 ### Map
-Extensions for maps.
+Extensions for maps and tuples (pairs).
 
 ### Number
 Extensions for numbers and conversions.
 
+### Strings
+Extensions for strings.
+
 ### Time
-Static methods to format time easily.
+Global methods to format time easily.
 
-### Tuples
-Extensions for tuples (pairs).
-
-### Utils
-General purpose extensions and static methods that do not match any other package category (e.g. looping with `Int.times`).
+### Standard
+General purpose extensions and global methods that do not match any other package category (e.g. looping with `10 times { /* code */ }` as an alias for `repeat(10) { /* code */ }`).

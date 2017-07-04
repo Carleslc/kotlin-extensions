@@ -1,4 +1,4 @@
-package me.carleslc.kotlin.extensions.tuples
+package me.carleslc.kotlin.extensions.map
 
 public fun <K, V> Pair<K, V>.joinToString(
 		separator: CharSequence = ": ",
