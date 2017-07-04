@@ -94,7 +94,7 @@ import org.funktionale.state
 import org.funktionale.tries
 import org.funktionale.utils
 import org.funktionale.validation
-``
+```
 
 ### Arrays
 `import me.carleslc.kotlin.extensions.arrays.*`
