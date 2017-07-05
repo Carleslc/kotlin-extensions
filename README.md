@@ -134,9 +134,11 @@ Extensions for strings.
 ### Time
 `import me.carleslc.kotlin.extensions.time.*`
 
-Global methods to format time easily.
+Global methods to format and manage time and dates easily.
+
+Methods of [kxdate](https://github.com/yole/kxdate) library are included.
 
 ### Standard
 `import me.carleslc.kotlin.extensions.standard.*`
 
-General purpose extensions and global methods that do not match any other package category (_e.g._ looping with `10 times { /* code */ }` as an alias for `repeat(10) { /* code */ }`).
+General purpose extensions and global methods that do not match any other package category (_e.g._ looping with `10 times { code }` or `10 * { code }`).

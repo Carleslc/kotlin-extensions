@@ -6,7 +6,7 @@ public fun FIXME(): Nothing = throw Error("An operation needs a fix.")
 
 public fun FIXME(reason: String): Nothing = throw Error("An operation needs a fix: $reason")
 
-public inline infix fun Int.times(predicate: (Int) -> Unit) = repeat(this, predicate)
+public inline infix operator fun Int.times(predicate: (Int) -> Unit) = repeat(this, predicate)
 
 public inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
 
