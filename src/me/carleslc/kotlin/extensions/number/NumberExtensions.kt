@@ -1,5 +1,6 @@
 package me.carleslc.kotlin.extensions.number
 
+import me.carleslc.kotlin.extensions.standard.andReturn
 import org.funktionale.tries.Try
 
 public fun Int.even() = this % 2 == 0
@@ -7,13 +8,13 @@ public fun Int.even() = this % 2 == 0
 public fun Int.odd() = !even()
 
 public fun Int.toBoolean() = when (this) {
-	0 -> false
-	else -> true
+    0 -> false
+    else -> true
 }
 
 public fun Boolean.toInt() = when (this) {
-	false -> 0
-	true -> -1 // All bits to 1, supports bitwise not to be false
+    false -> 0
+    true -> -1 // All bits to 1, supports bitwise not to be false
 }
 
 public fun Boolean.toDouble() = toInt().toDouble()
@@ -32,13 +33,13 @@ public infix fun Int.fdiv(y: Int) = toFloat() / y.toFloat()
 
 public infix fun Int.ddiv(y: Int) = toDouble() / y.toDouble()
 
-public fun (() -> Unit).returnInt(): () -> Int = { this(); 0 }
+public fun (() -> Any?).returnInt(): () -> Int = andReturn(0)
 
-public fun (() -> Unit).returnLong(): () -> Long = { this(); 0L }
+public fun (() -> Any?).returnLong(): () -> Long = andReturn(0L)
 
-public fun (() -> Unit).returnFloat(): () -> Float = { this(); zerof() }
+public fun (() -> Any?).returnFloat(): () -> Float = andReturn(zerof())
 
-public fun (() -> Unit).returnDouble(): () -> Double = { this(); zero() }
+public fun (() -> Any?).returnDouble(): () -> Double = andReturn(zero())
 
 public fun String.toIntOrRun(defaultBlock: () -> Int): Int = Try { toInt() }.getOrElse { run(defaultBlock) }
 

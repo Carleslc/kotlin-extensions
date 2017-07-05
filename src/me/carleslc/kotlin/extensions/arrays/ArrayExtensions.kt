@@ -29,28 +29,28 @@ public fun <T> array2dOf(vararg ts: Array<T>) = Array<Array<T>>(ts.size) { ts[it
 public inline fun <T> array2d(rows: Int, initCol: (Int) -> Array<T>) = Array<Array<T>>(rows, { row -> initCol(row) })
 
 public inline fun <reified T> matrix(rows: Int, cols: Int, init: (Int, Int) -> T): Matrix<T> {
-	return array2d(rows) { row -> Array<T>(cols, { col -> init(row, col) }) }
+    return array2d(rows) { row -> Array<T>(cols, { col -> init(row, col) }) }
 }
 
 public inline fun <reified T> matrixOfNulls(rows: Int, cols: Int): Matrix<T> = matrix(rows, cols, { _,_ -> null as T })
 
 public val <T> Array<Array<T>>.rows
-	get() = indices
+    get() = indices
 
 public val <T> Matrix<T>.columns
-	get() = if (isEmpty()) (0..-1) else this[0].indices
+    get() = if (isEmpty()) (0..-1) else this[0].indices
 
 public val <T> Array<Array<T>>.lastIndexRows
-	get() = lastIndex
+    get() = lastIndex
 
 public val <T> Matrix<T>.lastIndexColumns
-	get() = if (isEmpty()) -1 else this[0].lastIndex
+    get() = if (isEmpty()) -1 else this[0].lastIndex
 
 public val <T> Array<Array<T>>.rowSize
-	get() = size
+    get() = size
 
 public val <T> Matrix<T>.columnSize
-	get() = lastIndexColumns + 1
+    get() = lastIndexColumns + 1
 
 public val <T> Array<Array<T>>.totalSize
-	get() = fold(0) { acc, col -> acc + col.size }
+    get() = fold(0) { acc, col -> acc + col.size }

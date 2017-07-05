@@ -5,7 +5,7 @@ import java.util.Random
 public fun <T1, T2> Collection<T1>.combine(other: Iterable<T2>): List<Pair<T1, T2>> = combine(other, { thisItem: T1, otherItem: T2 -> Pair(thisItem, otherItem) })
 
 public fun <T1, T2, R> Collection<T1>.combine(other: Iterable<T2>, transform: (thisItem: T1, otherItem:T2) -> R): List<R>
-		= flatMap { thisItem -> other.map { otherItem -> transform(thisItem, otherItem) } }
+        = flatMap { thisItem -> other.map { otherItem -> transform(thisItem, otherItem) } }
 
 public inline fun <T> Int.timesToListOf(predicate: (Int) -> T) = (0..this - 1).map { predicate(it) }
 

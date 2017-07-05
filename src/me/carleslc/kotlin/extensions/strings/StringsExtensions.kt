@@ -2,6 +2,8 @@ package me.carleslc.kotlin.extensions.strings
 
 import me.carleslc.kotlin.extensions.standard.letOrElse
 
+public inline fun <T> T.toString(transform: (T) -> String) = let(transform)
+
 public inline fun <T> T?.toString(nullString: String = null.toString(), transform: (T) -> String) = letOrElse(nullString, transform)
 
 public fun <T> T?.wrap() = "$this"
