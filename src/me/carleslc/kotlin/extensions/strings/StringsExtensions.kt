@@ -10,6 +10,8 @@ public fun <T> T?.wrap() = "$this"
 
 public fun <T> T?.wrapString() = if (this is CharSequence) wrap() else toString()
 
-public fun concat(vararg params: Any?) = params.joinToString(" ")
+public fun concat(vararg params: Any?) = params.joinToString("")
 
-public fun concatWith(separator: String = " ", vararg params: Any?) = params.joinToString(separator)
+public fun join(vararg params: Any?) = params.joinToString(" ")
+
+public fun joinWith(separator: String = " ", vararg params: Any?) = params.joinToString(separator)
