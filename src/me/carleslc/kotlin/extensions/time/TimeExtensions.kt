@@ -1,11 +1,14 @@
 package me.carleslc.kotlin.extensions.time
 
 import me.carleslc.kotlin.extensions.number.zero
+import me.carleslc.kotlin.extensions.standard.with
+import java.io.PrintStream
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Period
 import java.util.concurrent.TimeUnit
+import kotlin.system.measureNanoTime
 
 private val NANO_MICRO by lazy { 1000.toDouble() }
 private val NANO_MILLI by lazy { 1000 * NANO_MICRO }
@@ -14,13 +17,24 @@ private val NANO_MINUTE by lazy { 60 * NANO_SECOND }
 private val NANO_HOUR by lazy { 60 * NANO_MINUTE }
 private val NANO_DAY by lazy { 24 * NANO_HOUR }
 
-public fun durationFromStart(start: Long, unit: TimeUnit): Duration = Duration.ofNanos(System.nanoTime() - unit.toNanos(start))
+public object Durations {
 
-public fun durationFromStartMillis(startMillis: Long): Duration = durationFromStart(startMillis, TimeUnit.MILLISECONDS)
+    fun from(time: Long, unit: TimeUnit): Duration = Duration.ofNanos(nanos() - unit.toNanos(time))
 
-public fun durationFromStartNanos(startNanos: Long): Duration = durationFromStart(startNanos, TimeUnit.NANOSECONDS)
+    fun fromMillis(millis: Long): Duration = from(millis, TimeUnit.MILLISECONDS)
 
-public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS): String {
+    fun fromNanos(nanos: Long): Duration = from(nanos, TimeUnit.NANOSECONDS)
+
+}
+
+public fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanoseconds
+
+public fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
+                           transformation: ((String) -> String)? = null,
+                           outputStream: PrintStream = System.out,
+                           block: () -> Unit) = measure(block).humanize(limit, transformation).run(outputStream::println)
+
+public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, transformation: ((String) -> String)?): String {
     val builder = StringBuilder()
     var nanos: Long = toNanos()
     var finished = false
@@ -56,7 +70,7 @@ public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS): String {
     append(TimeUnit.MICROSECONDS, NANO_MICRO, "us")
     append(TimeUnit.NANOSECONDS, zero(), "ns")
 
-    return builder.toString().trim()
+    return builder.toString().trim().with(transformation)
 }
 
 public object ago
@@ -67,35 +81,54 @@ public fun today() = LocalDate.now()
 
 public fun now() = LocalDateTime.now()
 
-public val Int.nanoseconds: Duration
-    get() = Duration.ofNanos(toLong())
+public fun millis() = System.currentTimeMillis()
 
-public val Int.microseconds: Duration
-    get() = Duration.ofNanos(toLong() * 1000L)
+public fun nanos() = System.nanoTime()
 
-public val Int.milliseconds: Duration
-    get() = Duration.ofMillis(toLong())
+public val Long.nanoseconds: Duration
+    get() = run(Duration::ofNanos)
 
-public val Int.seconds: Duration
-    get() = Duration.ofSeconds(toLong())
+public val Long.microseconds: Duration
+    get() = Duration.ofNanos(this * 1000L)
 
-public val Int.minutes: Duration
-    get() = Duration.ofMinutes(toLong())
+public val Long.milliseconds: Duration
+    get() = run(Duration::ofMillis)
 
-public val Int.hours: Duration
-    get() = Duration.ofHours(toLong())
+public val Long.seconds: Duration
+    get() = run(Duration::ofSeconds)
+
+public val Long.minutes: Duration
+    get() = run(Duration::ofMinutes)
+
+public val Long.hours: Duration
+    get() = run(Duration::ofHours)
+
+public val Long.hour: Duration
+    get() = hours
 
 public val Int.days: Period
-    get() = Period.ofDays(this)
+    get() = run(Period::ofDays)
+
+public val Int.day: Period
+    get() = days
 
 public val Int.weeks: Period
-    get() = Period.ofWeeks(this)
+    get() = run(Period::ofWeeks)
+
+public val Int.week: Period
+    get() = weeks
 
 public val Int.months: Period
-    get() = Period.ofMonths(this)
+    get() = run(Period::ofMonths)
+
+public val Int.month: Period
+    get() = months
 
 public val Int.years: Period
-    get() = Period.ofYears(this)
+    get() = run(Period::ofYears)
+
+public val Int.year: Period
+    get() = years
 
 public val Duration.ago: LocalDateTime
     get() =  now() - this
@@ -109,42 +142,42 @@ public val Period.ago: LocalDate
 public val Period.fromNow: LocalDate
     get() = today() + this
 
-public infix fun Int.nanoseconds(fromNow: fromNow) = now().plusNanos(toLong())
+public infix fun Long.nanoseconds(fromNow: fromNow) = now().plusNanos(toLong())
 
-public infix fun Int.nanoseconds(ago: ago) = now().minusNanos(toLong())
+public infix fun Long.nanoseconds(ago: ago) = now().minusNanos(toLong())
 
-public infix fun Int.microseconds(fromNow: fromNow) = now().plusNanos(1000L * toLong())
+public infix fun Long.microseconds(fromNow: fromNow) = now().plusNanos(1000L * toLong())
 
-public infix fun Int.microseconds(ago: ago) = now().minusNanos(1000L * toLong())
+public infix fun Long.microseconds(ago: ago) = now().minusNanos(1000L * toLong())
 
-public infix fun Int.milliseconds(fromNow: fromNow) = now().plusNanos(1000000L * toLong())
+public infix fun Long.milliseconds(fromNow: fromNow) = now().plusNanos(1000000L * toLong())
 
-public infix fun Int.milliseconds(ago: ago) = now().minusNanos(1000000L * toLong())
+public infix fun Long.milliseconds(ago: ago) = now().minusNanos(1000000L * toLong())
 
-public infix fun Int.seconds(fromNow: fromNow) = now().plusSeconds(toLong())
+public infix fun Long.seconds(fromNow: fromNow) = now().plusSeconds(toLong())
 
-public infix fun Int.seconds(ago: ago) = now().minusSeconds(toLong())
+public infix fun Long.seconds(ago: ago) = now().minusSeconds(toLong())
 
-public infix fun Int.minutes(fromNow: fromNow) = now().plusMinutes(toLong())
+public infix fun Long.minutes(fromNow: fromNow) = now().plusMinutes(toLong())
 
-public infix fun Int.minutes(ago: ago) = now().minusMinutes(toLong())
+public infix fun Long.minutes(ago: ago) = now().minusMinutes(toLong())
 
-public infix fun Int.hours(fromNow: fromNow) = now().plusHours(toLong())
+public infix fun Long.hours(fromNow: fromNow) = now().plusHours(toLong())
 
-public infix fun Int.hours(ago: ago) = now().minusHours(toLong())
+public infix fun Long.hours(ago: ago) = now().minusHours(toLong())
 
-public infix fun Int.days(fromNow: fromNow) = today().plusDays(toLong())
+public infix fun Long.days(fromNow: fromNow) = today().plusDays(toLong())
 
-public infix fun Int.days(ago: ago) = today().minusDays(toLong())
+public infix fun Long.days(ago: ago) = today().minusDays(toLong())
 
-public infix fun Int.weeks(fromNow: fromNow) = today().plusWeeks(toLong())
+public infix fun Long.weeks(fromNow: fromNow) = today().plusWeeks(toLong())
 
-public infix fun Int.weeks(ago: ago) = today().minusWeeks(toLong())
+public infix fun Long.weeks(ago: ago) = today().minusWeeks(toLong())
 
-public infix fun Int.months(fromNow: fromNow) = today().plusMonths(toLong())
+public infix fun Long.months(fromNow: fromNow) = today().plusMonths(toLong())
 
-public infix fun Int.months(ago: ago) = today().minusMonths(toLong())
+public infix fun Long.months(ago: ago) = today().minusMonths(toLong())
 
-public infix fun Int.years(fromNow: fromNow) = today().plusYears(toLong())
+public infix fun Long.years(fromNow: fromNow) = today().plusYears(toLong())
 
-public infix fun Int.years(ago: ago) = today().minusYears(toLong())
+public infix fun Long.years(ago: ago) = today().minusYears(toLong())

@@ -8,6 +8,8 @@ public fun FIXME(reason: String): Nothing = throw Error("An operation needs a fi
 
 public inline infix operator fun Int.times(predicate: (Int) -> Unit) = repeat(this, predicate)
 
+public fun <T> T.with(block: (T.() -> T)?): T = block?.invoke(this) ?: this
+
 public inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
 
 public inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({nullValue}, block)
@@ -35,3 +37,15 @@ public fun <T1, T2, T3, T4, R> ((T1, T2, T3, T4) -> R).with(param1: T1, param2: 
 public fun <T1, T2, T3, T4, T5, R> ((T1, T2, T3, T4, T5) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5): () -> R = partially1(param1).with(param2, param3, param4, param5)
 
 public fun <T1, T2, T3, T4, T5, T6, R> ((T1, T2, T3, T4, T5, T6) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5, param6: T6): () -> R = partially1(param1).with(param2, param3, param4, param5, param6)
+
+public fun <T, R> ((T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0]) }
+
+public fun <T, R> ((T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1]) }
+
+public fun <T, R> ((T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2]) }
+
+public fun <T, R> ((T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2], it[3]) }
+
+public fun <T, R> ((T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2], it[3], it[4]) }
+
+public fun <T, R> ((T, T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2], it[3], it[4], it[5]) }
