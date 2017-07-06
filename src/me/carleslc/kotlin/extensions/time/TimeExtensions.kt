@@ -30,9 +30,10 @@ public object Durations {
 public fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanoseconds
 
 public fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
+                           formatter: TimeUnitFormatter = TimeUnitFormatter.SHORT,
                            transformation: ((String) -> String)? = null,
                            outputStream: PrintStream = System.out,
-                           block: () -> Unit) = measure(block).humanize(limit, TimeUnitFormatter.SHORT, transformation).run(outputStream::println)
+                           block: () -> Unit) = measure(block).humanize(limit, formatter, transformation).run(outputStream::println)
 
 public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.LONG, transformation: ((String) -> String)? = null): String {
     val builder = StringBuilder()
