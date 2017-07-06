@@ -15,3 +15,9 @@ public fun concat(vararg params: Any?) = params.joinToString("")
 public fun join(vararg params: Any?) = params.joinToString(" ")
 
 public fun joinWith(separator: String = " ", vararg params: Any?) = params.joinToString(separator)
+
+public fun String.replace(ignoreCase: Boolean = false, vararg vars: Pair<String, String>): String {
+    var copy = this
+    vars.forEach { copy =  copy.replace(it.first, it.second, ignoreCase) }
+    return copy
+}
