@@ -32,43 +32,45 @@ public fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanosec
 public fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
                            transformation: ((String) -> String)? = null,
                            outputStream: PrintStream = System.out,
-                           block: () -> Unit) = measure(block).humanize(limit, transformation).run(outputStream::println)
+                           block: () -> Unit) = measure(block).humanize(limit, TimeUnitFormatter.SHORT, transformation).run(outputStream::println)
 
-public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, transformation: ((String) -> String)?): String {
+public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.LONG, transformation: ((String) -> String)? = null): String {
     val builder = StringBuilder()
     var nanos: Long = toNanos()
     var finished = false
 
-    fun intermediateAppend(threshold: Double, unit: String) {
+    fun intermediateAppend(threshold: Double, unit: TimeUnit) {
         if (nanos > threshold) {
-            builder.append(Math.round(nanos / threshold)).append(" $unit ")
+            val value = if (threshold > zero()) Math.round(nanos / threshold) else nanos
+            builder.append(value).append(" ${ formatter.get(value, unit) } ")
             nanos %= threshold.toLong()
         }
     }
 
-    fun lastAppend(threshold: Double, unit: String) {
+    fun lastAppend(threshold: Double, unit: TimeUnit) {
         if (nanos > threshold || builder.isEmpty()) {
-            builder.append(if (threshold > zero()) Math.round(nanos / threshold) else nanos).append(" $unit")
+            val value = if (threshold > zero()) Math.round(nanos / threshold) else nanos
+            builder.append(value).append(" ${ formatter.get(value, unit) }")
         }
         finished = true
     }
 
-    fun append(step: TimeUnit, threshold: Double, unit: String) {
+    fun append(step: TimeUnit, threshold: Double) {
         if (!finished) {
             when (step) {
-                limit -> lastAppend(threshold, unit)
-                else -> intermediateAppend(threshold, unit)
+                limit -> lastAppend(threshold, step)
+                else -> intermediateAppend(threshold, step)
             }
         }
     }
 
-    append(TimeUnit.DAYS, NANO_DAY, "d")
-    append(TimeUnit.HOURS, NANO_HOUR, "h")
-    append(TimeUnit.MINUTES, NANO_MINUTE, "m")
-    append(TimeUnit.SECONDS, NANO_SECOND, "s")
-    append(TimeUnit.MILLISECONDS, NANO_MILLI, "ms")
-    append(TimeUnit.MICROSECONDS, NANO_MICRO, "us")
-    append(TimeUnit.NANOSECONDS, zero(), "ns")
+    append(TimeUnit.DAYS, NANO_DAY)
+    append(TimeUnit.HOURS, NANO_HOUR)
+    append(TimeUnit.MINUTES, NANO_MINUTE)
+    append(TimeUnit.SECONDS, NANO_SECOND)
+    append(TimeUnit.MILLISECONDS, NANO_MILLI)
+    append(TimeUnit.MICROSECONDS, NANO_MICRO)
+    append(TimeUnit.NANOSECONDS, zero())
 
     return builder.toString().trim().with(transformation)
 }
