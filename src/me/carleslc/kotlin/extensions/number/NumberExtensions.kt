@@ -7,21 +7,28 @@ public fun Int.even() = this % 2 == 0
 
 public fun Int.odd() = !even()
 
-// TODO: GCD, LCM, Any?.toInt,Long,Double,Float,Boolean
+public tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(a, a % b)
 
-public fun Int.toBoolean() = when (this) {
-    0 -> false
+public fun lcm(a: Int, b: Int) = a * b / gcd(a, b)
+
+public fun Long.toBoolean() = when (this) {
+    0L -> false
     else -> true
 }
 
-public fun Boolean.toInt() = when (this) {
-    false -> 0
-    true -> -1 // All bits to 1, supports bitwise not to be false
+public fun Boolean.toLong() = when (this) {
+    false -> 0L
+    true -> -1L // All bits to 1, supports bitwise not to be false
 }
 
-public fun Boolean.toDouble() = toInt().toDouble()
+public fun Int.toBoolean() = toLong().toBoolean()
+public fun Boolean.toInt() = toLong().toInt()
 
-public fun Double.toBoolean() = toInt().toBoolean()
+public fun Double.toBoolean() = toLong().toBoolean()
+public fun Boolean.toDouble() = toLong().toDouble()
+
+public fun Float.toBoolean() = toLong().toBoolean()
+public fun Boolean.toFloat() = toLong().toFloat()
 
 public fun zero() = 0.toDouble()
 
@@ -68,3 +75,23 @@ public fun String.toFloatOrDefault(default: Float = zerof()): Float = toFloatOrR
 public fun String.toDoubleOrRun(defaultBlock: () -> Double): Double = Try { toDouble() }.getOrElse { run(defaultBlock) }
 
 public fun String.toDoubleOrDefault(default: Double = zero()): Double = toDoubleOrRun { default }
+
+fun Any?.toInt(): Int {
+    if (this == null) return 0
+    return if (this is Number) toInt() else toString().toIntOrDefault()
+}
+
+fun Any?.toLong(): Long {
+    if (this == null) return 0L
+    return if (this is Number) toLong() else toString().toLongOrDefault()
+}
+
+fun Any?.toFloat(): Float {
+    if (this == null) return zerof()
+    return if (this is Number) toFloat() else toString().toFloatOrDefault()
+}
+
+fun Any?.toDouble(): Double {
+    if (this == null) return zero()
+    return if (this is Number) toDouble() else toString().toDoubleOrDefault()
+}
