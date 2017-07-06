@@ -35,7 +35,7 @@ public fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
                            outputStream: PrintStream = System.out,
                            block: () -> Unit) = measure(block).humanize(limit, formatter, transformation).run(outputStream::println)
 
-public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.LONG, transformation: ((String) -> String)? = null): String {
+public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.SHORT, transformation: ((String) -> String)? = null): String {
     val builder = StringBuilder()
     var nanos: Long = toNanos()
     var finished = false
