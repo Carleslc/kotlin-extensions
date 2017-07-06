@@ -7,6 +7,8 @@ public fun Int.even() = this % 2 == 0
 
 public fun Int.odd() = !even()
 
+// TODO: GCD, LCM, Any?.toInt,Long,Double,Float,Boolean
+
 public fun Int.toBoolean() = when (this) {
     0 -> false
     else -> true
@@ -29,13 +31,19 @@ public fun one() = 1.toDouble()
 
 public fun onef() = 1.toFloat()
 
-public infix fun Int.fdiv(y: Number) = toFloat() / y.toFloat()
+public infix fun Number.fdiv(y: Number): Float = toFloat() / y.toFloat()
 
-public infix fun Long.fdiv(y: Number) = toFloat() / y.toFloat()
+public infix fun Number.ddiv(y: Number): Double = toDouble() / y.toDouble()
 
-public infix fun Int.ddiv(y: Number) = toDouble() / y.toDouble()
+public infix fun Number.roundDiv(y: Number): Long = Math.round(ddiv(y))
 
-public infix fun Long.ddiv(y: Number) = toDouble() / y.toDouble()
+public fun Double.floor(): Long = Math.floor(this).toLong()
+
+public fun Double.ceil(): Long = Math.ceil(this).toLong()
+
+public fun Float.floor(): Long = toDouble().floor()
+
+public fun Float.ceil(): Long = toDouble().ceil()
 
 public fun (() -> Any?).returnInt(): () -> Int = andReturn(0)
 

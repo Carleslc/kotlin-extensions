@@ -24,6 +24,8 @@ public fun <T, R> (() -> T).andReturn(value: R): () -> R = andThen { value }
 
 public fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
+public fun <T> T.print(tag: String = ""): T = also { println(if (tag.isBlank()) it else "$tag = $it") }
+
 public fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { a, b -> this(b, a) }
 
 public fun <T, R> ((T) -> R).with(param: T): () -> R = bind(param)

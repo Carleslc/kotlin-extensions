@@ -102,6 +102,13 @@ import org.funktionale.validation.*
 Extensions for arrays, a syntactic-sugar way to create literal arrays like `A[1, 2, 3]` instead typical `arrayOf(1, 2, 3)`
 and methods to work with 2D arrays and matrices (2D arrays with fixed columns size) easier.
 
+### Bytes
+`import me.carleslc.kotlin.extensions.bytes.*`
+
+Extensions for memory size conversions _(from bits to pebibytes and petabytes)_.
+
+Inspired from [ktunits](https://github.com/sargunster/ktunits) library.
+
 ### Collections
 `import me.carleslc.kotlin.extensions.collections.*`
 
@@ -113,18 +120,14 @@ Extensions for collections and other global methods to create collections.
 Extensions to generate HTML in a more readable way.
 
 ### Map
-```
-import me.carleslc.kotlin.extensions.map.*
-import me.carleslc.kotlin.extensions.map.TupleExtensions.*
-import me.carleslc.kotlin.extensions.map.MapExtensions.*
-```
+`import me.carleslc.kotlin.extensions.map.*`
 
-Extensions for maps and tuples (pairs).
+Extensions for maps.
 
 ### Number
 `import me.carleslc.kotlin.extensions.number.*`
 
-Extensions for numbers and conversions.
+Extensions for numbers and conversions between basic types.
 
 ### Strings
 `import me.carleslc.kotlin.extensions.strings.*`
@@ -134,9 +137,14 @@ Extensions for strings.
 ### Time
 `import me.carleslc.kotlin.extensions.time.*`
 
-Global methods to format and manage time and dates easily.
+Extensions for timing, format and manage time or dates easily.
 
-Methods of [kxdate](https://github.com/yole/kxdate) library are included.
+Inspired from [kxdate](https://github.com/yole/kxdate) and [khronos](https://github.com/hotchemi/khronos) libraries.
+
+### Tuples
+`import me.carleslc.kotlin.extensions.tuples.*`
+
+Extensions for pairs and triples.
 
 ### Standard
 `import me.carleslc.kotlin.extensions.standard.*`
