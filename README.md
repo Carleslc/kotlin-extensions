@@ -22,7 +22,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
         <groupId>me.carleslc</groupId>
         <artifactId>kotlin-extensions</artifactId>
-        <version>0.3</version>
+        <version>0.3.1</version>
     </dependency>
     <dependency>
         <groupId>org.funktionale</groupId>
@@ -45,7 +45,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile(group: 'me.carleslc', name: 'kotlin-extensions', version: '0.3')
+    compile(group: 'me.carleslc', name: 'kotlin-extensions', version: '0.3.1')
     compile(group: 'org.funktionale', name: 'funktionale-all', version: '1.1')
 }
 ```
@@ -55,7 +55,7 @@ dependencies {
 1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-4. Add the `kotlin-extensions-0.3.jar` from `target` folder as a dependency of your project.
+4. Add the `kotlin-extensions-0.3.1.jar` from `target` folder as a dependency of your project.
 5. `git clone https://github.com/MarioAriasC/funKTionale`
 6. cd `funKTionale/funktionale-all`
 7. Build the functionale-all with `mvn clean install`. This also adds this project to your local Maven repository.
