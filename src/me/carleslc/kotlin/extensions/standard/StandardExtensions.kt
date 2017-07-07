@@ -10,9 +10,15 @@ public inline infix operator fun Int.times(predicate: (Int) -> Unit) = repeat(th
 
 public fun <T> T.with(block: (T.() -> T)?): T = block?.invoke(this) ?: this
 
+public fun <T> T.asNullable(): T? = this
+
 public inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
 
 public inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({nullValue}, block)
+
+public inline fun <T> T.letIf(condition: (T) -> Boolean, ifBlock: (T) -> Unit, elseBlock: ((T) -> Unit)? = null) = if (run(condition)) run(ifBlock) else elseBlock?.invoke(this)
+
+public inline fun <T, R> T.letIf(condition: (T) -> Boolean, ifBlock: (T) -> R, elseBlock: (T) -> R): R = if (run(condition)) run(ifBlock) else run(elseBlock)
 
 public infix fun <T> (() -> T).butBefore(block: () -> Unit): () -> T = { block(); this() }
 
@@ -24,7 +30,7 @@ public fun <T, R> (() -> T).andReturn(value: R): () -> R = andThen { value }
 
 public fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
-public fun <T> T.print(tag: String = ""): T = also { println(if (tag.isBlank()) it else "$tag = $it") }
+public fun <T> T.print(tag: String = "", separator: String = " = "): T = also { println(if (tag.isBlank()) it else "$tag$separator$it") }
 
 public fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { a, b -> this(b, a) }
 
