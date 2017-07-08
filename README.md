@@ -1,8 +1,6 @@
 # KotlinExtensions
 Utility extensions, properties and useful methods to boost your programming with Kotlin.
 
-Additionally `funktionale-all` module from [funKTionale](https://github.com/MarioAriasC/funKTionale) is included.
-
 ## How to install
 
 ### Maven
@@ -19,18 +17,28 @@ Add the following repository to your `pom.xml`:
 Add the following dependencies to your `pom.xml`:
 ```
 <dependencies>
+    <!-- KotlinExtensions -->
     <dependency>
         <groupId>me.carleslc</groupId>
         <artifactId>kotlin-extensions</artifactId>
-        <version>0.3.1</version>
+        <version>0.4</version>
     </dependency>
+    <!-- FunKTionale -->
     <dependency>
         <groupId>org.funktionale</groupId>
         <artifactId>funktionale-all</artifactId>
         <version>1.1</version>
     </dependency>
+    <!-- Guava -->
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>22.0</version>
+    </dependency>
 </dependencies>
 ```
+
+[funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) are optional dependencies, but they are very powerful to complement this library.
 
 ### Gradle
 
@@ -45,23 +53,24 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile(group: 'me.carleslc', name: 'kotlin-extensions', version: '0.3.1')
-    compile(group: 'org.funktionale', name: 'funktionale-all', version: '1.1')
+    compile 'me.carleslc:kotlin-extensions:0.4'
+    compile 'org.funktionale:funktionale-all:1.1'
+    compile 'com.google.guava:guava:22.0'
 }
 ```
+
+[funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) are optional dependencies, but they are very powerful to complement this library.
 
 ### Manual
 
 1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-4. Add the `kotlin-extensions-0.3.1.jar` from `target` folder as a dependency of your project.
-5. `git clone https://github.com/MarioAriasC/funKTionale`
-6. cd `funKTionale/funktionale-all`
-7. Build the functionale-all with `mvn clean install`. This also adds this project to your local Maven repository.
-8. Add the `funktionale-all-1.1.jar` from `target` folder as a dependency of your project.
+4. Add the `kotlin-extensions-0.4.jar` from `target` folder as a dependency of your project.
 
 If you wish you can use these steps to add the dependency using Maven without accessing to the remote repository.
+
+In addition, if needed, you can add the dependencies of [funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) as they are very powerful to complement this library.
 
 ## How to use
 
@@ -74,27 +83,6 @@ In order to use any of the extensions or methods of KotlinExtensions you only ne
 `import me.carleslc.kotlin.extensions.standard.*`
 
 ## Packages available
-
-### funKTionale
-[funKTionale](https://github.com/MarioAriasC/funKTionale) library is included, so you can use any methods of that library.
-
-```
-import org.funktionale.collections.*
-import org.funktionale.complement.*
-import org.funktionale.composition.*
-import org.funktionale.currying.*
-import org.funktionale.either.*
-import org.funktionale.memoization.*
-import org.funktionale.option.*
-import org.funktionale.pairing.*
-import org.funktionale.partials.*
-import org.funktionale.pipe.*
-import org.funktionale.reverse.*
-import org.funktionale.state.*
-import org.funktionale.tries.*
-import org.funktionale.utils.*
-import org.funktionale.validation.*
-```
 
 ### Arrays
 `import me.carleslc.kotlin.extensions.arrays.*`
@@ -112,7 +100,12 @@ Inspired from [ktunits](https://github.com/sargunster/ktunits) library.
 ### Collections
 `import me.carleslc.kotlin.extensions.collections.*`
 
-Extensions for collections and other global methods to create collections.
+Extensions for collections, sintactic-sugar for list and set literals with `L[values]` or `S[values]` and other global methods to create collections.
+
+### Conversions
+`import me.carleslc.kotlin.extensions.conversions.*`
+
+Extensions for conversions between basic types.
 
 ### HTML
 `import me.carleslc.kotlin.extensions.html.*`
@@ -122,12 +115,12 @@ Extensions to generate HTML in a more readable way.
 ### Map
 `import me.carleslc.kotlin.extensions.map.*`
 
-Extensions for maps.
+Extensions for maps and sintactic-sugar for Map literals with `M[pairs].
 
 ### Number
 `import me.carleslc.kotlin.extensions.number.*`
 
-Extensions for numbers and conversions between basic types.
+Extensions for numbers and math operations.
 
 ### Strings
 `import me.carleslc.kotlin.extensions.strings.*`
@@ -150,3 +143,31 @@ Extensions for pairs and triples.
 `import me.carleslc.kotlin.extensions.standard.*`
 
 General purpose extensions and global methods that do not match any other package category (_e.g._ looping with `10 times { code }` or `10 * { code }`).
+
+## Optional Libraries
+
+### [funKTionale](https://github.com/MarioAriasC/funKTionale)
+
+This library includes some functional extensions and classes like those of the common and most used functional languages.
+
+```
+import org.funktionale.collections.*
+import org.funktionale.complement.*
+import org.funktionale.composition.*
+import org.funktionale.currying.*
+import org.funktionale.either.*
+import org.funktionale.memoization.*
+import org.funktionale.option.*
+import org.funktionale.pairing.*
+import org.funktionale.partials.*
+import org.funktionale.pipe.*
+import org.funktionale.reverse.*
+import org.funktionale.state.*
+import org.funktionale.tries.*
+import org.funktionale.utils.*
+import org.funktionale.validation.*
+```
+
+### [guava](https://github.com/google/guava)
+
+This library from Google Developers includes a lot of useful classes and methods to extends de language. Is written in Java but we can use it from Kotlin with no problems.

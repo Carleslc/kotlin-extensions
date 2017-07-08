@@ -2,7 +2,7 @@ package me.carleslc.kotlin.extensions.time
 
 import java.util.concurrent.TimeUnit
 
-public open class TimeUnitFormatter protected constructor(val day: String,
+open class TimeUnitFormatter protected constructor(val day: String,
                                                           val days: String = day,
                                                           val hour: String,
                                                           val hours: String = day,
@@ -22,7 +22,11 @@ public open class TimeUnitFormatter protected constructor(val day: String,
         val LONG by lazy { TimeUnitFormatter("day", "days", "hour", "hours", "minute", "minutes", "second", "seconds", "millisecond", "milliseconds", "microsecond", "microseconds", "nanosecond", "nanoseconds") }
     }
 
-    fun get(value: Long, unit: TimeUnit): String {
+    open fun format(value: Long, unit: TimeUnit) = "$value ${ get(value, unit) } "
+
+    open fun formatLast(value: Number, unit: TimeUnit) = format(value.toLong(), unit)
+
+    protected fun get(value: Long, unit: TimeUnit): String {
         val isPlural = Math.abs(value) != 1L
 
         fun get(singular: String, plural: String) = if (isPlural) plural else singular

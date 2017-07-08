@@ -1,101 +1,101 @@
+@file:Suppress("NOTHING_TO_INLINE")
 package me.carleslc.kotlin.extensions.bytes
 
 val Long.bits: BitValue get() = BitValue(this)
-val Long.bit: BitValue get() = bits
+inline val Long.bit: BitValue get() = bits
 
-val Int.bits: BitValue get() = toLong().bits
-val Int.bit: BitValue get() = bits
+inline val Int.bits: BitValue get() = toLong().bits
+inline val Int.bit: BitValue get() = bits
 
-val Long.bytes: BitValue get() = times(8).bits
-val Long.byte: BitValue get() = bytes
-val Long.B: BitValue get() = bytes
+inline val Long.bytes: BitValue get() = times(8).bits
+inline val Long.byte: BitValue get() = bytes
+inline val Long.B: BitValue get() = bytes
 
-val Int.bytes: BitValue get() = toLong().bytes
-val Int.byte: BitValue get() = bytes
-val Int.B: BitValue get() = bytes
+inline val Int.bytes: BitValue get() = toLong().bytes
+inline val Int.byte: BitValue get() = bytes
+inline val Int.B: BitValue get() = bytes
 
-val Long.kibibytes: BitValue get() = times(1024).bytes
-val Long.kibibyte: BitValue get() = kibibytes
-val Long.KiB: BitValue get() = kibibytes
+inline val Long.kibibytes: BitValue get() = times(1024).bytes
+inline val Long.kibibyte: BitValue get() = kibibytes
+inline val Long.KiB: BitValue get() = kibibytes
 
-val Int.kibibytes: BitValue get() = toLong().kibibytes
-val Int.kibibyte: BitValue get() = kibibytes
-val Int.KiB: BitValue get() = kibibytes
+inline val Int.kibibytes: BitValue get() = toLong().kibibytes
+inline val Int.kibibyte: BitValue get() = kibibytes
+inline val Int.KiB: BitValue get() = kibibytes
 
-val Long.kilobytes: BitValue get() = times(1000).bytes
-val Long.kilobyte: BitValue get() = kilobytes
-val Long.KB: BitValue get() = kilobytes
+inline val Long.kilobytes: BitValue get() = times(1000).bytes
+inline val Long.kilobyte: BitValue get() = kilobytes
+inline val Long.KB: BitValue get() = kilobytes
 
-val Int.kilobytes: BitValue get() = toLong().kilobytes
-val Int.kilobyte: BitValue get() = kilobytes
-val Int.KB: BitValue get() = kilobytes
+inline val Int.kilobytes: BitValue get() = toLong().kilobytes
+inline val Int.kilobyte: BitValue get() = kilobytes
+inline val Int.KB: BitValue get() = kilobytes
 
-val Long.mebibytes: BitValue get() = times(1024).kibibytes
-val Long.mebibyte: BitValue get() = mebibytes
-val Long.MiB: BitValue get() = mebibytes
+inline val Long.mebibytes: BitValue get() = times(1024).kibibytes
+inline val Long.mebibyte: BitValue get() = mebibytes
+inline val Long.MiB: BitValue get() = mebibytes
 
-val Int.mebibytes: BitValue get() = toLong().mebibytes
-val Int.mebibyte: BitValue get() = mebibytes
-val Int.MiB: BitValue get() = mebibytes
+inline val Int.mebibytes: BitValue get() = toLong().mebibytes
+inline val Int.mebibyte: BitValue get() = mebibytes
+inline val Int.MiB: BitValue get() = mebibytes
 
-val Long.megabytes: BitValue get() = times(1000).kilobytes
-val Long.megabyte: BitValue get() = megabytes
-val Long.MB: BitValue get() = megabytes
+inline val Long.megabytes: BitValue get() = times(1000).kilobytes
+inline val Long.megabyte: BitValue get() = megabytes
+inline val Long.MB: BitValue get() = megabytes
 
-val Int.megabytes: BitValue get() = toLong().megabytes
-val Int.megabyte: BitValue get() = megabytes
-val Int.MB: BitValue get() = megabytes
+inline val Int.megabytes: BitValue get() = toLong().megabytes
+inline val Int.megabyte: BitValue get() = megabytes
+inline val Int.MB: BitValue get() = megabytes
 
-val Long.gibibytes: BitValue get() = times(1024).mebibytes
-val Long.gibibyte: BitValue get() = gibibytes
-val Long.GiB: BitValue get() = gibibytes
+inline val Long.gibibytes: BitValue get() = times(1024).mebibytes
+inline val Long.gibibyte: BitValue get() = gibibytes
+inline val Long.GiB: BitValue get() = gibibytes
 
-val Int.gibibytes: BitValue get() = toLong().gibibytes
-val Int.gibibyte: BitValue get() = gibibytes
-val Int.GiB: BitValue get() = gibibytes
+inline val Int.gibibytes: BitValue get() = toLong().gibibytes
+inline val Int.gibibyte: BitValue get() = gibibytes
+inline val Int.GiB: BitValue get() = gibibytes
 
-val Long.gigabytes: BitValue get() = times(1000).megabytes
-val Long.gigabyte: BitValue get() = gigabytes
-val Long.GB: BitValue get() = gigabytes
+inline val Long.gigabytes: BitValue get() = times(1000).megabytes
+inline val Long.gigabyte: BitValue get() = gigabytes
+inline val Long.GB: BitValue get() = gigabytes
 
-val Int.gigabytes: BitValue get() = toLong().gigabytes
-val Int.gigabyte: BitValue get() = gigabytes
-val Int.GB: BitValue get() = gigabytes
+inline val Int.gigabytes: BitValue get() = toLong().gigabytes
+inline val Int.gigabyte: BitValue get() = gigabytes
+inline val Int.GB: BitValue get() = gigabytes
 
-val Long.tebibytes: BitValue get() = times(1024).gibibytes
-val Long.tebibyte: BitValue get() = tebibytes
-val Long.TiB: BitValue get() = tebibytes
+inline val Long.tebibytes: BitValue get() = times(1024).gibibytes
+inline val Long.tebibyte: BitValue get() = tebibytes
+inline val Long.TiB: BitValue get() = tebibytes
 
-val Int.tebibytes: BitValue get() = toLong().tebibytes
-val Int.tebibyte: BitValue get() = tebibytes
-val Int.TiB: BitValue get() = tebibytes
+inline val Int.tebibytes: BitValue get() = toLong().tebibytes
+inline val Int.tebibyte: BitValue get() = tebibytes
+inline val Int.TiB: BitValue get() = tebibytes
 
-val Long.terabytes: BitValue get() = times(1000).gigabytes
-val Long.terabyte: BitValue get() = terabytes
-val Long.TB: BitValue get() = terabytes
+inline val Long.terabytes: BitValue get() = times(1000).gigabytes
+inline val Long.terabyte: BitValue get() = terabytes
+inline val Long.TB: BitValue get() = terabytes
 
-val Int.terabytes: BitValue get() = toLong().terabytes
-val Int.terabyte: BitValue get() = terabytes
-val Int.TB: BitValue get() = terabytes
+inline val Int.terabytes: BitValue get() = toLong().terabytes
+inline val Int.terabyte: BitValue get() = terabytes
+inline val Int.TB: BitValue get() = terabytes
 
-val Long.pebibytes: BitValue get() = times(1024).tebibytes
-val Long.pebibyte: BitValue get() = pebibytes
-val Long.PiB: BitValue get() = pebibytes
+inline val Long.pebibytes: BitValue get() = times(1024).tebibytes
+inline val Long.pebibyte: BitValue get() = pebibytes
+inline val Long.PiB: BitValue get() = pebibytes
 
-val Int.pebibytes: BitValue get() = toLong().pebibytes
-val Int.pebibyte: BitValue get() = pebibytes
-val Int.PiB: BitValue get() = pebibytes
+inline val Int.pebibytes: BitValue get() = toLong().pebibytes
+inline val Int.pebibyte: BitValue get() = pebibytes
+inline val Int.PiB: BitValue get() = pebibytes
 
-val Long.petabytes: BitValue get() = times(1000).terabytes
-val Long.petabyte: BitValue get() = petabytes
-val Long.PB: BitValue get() = petabytes
+inline val Long.petabytes: BitValue get() = times(1000).terabytes
+inline val Long.petabyte: BitValue get() = petabytes
+inline val Long.PB: BitValue get() = petabytes
 
-val Int.petabytes: BitValue get() = toLong().petabytes
-val Int.petabyte: BitValue get() = petabytes
-val Int.PB: BitValue get() = petabytes
+inline val Int.petabytes: BitValue get() = toLong().petabytes
+inline val Int.petabyte: BitValue get() = petabytes
+inline val Int.PB: BitValue get() = petabytes
 
-data class BitValue internal constructor(val bits: Long) {
-    val toBits = bits
+data class BitValue internal constructor(val toBits: Long) {
     val toBytes = toBits / 8
     val B = toBytes
     val toKibibytes = toBytes / 1024

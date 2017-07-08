@@ -1,26 +1,26 @@
+@file:Suppress("NOTHING_TO_INLINE")
 package me.carleslc.kotlin.extensions.time
 
 import me.carleslc.kotlin.extensions.number.roundDiv
-import me.carleslc.kotlin.extensions.number.zero
 import me.carleslc.kotlin.extensions.standard.with
 import java.io.PrintStream
+import java.math.MathContext
 import java.time.Duration
-import java.time.temporal.ChronoUnit
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
 
-private val NANO_MICRO by lazy { 1000.toDouble() }
+private val NANO_MICRO by lazy { 1000L }
 private val NANO_MILLI by lazy { 1000 * NANO_MICRO }
 private val NANO_SECOND by lazy { 1000 * NANO_MILLI }
 private val NANO_MINUTE by lazy { 60 * NANO_SECOND }
 private val NANO_HOUR by lazy { 60 * NANO_MINUTE }
 private val NANO_DAY by lazy { 24 * NANO_HOUR }
 
-public fun millis() = System.currentTimeMillis()
+inline fun millis() = System.currentTimeMillis()
 
-public fun nanos() = System.nanoTime()
+inline fun nanos() = System.nanoTime()
 
-public object Durations {
+object Durations {
 
     fun between(start: Long, end: Long, unit: TimeUnit) = betweenNanos(unit.toNanos(start), unit.toNanos(end))
 
@@ -43,36 +43,37 @@ public object Durations {
 
 }
 
-public fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanoseconds
+inline fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanoseconds
 
-public fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
-                           formatter: TimeUnitFormatter = TimeUnitFormatter.SHORT,
-                           transformation: ((String) -> String)? = null,
+inline fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
+                           formatter: TimeUnitFormatter = TimeUnitFormatter.LONG,
+                           roundingLast: MathContext = MathContext(1),
+                           noinline transformation: ((String) -> String)? = null,
                            outputStream: PrintStream = System.out,
-                           block: () -> Unit) = measure(block).humanize(limit, formatter, transformation).run(outputStream::println)
+                           block: () -> Unit) = measure(block).humanize(limit, formatter, roundingLast, transformation).run(outputStream::println)
 
-public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.SHORT, transformation: ((String) -> String)? = null): String {
+fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.LONG, roundingLast: MathContext = MathContext(1), transformation: ((String) -> String)? = null): String {
     val builder = StringBuilder()
     var nanos = abs().toNanos()
     var finished = false
 
-    fun intermediateAppend(threshold: Double, unit: TimeUnit) {
+    fun intermediateAppend(threshold: Long, unit: TimeUnit) {
         if (nanos > threshold) {
-            val value = if (threshold > zero()) nanos roundDiv threshold else nanos
-            builder.append(value).append(" ${ formatter.get(value, unit) } ")
-            nanos %= threshold.toLong()
+            val value = if (threshold > 0.0) nanos / threshold else nanos
+            builder.append(formatter.format(value, unit))
+            nanos %= threshold
         }
     }
 
-    fun lastAppend(threshold: Double, unit: TimeUnit) {
+    fun lastAppend(threshold: Long, unit: TimeUnit) {
         if (nanos > threshold || builder.isEmpty()) {
-            val value = if (threshold > zero()) nanos roundDiv threshold else nanos
-            builder.append(value).append(" ${ formatter.get(value, unit) }")
+            val value = if (threshold > 0.0) nanos.roundDiv(threshold, roundingLast) else nanos
+            builder.append(formatter.formatLast(value, unit))
         }
         finished = true
     }
 
-    fun append(step: TimeUnit, threshold: Double) {
+    fun append(step: TimeUnit, threshold: Long) {
         if (!finished) {
             when (step) {
                 limit -> lastAppend(threshold, step)
@@ -87,7 +88,7 @@ public fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: 
     append(TimeUnit.SECONDS, NANO_SECOND)
     append(TimeUnit.MILLISECONDS, NANO_MILLI)
     append(TimeUnit.MICROSECONDS, NANO_MICRO)
-    append(TimeUnit.NANOSECONDS, zero())
+    append(TimeUnit.NANOSECONDS, 0L)
 
     return builder.toString().trim().with(transformation)
 }
