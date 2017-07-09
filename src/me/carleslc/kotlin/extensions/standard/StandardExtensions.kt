@@ -16,6 +16,18 @@ inline infix fun <T> T.with(noinline block: (T.() -> T)?): T = block?.invoke(thi
 
 inline fun <T> T.asNullable(): T? = this
 
+inline fun <T, R> T?.to(value: R?): R? = value
+inline fun <T> T?.toByte(): Byte = 0
+inline fun <T> T?.toShort(): Short = 0
+inline fun <T> T?.toInt(): Int = 0
+inline fun <T> T?.toLong(): Long = 0L
+inline fun <T> T?.toDouble(): Double = 0.0
+inline fun <T> T?.toFloat(): Float = 0f
+inline fun <T> T?.toTrue(): Boolean = true
+inline fun <T> T?.toFalse(): Boolean = false
+inline fun <T> T?.toBoolean(): Boolean = toFalse()
+inline fun <T> T?.toUnit() = Unit
+
 inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
 
 inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({nullValue}, block)
@@ -36,8 +48,17 @@ inline infix fun <T, R> (() -> T).andThen(noinline block: (T) -> R): () -> R = {
 
 inline infix fun <T, R> (() -> T).andReturn(value: R): () -> R = andThen { value }
 
-inline infix fun <T> (() -> Any?).returnValue(value: T): () -> T = andReturn(value)
-
+inline fun <T, R> (() -> T).returnValue(value: R): () -> R = andReturn(value)
+inline fun <T> (() -> T).returnByte(): () -> Byte = andReturn(0)
+inline fun <T> (() -> T).returnShort(): () -> Short = andReturn(0)
+inline fun <T> (() -> T).returnInt(): () -> Int = andReturn(0)
+inline fun <T> (() -> T).returnLong(): () -> Long = andReturn(0L)
+inline fun <T> (() -> T).returnFloat(): () -> Float = andReturn(0f)
+inline fun <T> (() -> T).returnDouble(): () -> Double = andReturn(0.0)
+inline fun <T> (() -> T).returnTrue(): () -> Boolean = andReturn(true)
+inline fun <T> (() -> T).returnFalse(): () -> Boolean = andReturn(false)
+inline fun <T> (() -> T).returnBoolean(): () -> Boolean = returnFalse()
+inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
 inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }): T = also { System.out.print(it.toString().with(transform)) }
@@ -79,3 +100,5 @@ inline fun <T, R> ((T, T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = 
 inline fun Try<Boolean>.getOrTrue() = getOrElse { true }
 
 inline fun Try<Boolean>.getOrFalse() = getOrElse { false }
+
+inline fun <T> Try<T>.getOrNull() = if (isFailure()) null else get()

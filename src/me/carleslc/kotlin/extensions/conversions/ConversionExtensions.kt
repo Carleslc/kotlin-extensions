@@ -1,8 +1,7 @@
 @file:Suppress("NOTHING_TO_INLINE")
 package me.carleslc.kotlin.extensions.conversions
 
-import me.carleslc.kotlin.extensions.number.*
-import me.carleslc.kotlin.extensions.standard.andReturn
+import me.carleslc.kotlin.extensions.standard.getOrNull
 import org.funktionale.tries.Try
 
 inline fun Long.toBoolean() = when (this) {
@@ -37,38 +36,40 @@ inline fun Boolean.toInt() = toLong().toInt()
 inline fun Float.toBoolean() = toDouble().toBoolean()
 inline fun Boolean.toFloat() = toDouble().toFloat()
 
-inline fun Double.toBits(): String = java.lang.Long.toBinaryString(java.lang.Double.doubleToRawLongBits(this))
-inline fun Float.toBits(): String = toDouble().toBits()
+inline fun Double.toBits(): Long = java.lang.Double.doubleToRawLongBits(this)
+inline fun Float.toBits(): Int = java.lang.Float.floatToRawIntBits(this)
 
-inline fun (() -> Any?).returnByte(): () -> Byte = andReturn(0)
-inline fun (() -> Any?).returnShort(): () -> Short = andReturn(0)
-inline fun (() -> Any?).returnInt(): () -> Int = andReturn(0)
-inline fun (() -> Any?).returnLong(): () -> Long = andReturn(0L)
-inline fun (() -> Any?).returnFloat(): () -> Float = andReturn(0f)
-inline fun (() -> Any?).returnDouble(): () -> Double = andReturn(0.0)
-inline fun (() -> Any?).returnTrue(): () -> Boolean = andReturn(true)
-inline fun (() -> Any?).returnFalse(): () -> Boolean = andReturn(false)
-inline fun (() -> Any?).returnBoolean(): () -> Boolean = returnFalse()
+inline fun Int.toBinaryString(): String = java.lang.Integer.toBinaryString(this)
+inline fun Long.toBinaryString(): String = java.lang.Long.toBinaryString(this)
+inline fun Double.toBinaryString(): String = toBits().toBinaryString()
+inline fun Float.toBinaryString(): String = toBits().toBinaryString()
 
-inline fun String.toByteOrRun(crossinline defaultBlock: () -> Byte): Byte = Try { java.lang.Byte.parseByte(this) }.getOrElse { run(defaultBlock) }
+inline fun String.toByteOrNull(): Byte? = Try { java.lang.Byte.parseByte(this) }.getOrNull()
+inline fun String.toByteOrRun(crossinline defaultBlock: (String) -> Byte): Byte = toByteOrNull() ?: run(defaultBlock)
 inline fun String.toByteOrDefault(default: Byte = 0): Byte = toByteOrRun { default }
 
-inline fun String.toShortOrRun(crossinline defaultBlock: () -> Short): Short = Try { java.lang.Short.parseShort(this) }.getOrElse { run(defaultBlock) }
+inline fun String.toShortOrNull(): Short? = Try { java.lang.Short.parseShort(this) }.getOrNull()
+inline fun String.toShortOrRun(crossinline defaultBlock: (String) -> Short): Short = toShortOrNull() ?: run(defaultBlock)
 inline fun String.toShortOrDefault(default: Short = 0): Short = toShortOrRun { default }
 
-inline fun String.toIntOrRun(crossinline defaultBlock: () -> Int): Int = Try { java.lang.Integer.parseInt(this) }.getOrElse { run(defaultBlock) }
+inline fun String.toIntOrNull(): Int? = Try { java.lang.Integer.parseInt(this) }.getOrNull()
+inline fun String.toIntOrRun(crossinline defaultBlock: (String) -> Int): Int = toIntOrNull() ?: run(defaultBlock)
 inline fun String.toIntOrDefault(default: Int = 0): Int = toIntOrRun { default }
 
-inline fun String.toLongOrRun(crossinline defaultBlock: () -> Long): Long = Try { java.lang.Long.parseLong(this) }.getOrElse { run(defaultBlock) }
+inline fun String.toLongOrNull(): Long? = Try { java.lang.Long.parseLong(this) }.getOrNull()
+inline fun String.toLongOrRun(crossinline defaultBlock: (String) -> Long): Long = toLongOrNull() ?: run(defaultBlock)
 inline fun String.toLongOrDefault(default: Long = 0): Long = toLongOrRun { default }
 
-inline fun String.toFloatOrRun(crossinline defaultBlock: () -> Float): Float = Try { java.lang.Float.parseFloat(this) }.getOrElse { run(defaultBlock) }
+inline fun String.toFloatOrNull(): Float? = Try { java.lang.Float.parseFloat(this) }.getOrNull()
+inline fun String.toFloatOrRun(crossinline defaultBlock: (String) -> Float): Float = toFloatOrNull() ?: run(defaultBlock)
 inline fun String.toFloatOrDefault(default: Float = 0f): Float = toFloatOrRun { default }
 
-inline fun String.toDoubleOrRun(crossinline defaultBlock: () -> Double): Double = Try { java.lang.Double.parseDouble(this) }.getOrElse { run(defaultBlock) }
+inline fun String.toDoubleOrNull(): Double? = Try { java.lang.Double.parseDouble(this) }.getOrNull()
+inline fun String.toDoubleOrRun(crossinline defaultBlock: (String) -> Double): Double = toDoubleOrNull() ?: run(defaultBlock)
 inline fun String.toDoubleOrDefault(default: Double = 0.0): Double = toDoubleOrRun { default }
 
-inline fun String.toBooleanOrRun(defaultBlock: () -> Boolean): Boolean = if (equals("true", ignoreCase = true)) true else if (equals("false", ignoreCase = true)) false else { run(defaultBlock) }
+inline fun String.toBooleanOrNull(): Boolean? = if (equals("true", ignoreCase = true)) true else if (equals("false", ignoreCase = true)) false else null
+inline fun String.toBooleanOrRun(defaultBlock: (String) -> Boolean): Boolean = toBooleanOrNull() ?: run(defaultBlock)
 inline fun String.toBooleanOrDefault(default: Boolean = false): Boolean = toBooleanOrRun { default }
 
 inline fun Any?.toByte(): Byte {
