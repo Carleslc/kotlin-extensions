@@ -3,6 +3,8 @@ Utility extensions, properties and useful methods to boost your programming with
 
 ## How to install
 
+<span style="color:red">Currently the repository server is offline, please use the steps provided at [manual section](https://github.com/Carleslc/kotlin-extensions#manual).</br>_We're working to solve this problem. Sorry for the inconveniences._</span></p>
+
 ### Maven
 Add the following repository to your `pom.xml`:
 ```
@@ -66,9 +68,8 @@ dependencies {
 1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-4. Add the `kotlin-extensions-0.5.jar` from `target` folder as a dependency of your project.
-
-If you wish you can use these steps to add the dependency using Maven without accessing to the remote repository.
+If you wish, you can use these steps to add the dependency using Maven without accessing to the remote repository.
+Otherwise you will need to add the `kotlin-extensions-0.5.jar` from generated `target` folder as a dependency of your project.
 
 In addition, if needed, you can add the dependencies of [funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) as they are very powerful to complement this library.
 
