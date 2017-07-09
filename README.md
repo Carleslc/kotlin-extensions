@@ -68,8 +68,10 @@ dependencies {
 1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-If you wish, you can use these steps to add the dependency using Maven without accessing to the remote repository.
-Otherwise you will need to add the `kotlin-extensions-0.5.jar` from generated `target` folder as a dependency of your project.
+
+If you wish, you can use these steps to add the dependency using Maven without accessing to the remote repository adding only the `<dependency>` tag as specified in [maven section](https://github.com/Carleslc/kotlin-extensions#maven).
+
+Otherwise you will need to add the `kotlin-extensions-0.5.jar` from generated `target` folder as external dependency of your project.
 
 In addition, if needed, you can add the dependencies of [funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) as they are very powerful to complement this library.
 
