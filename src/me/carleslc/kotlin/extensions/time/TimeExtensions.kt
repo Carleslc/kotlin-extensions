@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.time
 
 import java.text.SimpleDateFormat
@@ -7,6 +8,7 @@ import java.util.Date
 
 object ago
 object fromNow
+
 val since = fromNow
 val later = fromNow
 

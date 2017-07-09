@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.time
 
 import me.carleslc.kotlin.extensions.number.roundDiv

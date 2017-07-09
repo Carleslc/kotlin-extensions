@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.bytes
 
 val Long.bits: BitValue get() = BitValue(this)
@@ -103,7 +104,7 @@ data class BitValue internal constructor(val toBits: Long) {
     val KiB = toKibibytes
     val KB = toKiloBytes
     val toMebibytes = toKibibytes / 1024
-    val toMegaBytes = toKiloBytes/ 1000
+    val toMegaBytes = toKiloBytes / 1000
     val MiB = toMebibytes
     val MB = toMegaBytes
     val toGibibytes = toMebibytes / 1024

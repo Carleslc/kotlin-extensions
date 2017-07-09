@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.arrays
 
 import me.carleslc.kotlin.extensions.collections.timesToListOf
@@ -33,7 +34,7 @@ inline fun <reified T> matrix(rows: Int, cols: Int, init: (Int, Int) -> T): Matr
     return array2d(rows) { row -> Array<T>(cols, { col -> init(row, col) }) }
 }
 
-inline fun <reified T> matrixOfNulls(rows: Int, cols: Int): Matrix<T> = matrix(rows, cols, { _,_ -> null as T })
+inline fun <reified T> matrixOfNulls(rows: Int, cols: Int): Matrix<T> = matrix(rows, cols, { _, _ -> null as T })
 
 inline val <T> Array<Array<T>>.rows get() = indices
 

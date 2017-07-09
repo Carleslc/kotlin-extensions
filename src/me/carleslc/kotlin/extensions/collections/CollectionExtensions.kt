@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.collections
 
 import java.util.Random
@@ -49,7 +50,7 @@ inline fun <T> List<T?>.encapsulateToMutableList(): MutableList<MutableList<T?>>
 inline fun <T> List<List<T?>>.concat(): List<T?> = fold(listOf()) { acc, l -> acc + l }
 inline fun <T> List<List<T?>>.concatToMutableList(): MutableList<T?> = concat().toMutableList()
 
-inline val Collection<*>.half: Int get() = size/2
+inline val Collection<*>.half: Int get() = size / 2
 
 inline fun <T> Collection<T?>.firstHalf(): List<T?> = take(half)
 inline fun <T> Collection<T?>.secondHalf(): List<T?> = drop(half)

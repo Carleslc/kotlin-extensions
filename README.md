@@ -21,7 +21,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
         <groupId>me.carleslc</groupId>
         <artifactId>kotlin-extensions</artifactId>
-        <version>0.4.2</version>
+        <version>0.5</version>
     </dependency>
     <!-- FunKTionale -->
     <dependency>
@@ -53,7 +53,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'me.carleslc:kotlin-extensions:0.4.2'
+    compile 'me.carleslc:kotlin-extensions:0.5'
     compile 'org.funktionale:funktionale-all:1.1'
     compile 'com.google.guava:guava:22.0'
 }
@@ -66,7 +66,7 @@ dependencies {
 1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-4. Add the `kotlin-extensions-0.4.2.jar` from `target` folder as a dependency of your project.
+4. Add the `kotlin-extensions-0.5.jar` from `target` folder as a dependency of your project.
 
 If you wish you can use these steps to add the dependency using Maven without accessing to the remote repository.
 
@@ -127,6 +127,8 @@ Extensions for numbers and math operations.
 
 Extensions for strings.
 
+`pluralize` and `singularize` methods are extracted from [kotlin-pluralizer](https://github.com/cesarferreira/kotlin-pluralizer).
+
 ### Time
 `import me.carleslc.kotlin.extensions.time.*`
 
@@ -139,10 +141,28 @@ Inspired from [kxdate](https://github.com/yole/kxdate) and [khronos](https://git
 
 Extensions for pairs and triples.
 
+### Preconditions
+`import me.carleslc.kotlin.extensions.preconditions.*`
+
+Extensions to ensure preconditions easily.
+
 ### Standard
 `import me.carleslc.kotlin.extensions.standard.*`
 
 General purpose extensions and global methods that do not match any other package category (_e.g._ looping with `10 times { code }` or `10 * { code }`).
+
+## Contribute
+
+_Do you want to contribute to this project? Great!_
+
+Simply fork and do a pull request. Then if it makes sense I will merge it creating a new version of this project.
+
+Follow this rules when doing a pull request in order to be accepted:
+
+1. Match the code style of this project (default in _IntelliJ_). You can do `⌘ + Option + L` in Mac with _IntelliJ_ IDE to reformat your code. 
+2. Unit Test your code.
+3. Ensure that your extensions/methods are general enough to be used in many different contexts.
+4. Be descriptive in the title and description of your pull request.
 
 ## Optional Libraries
 

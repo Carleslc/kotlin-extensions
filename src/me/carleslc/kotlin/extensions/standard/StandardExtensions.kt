@@ -1,6 +1,8 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.standard
 
+import me.carleslc.kotlin.extensions.preconditions.requireSize
 import org.funktionale.partials.*
 import org.funktionale.tries.Try
 
@@ -16,6 +18,9 @@ inline infix fun <T> T.with(noinline block: (T.() -> T)?): T = block?.invoke(thi
 
 inline fun <T> T.asNullable(): T? = this
 
+inline fun <T> T?.isNull(): Boolean = this == null
+inline fun <T> T?.isNotNull(): Boolean = this != null
+
 inline fun <T, R> T?.to(value: R?): R? = value
 inline fun <T> T?.toByte(): Byte = 0
 inline fun <T> T?.toShort(): Short = 0
@@ -30,7 +35,7 @@ inline fun <T> T?.toUnit() = Unit
 
 inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
 
-inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({nullValue}, block)
+inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({ nullValue }, block)
 
 inline fun Boolean.letIf(ifBlock: () -> Unit) = letIf(ifBlock) {}
 
@@ -64,10 +69,6 @@ inline fun <T> (() -> T).returnBoolean(): () -> Boolean = returnFalse()
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
-inline fun <T> T.require(requirement: T.() -> Boolean, noinline throwable: T.() -> Throwable = {IllegalArgumentException("$this do not match requirements")}, noinline elseBlock: T.() -> Unit = {}): T = if (run(requirement)) this else { run(elseBlock.with(this).andThrow(throwable())) }
-inline fun <T> T.require(requirement: T.() -> Boolean, throwable: Throwable = IllegalArgumentException("$this do not match requirements"), noinline elseBlock: T.() -> Unit = {}): T = require(requirement, {throwable}, elseBlock)
-inline fun <T> T.require(requirement: T.() -> Boolean) = require(requirement, IllegalArgumentException("$this do not match requirements"))
-
 inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }): T = also { System.out.print(it.toString().with(transform)) }
 
 inline fun <T> T.println(): T = also { println(this) }
@@ -92,17 +93,17 @@ inline fun <T1, T2, T3, T4, T5, R> ((T1, T2, T3, T4, T5) -> R).with(param1: T1, 
 
 inline fun <T1, T2, T3, T4, T5, T6, R> ((T1, T2, T3, T4, T5, T6) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5, param6: T6): () -> R = partially1(param1).with(param2, param3, param4, param5, param6)
 
-inline fun <T, R> ((T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0]) }
+inline fun <T, R> ((T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(1); this(a[0]) }
 
-inline fun <T, R> ((T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1]) }
+inline fun <T, R> ((T, T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(2); this(a[0], a[1]) }
 
-inline fun <T, R> ((T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2]) }
+inline fun <T, R> ((T, T, T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(3); this(a[0], a[1], a[2]) }
 
-inline fun <T, R> ((T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2], it[3]) }
+inline fun <T, R> ((T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(4); this(a[0], a[1], a[2], a[3]) }
 
-inline fun <T, R> ((T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2], it[3], it[4]) }
+inline fun <T, R> ((T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(5); this(a[0], a[1], a[2], a[3], a[4]) }
 
-inline fun <T, R> ((T, T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { this(it[0], it[1], it[2], it[3], it[4], it[5]) }
+inline fun <T, R> ((T, T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(6); this(a[0], a[1], a[2], a[3], a[4], a[5]) }
 
 inline fun Try<Boolean>.getOrTrue() = getOrElse { true }
 

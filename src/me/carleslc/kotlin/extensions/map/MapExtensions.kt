@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.map
 
 import me.carleslc.kotlin.extensions.strings.wrapString
@@ -15,4 +16,4 @@ inline fun <K, V> Map<K, V>.joinToString(
         limit: Int = -1,
         truncated: CharSequence = "...",
         noinline transform: (Pair<K, V>) -> CharSequence = { it.joinToString(": ", secondTransform = { it.wrapString() }) })
-                = toList().joinToString(separator, prefix, postfix, limit, truncated, transform)
+        = toList().joinToString(separator, prefix, postfix, limit, truncated, transform)

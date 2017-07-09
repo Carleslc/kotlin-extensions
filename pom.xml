@@ -4,7 +4,7 @@
 
 	<groupId>me.carleslc</groupId>
 	<artifactId>kotlin-extensions</artifactId>
-	<version>0.4.2</version>
+	<version>0.5</version>
 	<packaging>jar</packaging>
 
 	<name>KotlinExtensions</name>
@@ -43,6 +43,10 @@
 			<name>bintray</name>
 			<url>http://jcenter.bintray.com</url>
 		</repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
 	</repositories>
 
 	<dependencies>
@@ -57,6 +61,12 @@
 			<groupId>org.funktionale</groupId>
 			<artifactId>funktionale-all</artifactId>
 			<version>1.1</version>
+		</dependency>
+		<!-- Pluralizer -->
+		<dependency>
+			<groupId>com.github.cesarferreira</groupId>
+			<artifactId>kotlin-pluralizer</artifactId>
+			<version>0.2.9</version>
 		</dependency>
 		<!-- Guava -->
 		<dependency>

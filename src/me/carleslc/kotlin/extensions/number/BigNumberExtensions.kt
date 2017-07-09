@@ -1,4 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
+
 package me.carleslc.kotlin.extensions.number
 
 import com.google.common.math.BigIntegerMath
@@ -26,11 +27,11 @@ inline infix fun BigInteger.`^`(exp: Int): BigInteger = pow(exp)
 inline infix fun BigDecimal.pow(exp: Int): BigDecimal = pow(exp)
 inline infix fun BigDecimal.`^`(exp: Int): BigDecimal = pow(exp)
 
-inline fun BigInteger.fitsInLong(): Boolean = this in (Long.MIN_VALUE.toBigInteger() .. Long.MAX_VALUE.toBigInteger())
-inline fun BigInteger.fitsInInt(): Boolean = this in (Int.MIN_VALUE.toBigInteger() .. Int.MAX_VALUE.toBigInteger())
+inline fun BigInteger.fitsInLong(): Boolean = this in (Long.MIN_VALUE.toBigInteger()..Long.MAX_VALUE.toBigInteger())
+inline fun BigInteger.fitsInInt(): Boolean = this in (Int.MIN_VALUE.toBigInteger()..Int.MAX_VALUE.toBigInteger())
 
-inline fun BigDecimal.fitsInDouble(): Boolean = this in (-Double.MAX_VALUE.toBigDecimal() .. Double.MAX_VALUE.toBigDecimal())
-inline fun BigDecimal.fitsInFloat(): Boolean = this in (-Float.MAX_VALUE.toBigDecimal() .. Float.MAX_VALUE.toBigDecimal())
+inline fun BigDecimal.fitsInDouble(): Boolean = this in (-Double.MAX_VALUE.toBigDecimal()..Double.MAX_VALUE.toBigDecimal())
+inline fun BigDecimal.fitsInFloat(): Boolean = this in (-Float.MAX_VALUE.toBigDecimal()..Float.MAX_VALUE.toBigDecimal())
 
 tailrec fun gcd(a: BigInteger, b: BigInteger): BigInteger = if (b == BigInteger.ZERO) a else if (a.fitsInLong() && b.fitsInLong()) gcd(a.toLong(), b.toLong()).toBigInteger() else gcd(a, a % b)
 inline fun lcm(a: BigInteger, b: BigInteger) = a * b / gcd(a, b)
