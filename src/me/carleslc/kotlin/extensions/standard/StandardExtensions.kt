@@ -37,17 +37,17 @@ inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.l
 
 inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({ nullValue }, block)
 
-inline fun Boolean.letIf(ifBlock: () -> Unit): Unit = letIf(ifBlock) {}
+inline fun Boolean.letIfTrue(ifBlock: () -> Unit): Unit = letIfTrue(ifBlock) {}
 
-inline fun <R> Boolean.letIf(ifBlock: () -> R, elseBlock: () -> R): R = letIf({ this }, { run(ifBlock) }, { run(elseBlock) })
+inline fun <R> Boolean.letIfTrue(ifBlock: () -> R, elseBlock: () -> R): R = letIf({ this }, { run(ifBlock) }, { run(elseBlock) })
 
 inline fun <T> T.letIf(condition: (T) -> Boolean, ifBlock: (T) -> Unit): Unit = letIf(condition, ifBlock) {}
 
 inline fun <T, R> T.letIf(condition: (T) -> Boolean, ifBlock: (T) -> R, elseBlock: (T) -> R): R = if (run(condition)) run(ifBlock) else run(elseBlock)
 
-inline fun Boolean.alsoIf(ifBlock: () -> Unit): Boolean = alsoIf(ifBlock) {}
+inline fun Boolean.alsoIfTrue(ifBlock: () -> Unit): Boolean = alsoIfTrue(ifBlock) {}
 
-inline fun Boolean.alsoIf(ifBlock: () -> Unit, elseBlock: () -> Unit): Boolean = alsoIf({ this }, { run(ifBlock) }, { run(elseBlock) })
+inline fun Boolean.alsoIfTrue(ifBlock: () -> Unit, elseBlock: () -> Unit): Boolean = alsoIf({ this }, { run(ifBlock) }, { run(elseBlock) })
 
 inline fun <T> T.alsoIf(condition: (T) -> Boolean, ifBlock: (T) -> Unit): T = alsoIf(condition, ifBlock) {}
 
