@@ -161,8 +161,9 @@ Follow this rules when doing a pull request in order to be accepted:
 
 1. Match the code style of this project (default in _IntelliJ_). You can do `⌘ + Option + L` in Mac with _IntelliJ_ IDE to reformat your code. 
 2. Unit Test your code.
-3. Ensure that your extensions/methods are general enough to be used in many different contexts.
-4. Be descriptive in the title and description of your pull request.
+3. Inline your extensions when possible. Include `@file:Suppress("NOTHING_TO_INLINE")` to suppress warnings at top of your file.
+4. Ensure that your extensions/methods are general enough to be used in many different contexts.
+5. Be descriptive in the title and description of your pull request.
 
 ## Optional Libraries
 
