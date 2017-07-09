@@ -118,7 +118,7 @@ Extensions to generate HTML in a more readable way.
 ### Map
 `import me.carleslc.kotlin.extensions.map.*`
 
-Extensions for maps and sintactic-sugar for Map literals with `M[pairs].
+Extensions for maps and sintactic-sugar for Map literals with `M[pairs]`.
 
 ### Number
 `import me.carleslc.kotlin.extensions.number.*`
