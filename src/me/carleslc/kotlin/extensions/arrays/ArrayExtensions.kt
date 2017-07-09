@@ -12,6 +12,8 @@ object A {
 
 inline fun <reified T> Int.timesToArrayOf(predicate: (Int) -> T) = timesToListOf(predicate).toTypedArray()
 
+inline fun <T> Array<T>?.isBlank(): Boolean = this == null || isEmpty()
+
 inline fun <T> Array<T?>.anyNull(): Boolean = any { it == null }
 
 inline fun <T> Array<T?>.allNull(): Boolean = all { it == null }

@@ -2,6 +2,7 @@
 
 package me.carleslc.kotlin.extensions.collections
 
+import me.carleslc.kotlin.extensions.standard.isNull
 import java.util.Random
 
 object L {
@@ -12,7 +13,7 @@ object S {
     inline operator fun <reified T> get(vararg ts: T) = if (ts.isNotEmpty()) ts.toSet() else emptySet()
 }
 
-inline fun <T> Collection<T>.init(): List<T> = take(size - 1)
+inline fun <T> Collection<T>?.isBlank(): Boolean = this == null || isEmpty()
 
 inline fun <T> Collection<T?>.countNulls(): Int = count { it == null }
 inline fun <T> Collection<T?>.countNonNulls(): Int = size - countNulls()
@@ -44,15 +45,18 @@ inline fun randomFloatList(size: Int, generator: Random = Random()) = size.times
 inline fun randomDoubleList(size: Int, generator: Random = Random()) = size.timesToListOf { generator.nextDouble() }
 inline fun randomBooleanList(size: Int, generator: Random = Random()) = size.timesToListOf { generator.nextBoolean() }
 
-inline fun <T> List<T?>.encapsulate(): List<List<T?>> = map { listOf(it) }
-inline fun <T> List<T?>.encapsulateToMutableList(): MutableList<MutableList<T?>> = mapToMutableList { mutableListOf(it) }
+inline fun <T> List<T>.encapsulate(): List<List<T>> = map { listOf(it) }
+inline fun <T> List<T>.encapsulateToMutableList(): MutableList<MutableList<T>> = mapToMutableList { mutableListOf(it) }
 
-inline fun <T> List<List<T?>>.concat(): List<T?> = fold(listOf()) { acc, l -> acc + l }
-inline fun <T> List<List<T?>>.concatToMutableList(): MutableList<T?> = concat().toMutableList()
+inline fun <T> List<List<T>>.concat(): List<T> = fold(listOf()) { acc, l -> acc + l }
+inline fun <T> List<List<T>>.concatToMutableList(): MutableList<T> = concat().toMutableList()
+
+inline fun <T> Collection<T>.init(): List<T> = take(size - 1)
 
 inline val Collection<*>.half: Int get() = size / 2
 
-inline fun <T> Collection<T?>.firstHalf(): List<T?> = take(half)
-inline fun <T> Collection<T?>.secondHalf(): List<T?> = drop(half)
+inline fun <T> Collection<T>.firstHalf(): List<T> = take(half)
+inline fun <T> Collection<T>.secondHalf(): List<T> = drop(half)
 
-inline fun <T> Collection<T?>.split(): Pair<List<T?>, List<T?>> = firstHalf() to secondHalf()
+inline fun <T> Collection<T>.split(index: Int): Pair<List<T>, List<T>> = take(index) to drop(index)
+inline fun <T> Collection<T>.split(): Pair<List<T>, List<T>> = split(half)
