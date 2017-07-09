@@ -40,11 +40,14 @@ inline fun <T> T.letIf(condition: (T) -> Boolean, ifBlock: (T) -> Unit) = letIf(
 
 inline fun <T, R> T.letIf(condition: (T) -> Boolean, ifBlock: (T) -> R, elseBlock: (T) -> R): R = if (run(condition)) run(ifBlock) else run(elseBlock)
 
-inline infix fun <T> (() -> T).butBefore(noinline block: () -> Unit): () -> T = { block(); this() }
+inline infix fun <T> (() -> T).butBefore(crossinline block: () -> Unit): () -> T = { block(); this() }
 
-inline infix fun <T, R> ((T) -> R).butBefore(noinline block: () -> T): () -> R = { this(block()) }
+inline infix fun <T, R> ((T) -> R).butBefore(crossinline block: () -> T): () -> R = { this(block()) }
 
-inline infix fun <T, R> (() -> T).andThen(noinline block: (T) -> R): () -> R = { block(this()) }
+inline infix fun <T, R> (() -> T).andThen(crossinline block: T.() -> R): () -> R = { block(this()) }
+
+inline infix fun <T> (() -> T).andThrow(crossinline throwable: T.() -> Throwable): () -> Nothing = andThen { throw throwable() }
+inline infix fun <T> (() -> T).andThrow(throwable: Throwable): () -> Nothing = andThrow { throwable }
 
 inline infix fun <T, R> (() -> T).andReturn(value: R): () -> R = andThen { value }
 
@@ -60,6 +63,10 @@ inline fun <T> (() -> T).returnFalse(): () -> Boolean = andReturn(false)
 inline fun <T> (() -> T).returnBoolean(): () -> Boolean = returnFalse()
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
+
+inline fun <T> T.require(requirement: T.() -> Boolean, noinline throwable: T.() -> Throwable = {IllegalArgumentException("$this do not match requirements")}, noinline elseBlock: T.() -> Unit = {}): T = if (run(requirement)) this else { run(elseBlock.with(this).andThrow(throwable())) }
+inline fun <T> T.require(requirement: T.() -> Boolean, throwable: Throwable = IllegalArgumentException("$this do not match requirements"), noinline elseBlock: T.() -> Unit = {}): T = require(requirement, {throwable}, elseBlock)
+inline fun <T> T.require(requirement: T.() -> Boolean) = require(requirement, IllegalArgumentException("$this do not match requirements"))
 
 inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }): T = also { System.out.print(it.toString().with(transform)) }
 

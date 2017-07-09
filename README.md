@@ -21,7 +21,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
         <groupId>me.carleslc</groupId>
         <artifactId>kotlin-extensions</artifactId>
-        <version>0.4</version>
+        <version>0.4.2</version>
     </dependency>
     <!-- FunKTionale -->
     <dependency>
@@ -53,7 +53,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'me.carleslc:kotlin-extensions:0.4'
+    compile 'me.carleslc:kotlin-extensions:0.4.2'
     compile 'org.funktionale:funktionale-all:1.1'
     compile 'com.google.guava:guava:22.0'
 }
@@ -66,7 +66,7 @@ dependencies {
 1. `git clone https://github.com/Carleslc/kotlin-extensions.git`
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
-4. Add the `kotlin-extensions-0.4.jar` from `target` folder as a dependency of your project.
+4. Add the `kotlin-extensions-0.4.2.jar` from `target` folder as a dependency of your project.
 
 If you wish you can use these steps to add the dependency using Maven without accessing to the remote repository.
 
