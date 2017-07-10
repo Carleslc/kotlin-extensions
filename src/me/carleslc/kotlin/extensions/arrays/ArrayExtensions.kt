@@ -2,7 +2,9 @@
 
 package me.carleslc.kotlin.extensions.arrays
 
+import me.carleslc.kotlin.extensions.collections.shuffle
 import me.carleslc.kotlin.extensions.collections.timesToListOf
+import java.util.*
 
 typealias Matrix<T> = Array<Array<T>>
 
@@ -25,6 +27,23 @@ inline fun <T> Array<Array<T?>>.allNull(): Boolean = all { it.all { it == null }
 inline fun <T> Array<Array<T>>.anyInner(predicate: (T) -> Boolean): Boolean = any { it.any(predicate) }
 
 inline fun <T> Array<Array<T>>.allInner(predicate: (T) -> Boolean): Boolean = all { it.all(predicate) }
+
+fun <T> Array<T>.swap(i: Int, j: Int): Array<T> {
+    return apply {
+        val aux = this[i]
+        this[i] = this[j]
+        this[j] = aux
+    }
+}
+
+inline fun <T> Array<T>.getRandom(generator: Random = Random()): T = get(generator.nextInt(size))
+
+inline fun <reified T> Array<T>.shuffle(generator: Random = Random()): Array<T> {
+    return apply {
+        for (i in size downTo 2)
+            swap(i - 1, generator.nextInt(i))
+    }
+}
 
 inline fun <T> array2dOf(): Array<Array<T>> = arrayOf()
 

@@ -3,7 +3,7 @@
 package me.carleslc.kotlin.extensions.collections
 
 import me.carleslc.kotlin.extensions.standard.isNull
-import java.util.Random
+import java.util.*
 
 object L {
     inline operator fun <reified T> get(vararg ts: T) = if (ts.isNotEmpty()) ts.asList() else emptyList()
@@ -38,6 +38,18 @@ inline fun <T, R> Iterable<T>.flatMapToMutableList(transform: (T) -> Iterable<R>
 
 inline fun <T> Int.timesToListOf(predicate: (Int) -> T): List<T> = (0..this - 1).map { predicate(it) }
 inline fun <T> Int.timesToMutableListOf(predicate: (Int) -> T): MutableList<T> = (0..this - 1).mapToMutableList { predicate(it) }
+
+fun <T> MutableList<T>.swap(i: Int, j: Int): MutableList<T> {
+    return apply {
+        val aux = this[i]
+        this[i] = this[j]
+        this[j] = aux
+    }
+}
+
+inline fun <T> List<T>.getRandom(generator: Random = Random()): T = get(generator.nextInt(size))
+
+inline fun <T> List<T>.shuffle(generator: Random = Random()): List<T> = apply { Collections.shuffle(this, generator) }
 
 inline fun randomIntList(size: Int, generator: Random = Random()) = size.timesToListOf { generator.nextInt() }
 inline fun randomIntList(size: Int, bound: Int, generator: Random = Random()) = size.timesToListOf { generator.nextInt(bound) }
