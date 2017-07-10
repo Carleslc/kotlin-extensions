@@ -3,7 +3,8 @@
 package me.carleslc.kotlin.extensions.standard
 
 import me.carleslc.kotlin.extensions.preconditions.requireSize
-import org.funktionale.partials.*
+import org.funktionale.partials.bind
+import org.funktionale.partials.partially1
 import org.funktionale.tries.Try
 import java.io.PrintStream
 import java.math.BigDecimal
