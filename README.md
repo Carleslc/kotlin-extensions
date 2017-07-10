@@ -18,10 +18,10 @@ Add the following dependencies to your `pom.xml`:
 ```
 <dependencies>
     <dependency>
-	    <groupId>com.github.carleslc</groupId>
-	    <artifactId>kotlin-extensions</artifactId>
-	    <version>0.5</version>
-	</dependency>
+    	<groupId>com.github.carleslc</groupId>
+    	<artifactId>kotlin-extensions</artifactId>
+    	<version>0.5</version>
+    </dependency>
 </dependencies>
 ```
 
