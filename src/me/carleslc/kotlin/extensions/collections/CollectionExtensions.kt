@@ -2,8 +2,8 @@
 
 package me.carleslc.kotlin.extensions.collections
 
-import me.carleslc.kotlin.extensions.standard.isNull
-import java.util.*
+import java.util.Random
+import java.util.Collections
 
 object L {
     inline operator fun <reified T> get(vararg ts: T) = if (ts.isNotEmpty()) ts.asList() else emptyList()

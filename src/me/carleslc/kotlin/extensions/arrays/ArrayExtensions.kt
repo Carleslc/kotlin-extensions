@@ -2,9 +2,8 @@
 
 package me.carleslc.kotlin.extensions.arrays
 
-import me.carleslc.kotlin.extensions.collections.shuffle
 import me.carleslc.kotlin.extensions.collections.timesToListOf
-import java.util.*
+import java.util.Random
 
 typealias Matrix<T> = Array<Array<T>>
 
