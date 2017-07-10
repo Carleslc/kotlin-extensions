@@ -5,6 +5,8 @@ package me.carleslc.kotlin.extensions.standard
 import me.carleslc.kotlin.extensions.preconditions.requireSize
 import org.funktionale.partials.*
 import org.funktionale.tries.Try
+import java.io.OutputStream
+import java.io.PrintStream
 
 inline fun FIXME(): Nothing = throw Error("An operation needs a fix.")
 
@@ -77,13 +79,13 @@ inline fun <T> (() -> T).returnBoolean(): () -> Boolean = returnFalse()
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
-inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }): T = also { System.out.print(it.toString().with(transform)) }
+inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }, outStream: PrintStream = System.out): T = also { outStream.print(it.toString().with(transform)) }
 
-inline fun <T> T.println(): T = also { println(this) }
+inline fun <T> T.println(outStream: PrintStream = System.out): T = also { run(outStream::println) }
 
-inline fun <T, R> T.print(noinline transform: ((String) -> String)? = null, what: (T) -> R): R = what(this).apply { println(toString().with(transform)) }
+inline fun <T, R> T.print(what: (T) -> R, noinline transform: ((String) -> String)? = null, outStream: PrintStream = System.out): R = what(this).apply { outStream.println(toString().with(transform)) }
 
-inline fun <T> T.print(tag: String = "", separator: String = " = "): T = also { println(if (tag.isBlank()) it else "$tag$separator$it") }
+inline fun <T> T.print(tag: String = "", separator: String = " = ", outStream: PrintStream = System.out): T = also { outStream.println(if (tag.isBlank()) it else "$tag$separator$it") }
 
 inline fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { a, b -> this(b, a) }
 
