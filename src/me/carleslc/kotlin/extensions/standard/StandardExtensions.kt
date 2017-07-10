@@ -6,6 +6,8 @@ import me.carleslc.kotlin.extensions.preconditions.requireSize
 import org.funktionale.partials.*
 import org.funktionale.tries.Try
 import java.io.PrintStream
+import java.math.BigDecimal
+import java.math.BigInteger
 
 inline fun FIXME(): Nothing = throw Error("An operation needs a fix.")
 
@@ -22,16 +24,28 @@ inline fun <T> T.asNullable(): T? = this
 inline fun <T> T?.isNull(): Boolean = this == null
 inline fun <T> T?.isNotNull(): Boolean = this != null
 
+inline fun defaultByte(): Byte = 0
+inline fun defaultShort(): Short = 0
+inline fun defaultInt(): Int = 0
+inline fun defaultLong(): Long = 0L
+inline fun defaultFloat(): Float = 0f
+inline fun defaultDouble(): Double = 0.0
+inline fun defaultBoolean(): Boolean = false
+inline fun defaultBigInteger(): BigInteger = BigInteger.ZERO
+inline fun defaultBigDecimal(): BigDecimal = BigDecimal.ZERO
+
 inline fun <T, R> T?.to(value: R?): R? = value
-inline fun <T> T?.toByte(): Byte = 0
-inline fun <T> T?.toShort(): Short = 0
-inline fun <T> T?.toInt(): Int = 0
-inline fun <T> T?.toLong(): Long = 0L
-inline fun <T> T?.toDouble(): Double = 0.0
-inline fun <T> T?.toFloat(): Float = 0f
+inline fun <T> T?.toByte(): Byte = defaultByte()
+inline fun <T> T?.toShort(): Short = defaultShort()
+inline fun <T> T?.toInt(): Int = defaultInt()
+inline fun <T> T?.toLong(): Long = defaultLong()
+inline fun <T> T?.toFloat(): Float = defaultFloat()
+inline fun <T> T?.toDouble(): Double = defaultDouble()
+inline fun <T> T?.toBigInteger(): BigInteger = defaultBigInteger()
+inline fun <T> T?.toBigDecimal(): BigDecimal = defaultBigDecimal()
+inline fun <T> T?.toBoolean(): Boolean = defaultBoolean()
 inline fun <T> T?.toTrue(): Boolean = true
 inline fun <T> T?.toFalse(): Boolean = false
-inline fun <T> T?.toBoolean(): Boolean = toFalse()
 inline fun <T> T?.toUnit() = Unit
 
 inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
@@ -66,15 +80,17 @@ inline infix fun <T> (() -> T).andThrow(throwable: Throwable): () -> Nothing = a
 inline infix fun <T, R> (() -> T).andReturn(value: R): () -> R = andThen { value }
 
 inline fun <T, R> (() -> T).returnValue(value: R): () -> R = andReturn(value)
-inline fun <T> (() -> T).returnByte(): () -> Byte = andReturn(0)
-inline fun <T> (() -> T).returnShort(): () -> Short = andReturn(0)
-inline fun <T> (() -> T).returnInt(): () -> Int = andReturn(0)
-inline fun <T> (() -> T).returnLong(): () -> Long = andReturn(0L)
-inline fun <T> (() -> T).returnFloat(): () -> Float = andReturn(0f)
-inline fun <T> (() -> T).returnDouble(): () -> Double = andReturn(0.0)
+inline fun <T> (() -> T).returnByte(): () -> Byte = andReturn(defaultByte())
+inline fun <T> (() -> T).returnShort(): () -> Short = andReturn(defaultShort())
+inline fun <T> (() -> T).returnInt(): () -> Int = andReturn(defaultInt())
+inline fun <T> (() -> T).returnLong(): () -> Long = andReturn(defaultLong())
+inline fun <T> (() -> T).returnFloat(): () -> Float = andReturn(defaultFloat())
+inline fun <T> (() -> T).returnDouble(): () -> Double = andReturn(defaultDouble())
+inline fun <T> (() -> T).returnBigInteger(): () -> BigInteger = andReturn(defaultBigInteger())
+inline fun <T> (() -> T).returnBigDecimal(): () -> BigDecimal = andReturn(defaultBigDecimal())
 inline fun <T> (() -> T).returnTrue(): () -> Boolean = andReturn(true)
 inline fun <T> (() -> T).returnFalse(): () -> Boolean = andReturn(false)
-inline fun <T> (() -> T).returnBoolean(): () -> Boolean = returnFalse()
+inline fun <T> (() -> T).returnBoolean(): () -> Boolean = andReturn(defaultBoolean())
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
