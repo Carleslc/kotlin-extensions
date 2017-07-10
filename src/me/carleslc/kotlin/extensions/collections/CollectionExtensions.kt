@@ -47,9 +47,13 @@ fun <T> MutableList<T>.swap(i: Int, j: Int): MutableList<T> {
     }
 }
 
+fun <T> List<T>.swapped(i: Int, j: Int): List<T> = toMutableList().swap(i, j)
+
 inline fun <T> List<T>.getRandom(generator: Random = Random()): T = get(generator.nextInt(size))
 
-inline fun <T> List<T>.shuffle(generator: Random = Random()): List<T> = apply { Collections.shuffle(this, generator) }
+inline fun <T> MutableList<T>.shuffle(generator: Random = Random()): MutableList<T> = apply { Collections.shuffle(this, generator) }
+
+inline fun <T> List<T>.shuffled(generator: Random = Random()): List<T> = toMutableList().shuffle()
 
 inline fun randomIntList(size: Int, generator: Random = Random()) = size.timesToListOf { generator.nextInt() }
 inline fun randomIntList(size: Int, bound: Int, generator: Random = Random()) = size.timesToListOf { generator.nextInt(bound) }
