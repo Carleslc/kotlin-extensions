@@ -36,21 +36,6 @@ inline fun defaultBigInteger(): BigInteger = BigInteger.ZERO
 inline fun defaultBigDecimal(): BigDecimal = BigDecimal.ZERO
 inline fun defaultString(): String = ""
 
-inline fun <T, R> T?.to(value: R?): R? = value
-inline fun <T> T?.toByte(): Byte = defaultByte()
-inline fun <T> T?.toShort(): Short = defaultShort()
-inline fun <T> T?.toInt(): Int = defaultInt()
-inline fun <T> T?.toLong(): Long = defaultLong()
-inline fun <T> T?.toFloat(): Float = defaultFloat()
-inline fun <T> T?.toDouble(): Double = defaultDouble()
-inline fun <T> T?.toBigInteger(): BigInteger = defaultBigInteger()
-inline fun <T> T?.toBigDecimal(): BigDecimal = defaultBigDecimal()
-inline fun <T> T?.toString(): String = defaultString()
-inline fun <T> T?.toBoolean(): Boolean = defaultBoolean()
-inline fun <T> T?.toTrue(): Boolean = true
-inline fun <T> T?.toFalse(): Boolean = false
-inline fun <T> T?.toUnit() = Unit
-
 inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.let(block) ?: nullBlock()
 
 inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({ nullValue }, block)
