@@ -83,7 +83,7 @@ inline fun <T> (() -> T).returnBoolean(): () -> Boolean = andReturn(defaultBoole
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
-inline fun <T> T.print(outStream: PrintStream = System.out, noinline transform: (String) -> String = { "$it = " }): T = also { outStream.print("$it".with(transform)) }
+inline fun <T> T.print(outStream: PrintStream = System.out, noinline transform: (String) -> String = { "$it = " }): T = also { outStream.print(toString().with(transform)) }
 
 inline fun <T, R> T.println(outStream: PrintStream = System.out, what: (T) -> R): R = what(this).apply { outStream.println(this) }
 
