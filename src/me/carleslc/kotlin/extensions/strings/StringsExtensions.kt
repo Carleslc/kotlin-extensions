@@ -6,6 +6,9 @@ import com.cesarferreira.pluralize.pluralize
 import com.cesarferreira.pluralize.singularize
 import me.carleslc.kotlin.extensions.standard.letOrElse
 
+inline fun String?.isBlank() = this == null || length == 0 || indices.all { this[it].isWhitespace() }
+inline fun String?.isNotBlank() = !isBlank()
+
 inline fun <T> T.toString(transform: (T) -> String) = let(transform)
 
 inline fun <T> T?.toString(nullString: String = null.toString(), transform: (T) -> String) = letOrElse(nullString, transform)
