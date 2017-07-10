@@ -33,6 +33,7 @@ inline fun defaultDouble(): Double = 0.0
 inline fun defaultBoolean(): Boolean = false
 inline fun defaultBigInteger(): BigInteger = BigInteger.ZERO
 inline fun defaultBigDecimal(): BigDecimal = BigDecimal.ZERO
+inline fun defaultString(): String = ""
 
 inline fun <T, R> T?.to(value: R?): R? = value
 inline fun <T> T?.toByte(): Byte = defaultByte()
@@ -43,6 +44,7 @@ inline fun <T> T?.toFloat(): Float = defaultFloat()
 inline fun <T> T?.toDouble(): Double = defaultDouble()
 inline fun <T> T?.toBigInteger(): BigInteger = defaultBigInteger()
 inline fun <T> T?.toBigDecimal(): BigDecimal = defaultBigDecimal()
+inline fun <T> T?.toString(): String = defaultString()
 inline fun <T> T?.toBoolean(): Boolean = defaultBoolean()
 inline fun <T> T?.toTrue(): Boolean = true
 inline fun <T> T?.toFalse(): Boolean = false
@@ -88,17 +90,18 @@ inline fun <T> (() -> T).returnFloat(): () -> Float = andReturn(defaultFloat())
 inline fun <T> (() -> T).returnDouble(): () -> Double = andReturn(defaultDouble())
 inline fun <T> (() -> T).returnBigInteger(): () -> BigInteger = andReturn(defaultBigInteger())
 inline fun <T> (() -> T).returnBigDecimal(): () -> BigDecimal = andReturn(defaultBigDecimal())
+inline fun <T> (() -> T).returnString(): () -> String = andReturn(defaultString())
 inline fun <T> (() -> T).returnTrue(): () -> Boolean = andReturn(true)
 inline fun <T> (() -> T).returnFalse(): () -> Boolean = andReturn(false)
 inline fun <T> (() -> T).returnBoolean(): () -> Boolean = andReturn(defaultBoolean())
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
-inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }, outStream: PrintStream = System.out): T = also { outStream.print(it.toString().with(transform)) }
+inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }, outStream: PrintStream = System.out): T = also { outStream.print("$it".with(transform)) }
 
 inline fun <T> T.println(outStream: PrintStream = System.out): T = also { run(outStream::println) }
 
-inline fun <T, R> T.print(what: (T) -> R, noinline transform: ((String) -> String)? = null, outStream: PrintStream = System.out): R = what(this).apply { outStream.println(toString().with(transform)) }
+inline fun <T, R> T.print(what: (T) -> R, noinline transform: ((String) -> String)? = null, outStream: PrintStream = System.out): R = what(this).apply { outStream.println("$this".with(transform)) }
 
 inline fun <T> T.print(tag: String = "", separator: String = " = ", outStream: PrintStream = System.out): T = also { outStream.println(if (tag.isBlank()) it else "$tag$separator$it") }
 
