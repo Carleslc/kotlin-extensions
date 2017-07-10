@@ -12,9 +12,12 @@ inline fun <T> T.require(requirement: T.() -> Boolean, message: String = "$this 
 inline fun <T> T.require(requirement: T.() -> Boolean): T = require(requirement, "$this does not match requirements")
 
 inline fun <T> T?.requireNotNull(throwable: Throwable = IllegalArgumentException("cannot be null"), noinline elseBlock: () -> Unit = {}): T = if (this != null) this else { run(elseBlock.andThrow(throwable)) }
-
 inline fun <T> T?.requireNotNull(message: String = "cannot be null", noinline elseBlock: () -> Unit = {}): T = requireNotNull(IllegalArgumentException(message), elseBlock)
 inline fun <T> T?.requireNotNull(): T = requireNotNull("cannot be null")
+
+inline fun String?.requireNotBlank(throwable: Throwable = IllegalArgumentException("cannot be blank"), noinline elseBlock: () -> Unit = {}): String = if (!isNullOrBlank()) this!! else { run(elseBlock.andThrow(throwable)) }
+inline fun String?.requireNotBlank(message: String = "cannot be blank", noinline elseBlock: () -> Unit = {}): String = requireNotBlank(IllegalArgumentException(message), elseBlock)
+inline fun String?.requireNotBlank(): String = requireNotBlank("cannot be blank")
 
 inline fun <T> Collection<T>.requireNotEmpty(throwable: Throwable = IllegalArgumentException("cannot be empty"), noinline elseBlock: Collection<T>.() -> Unit = {}): Collection<T> = require({ isNotEmpty() }, throwable, elseBlock)
 inline fun <T> Collection<T>.requireNotEmpty(message: String = "cannot be empty", noinline elseBlock: Collection<T>.() -> Unit = {}): Collection<T> = requireNotEmpty(IllegalArgumentException(message), elseBlock)
