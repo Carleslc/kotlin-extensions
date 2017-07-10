@@ -5,7 +5,6 @@ package me.carleslc.kotlin.extensions.standard
 import me.carleslc.kotlin.extensions.preconditions.requireSize
 import org.funktionale.partials.*
 import org.funktionale.tries.Try
-import java.io.OutputStream
 import java.io.PrintStream
 
 inline fun FIXME(): Nothing = throw Error("An operation needs a fix.")
