@@ -3,15 +3,14 @@ Utility extensions, properties and useful methods to boost your programming with
 
 ## How to install
 
-<span style="color:red">Currently the repository server is offline, please use the steps provided at [manual section](https://github.com/Carleslc/kotlin-extensions#manual).</br>_We're working to solve this problem. Sorry for the inconveniences._</span></p>
-
 ### Maven
 Add the following repository to your `pom.xml`:
 ```
 <repositories>
     <repository>
         <id>central</id>
-        <url>http://34.210.110.148:8081/artifactory/libs-release</url>
+        <name>ip-172-31-8-66-releases</name>
+        <url>http://34.212.220.116:8081/artifactory/libs-release</url>
     </repository>
 </repositories>
 ```
@@ -48,7 +47,7 @@ Add the following repository to your `build.gradle`:
 
 ```
 repositories {
-    url 'http://34.210.110.148:8081/artifactory/libs-release'
+    url 'http://34.212.220.116:8081/artifactory/libs-release'
 }
 ```
 
