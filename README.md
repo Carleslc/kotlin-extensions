@@ -8,9 +8,8 @@ Add the following repository to your `pom.xml`:
 ```
 <repositories>
     <repository>
-        <id>central</id>
-        <name>ip-172-31-8-66-releases</name>
-        <url>http://34.212.220.116:8081/artifactory/libs-release</url>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
     </repository>
 </repositories>
 ```
@@ -18,28 +17,15 @@ Add the following repository to your `pom.xml`:
 Add the following dependencies to your `pom.xml`:
 ```
 <dependencies>
-    <!-- KotlinExtensions -->
     <dependency>
-        <groupId>me.carleslc</groupId>
-        <artifactId>kotlin-extensions</artifactId>
-        <version>0.5</version>
-    </dependency>
-    <!-- FunKTionale -->
-    <dependency>
-        <groupId>org.funktionale</groupId>
-        <artifactId>funktionale-all</artifactId>
-        <version>1.1</version>
-    </dependency>
-    <!-- Guava -->
-    <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>22.0</version>
-    </dependency>
+	    <groupId>com.github.carleslc</groupId>
+	    <artifactId>kotlin-extensions</artifactId>
+	    <version>0.5</version>
+	</dependency>
 </dependencies>
 ```
 
-[funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) are optional dependencies, but they are very powerful to complement this library.
+If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
 ### Gradle
 
@@ -47,20 +33,18 @@ Add the following repository to your `build.gradle`:
 
 ```
 repositories {
-    url 'http://34.212.220.116:8081/artifactory/libs-release'
+    maven { url 'https://jitpack.io' }
 }
 ```
 
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'me.carleslc:kotlin-extensions:0.5'
-    compile 'org.funktionale:funktionale-all:1.1'
-    compile 'com.google.guava:guava:22.0'
+    compile 'com.github.carleslc:kotlin-extensions:0.5'
 }
 ```
 
-[funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) are optional dependencies, but they are very powerful to complement this library.
+If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
 ### Manual
 
