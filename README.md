@@ -52,11 +52,11 @@ If you need more powerful extensions and tools check the [optional libraries sec
 2. `cd kotlin-extensions`
 3. Build the KotlinExtensions with `mvn clean install`. This also adds this project to your local Maven repository.
 
-If you wish, you can use these steps to add the dependency using Maven without accessing to the remote repository adding only the `<dependency>` tag as specified in [maven section](https://github.com/Carleslc/kotlin-extensions#maven).
+If you wish, you can use these steps to add the dependency using Maven or Gradle without accessing to the `jitpack.io` remote repository.
 
 Otherwise you will need to add the `kotlin-extensions-0.5.jar` from generated `target` folder as external dependency of your project.
 
-In addition, if needed, you can add the dependencies of [funKTionale](https://github.com/MarioAriasC/funKTionale) and [guava](https://github.com/google/guava) as they are very powerful to complement this library.
+If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
 ## How to use
 
@@ -155,7 +155,7 @@ Follow this rules when doing a pull request in order to be accepted:
 
 ### [funKTionale](https://github.com/MarioAriasC/funKTionale)
 
-This library includes some functional extensions and classes like those of the common and most used functional languages.
+This library includes some functional extensions and classes like those of the common and most used functional languages. It is a perfect library to use together with KotlinExtensions.
 
 ```
 import org.funktionale.collections.*
