@@ -98,13 +98,11 @@ inline fun <T> (() -> T).returnBoolean(): () -> Boolean = andReturn(defaultBoole
 inline fun <T> (() -> T).returnNull(): () -> T? = andReturn(null)
 inline fun <T> (() -> T).returnUnit(): () -> Unit = andReturn(Unit)
 
-inline fun <T> T.print(noinline transform: (String) -> String = { "$it = " }, outStream: PrintStream = System.out): T = also { outStream.print("$it".with(transform)) }
+inline fun <T> T.print(outStream: PrintStream = System.out, noinline transform: (String) -> String = { "$it = " }): T = also { outStream.print("$it".with(transform)) }
 
-inline fun <T> T.println(outStream: PrintStream = System.out): T = also { run(outStream::println) }
+inline fun <T, R> T.println(what: (T) -> R, outStream: PrintStream = System.out, noinline transform: ((String) -> String)? = null): R = what(this).apply { outStream.println("$this".with(transform)) }
 
-inline fun <T, R> T.print(what: (T) -> R, noinline transform: ((String) -> String)? = null, outStream: PrintStream = System.out): R = what(this).apply { outStream.println("$this".with(transform)) }
-
-inline fun <T> T.print(tag: String = "", separator: String = " = ", outStream: PrintStream = System.out): T = also { outStream.println(if (tag.isBlank()) it else "$tag$separator$it") }
+inline fun <T> T.println(tag: String = "", separator: String = " = ", outStream: PrintStream = System.out): T = also { outStream.println(if (tag.isBlank()) it else "$tag$separator$it") }
 
 inline fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { a, b -> this(b, a) }
 
