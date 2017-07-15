@@ -34,3 +34,5 @@ inline fun String.replace(ignoreCase: Boolean = false, vararg vars: Pair<String,
     vars.forEach { copy = copy.replace(it.first, it.second, ignoreCase) }
     return copy
 }
+
+inline fun String.remove(substring: String) = replace(substring, "")
