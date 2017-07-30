@@ -129,6 +129,12 @@ inline val Long.minute: Duration get() = minutes
 inline val Long.hours: Duration get() = run(Duration::ofHours)
 inline val Long.hour: Duration get() = hours
 
+inline val Long.daysDuration: Duration get() = toInt().daysDuration
+inline val Long.dayDuration: Duration get() = daysDuration
+
+inline val Long.weeksDuration: Duration get() = toInt().weeksDuration
+inline val Long.weekDuration: Duration get() = weeksDuration
+
 inline val Long.days: Period get() = toInt().days
 inline val Long.day: Period get() = days
 
@@ -158,6 +164,12 @@ inline val Int.minute: Duration get() = minutes
 
 inline val Int.hours: Duration get() = toLong().hours
 inline val Int.hour: Duration get() = hours
+
+inline val Int.daysDuration: Duration get() = (24 * this).hours
+inline val Int.dayDuration: Duration get() = daysDuration
+
+inline val Int.weeksDuration: Duration get() = (24 * 7 * this).hours
+inline val Int.weekDuration: Duration get() = weeksDuration
 
 inline val Int.days: Period get() = run(Period::ofDays)
 inline val Int.day: Period get() = days
