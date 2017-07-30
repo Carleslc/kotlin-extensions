@@ -37,7 +37,7 @@ object Durations {
     fun from(ago: Long, unit: TimeUnit) = Duration.ofMillis(millis() - unit.toMillis(ago))
 
     /** Duration from [ago] to current [millis()][millis] */
-    fun fromMillis(millis: Long) = Duration.ofMillis(millis() - millis)
+    fun fromMillis(ago: Long) = Duration.ofMillis(millis() - ago)
 
     /** Use this method only if [nanos] is extracted from [nanos()][me.carleslc.kotlin.extensions.time.nanos], otherwise resulting duration will be unexpected */
     fun fromSystemNanos(nanos: Long): Duration = betweenNanos(nanos, nanos())

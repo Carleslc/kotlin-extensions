@@ -20,7 +20,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
     	<groupId>com.github.carleslc</groupId>
     	<artifactId>kotlin-extensions</artifactId>
-    	<version>0.5.1</version>
+    	<version>0.6</version>
     </dependency>
 </dependencies>
 ```
@@ -40,7 +40,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.github.carleslc:kotlin-extensions:0.5.1'
+    compile 'com.github.carleslc:kotlin-extensions:0.6'
 }
 ```
 
@@ -54,7 +54,7 @@ If you need more powerful extensions and tools check the [optional libraries sec
 
 If you wish, you can use these steps to add the dependency using Maven or Gradle without accessing to the `jitpack.io` remote repository.
 
-Otherwise you will need to add the `kotlin-extensions-0.5.1.jar` from generated `target` folder as external dependency of your project.
+Otherwise you will need to add the `kotlin-extensions-0.6.jar` from generated `target` folder as external dependency of your project.
 
 If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
