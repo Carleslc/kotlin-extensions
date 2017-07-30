@@ -1,4 +1,6 @@
 # KotlinExtensions
+[![](https://jitpack.io/v/Carleslc/kotlin-extensions.svg)](https://jitpack.io/#Carleslc/kotlin-extensions)
+
 Utility extensions, properties and useful methods to boost your programming with Kotlin.
 
 ## How to install
