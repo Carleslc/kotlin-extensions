@@ -2,6 +2,15 @@
 
 package me.carleslc.kotlin.extensions.bytes
 
+fun getMemoryUsage(transform: (Long, Long, Long, Long, Int) -> String = { total, free, max, usage, percent -> "$usage / $max MB in use ($percent%)" }): Pair<Int, String> {
+    val total = Runtime.getRuntime().totalMemory().bytes.toMegaBytes
+    val free = Runtime.getRuntime().freeMemory().bytes.toMegaBytes
+    val max = Runtime.getRuntime().maxMemory().bytes.toMegaBytes
+    val usage = total - free
+    val percent = ((usage.toDouble()/max) * 100).toInt()
+    return percent to transform(total, free, max, usage, percent)
+}
+
 val Long.bits: BitValue get() = BitValue(this)
 inline val Long.bit: BitValue get() = bits
 
@@ -120,10 +129,10 @@ data class BitValue internal constructor(val toBits: Long) {
     val PiB = toPebibytes
     val PB = toPetabytes
     
-    operator fun plus(other:BitValue)= BitValue(toBits + other.toBits)
-    operator fun minus(other:BitValue)= BitValue(toBits - other.toBits)
-    operator fun times(mult:Long) = BitValue(mult*toBits)
-    operator fun div(div:Long) = BitValue(toBits/div)
-    operator fun div(div:BitValue) = toBits/div.toBits
+    operator fun plus(other: BitValue) = BitValue(toBits + other.toBits)
+    operator fun minus(other: BitValue) = BitValue(toBits - other.toBits)
+    operator fun times(mult: Long) = BitValue(mult*toBits)
+    operator fun div(div: Long) = BitValue(toBits/div)
+    operator fun div(div: BitValue) = toBits/div.toBits
     
 }

@@ -15,6 +15,10 @@ object S {
 
 inline fun <T> Collection<T>?.isBlank(): Boolean = this == null || isEmpty()
 
+inline fun <T> Collection<T?>.anyNull(): Boolean = any { it == null }
+
+inline fun <T> Collection<T?>.allNull(): Boolean = all { it == null }
+
 inline fun <T> Collection<T?>.countNulls(): Int = count { it == null }
 inline fun <T> Collection<T?>.countNonNulls(): Int = size - countNulls()
 
@@ -36,7 +40,7 @@ inline fun <T1, T2, R> Iterable<T1>.combineToMutableList(other: Iterable<T2>, tr
 inline fun <T, R> Iterable<T>.mapToMutableList(transform: (T) -> R): MutableList<R> = mapTo(mutableListOf(), transform)
 inline fun <T, R> Iterable<T>.flatMapToMutableList(transform: (T) -> Iterable<R>): MutableList<R> = flatMapTo(mutableListOf(), transform)
 
-inline fun <T> Int.timesToListOf(predicate: (Int) -> T): List<T> = (0..this - 1).map { predicate(it) }
+inline fun <T> Int.timesToListOf(predicate: (Int) -> T): List<T> = (0 until this).map { predicate(it) }
 inline fun <T> Int.timesToMutableListOf(predicate: (Int) -> T): MutableList<T> = (0..this - 1).mapToMutableList { predicate(it) }
 
 fun <T> MutableList<T>.swap(i: Int, j: Int): MutableList<T> {

@@ -3,7 +3,7 @@
 package me.carleslc.kotlin.extensions.arrays
 
 import me.carleslc.kotlin.extensions.collections.timesToListOf
-import java.util.Random
+import java.util.*
 
 typealias Matrix<T> = Array<Array<T>>
 
@@ -19,13 +19,15 @@ inline fun <T> Array<T?>.anyNull(): Boolean = any { it == null }
 
 inline fun <T> Array<T?>.allNull(): Boolean = all { it == null }
 
-inline fun <T> Array<Array<T?>>.anyNull(): Boolean = any { it.any { it == null } }
+inline fun <T> Array<Array<T?>>.anyNull(): Boolean = any { it.anyNull() }
 
-inline fun <T> Array<Array<T?>>.allNull(): Boolean = all { it.all { it == null } }
+inline fun <T> Array<Array<T?>>.allNull(): Boolean = all { it.allNull() }
 
 inline fun <T> Array<Array<T>>.anyInner(predicate: (T) -> Boolean): Boolean = any { it.any(predicate) }
 
 inline fun <T> Array<Array<T>>.allInner(predicate: (T) -> Boolean): Boolean = all { it.all(predicate) }
+
+inline val Array<*>.half: Int get() = size / 2
 
 fun <T> Array<T>.swap(i: Int, j: Int): Array<T> {
     return apply {
@@ -54,18 +56,24 @@ inline fun <reified T> matrix(rows: Int, cols: Int, init: (Int, Int) -> T): Matr
     return array2d(rows) { row -> Array<T>(cols, { col -> init(row, col) }) }
 }
 
-inline fun <reified T> matrixOfNulls(rows: Int, cols: Int): Matrix<T> = matrix(rows, cols, { _, _ -> null as T })
+inline fun <reified T> matrixOf(rows: Int, cols: Int, init: T): Matrix<T> {
+    return matrix(rows, cols) { _,_ -> init }
+}
+
+inline fun <reified T> matrixOfNulls(rows: Int, cols: Int): Matrix<T> = matrix(rows, cols) { _, _ -> null as T }
+
+inline fun <reified T> Array<Array<T>>.copy() = Array(size) { get(it).copyOf() }
 
 inline val <T> Array<Array<T>>.rows get() = indices
 
 inline val <T> Matrix<T>.columns get() = if (isEmpty()) (0..-1) else this[0].indices
 
-inline val <T> Array<Array<T>>.lastIndexRows get() = lastIndex
+inline val <T> Array<Array<T>>.lastRowIndex get() = lastIndex
 
-inline val <T> Matrix<T>.lastIndexColumns get() = if (isEmpty()) -1 else this[0].lastIndex
+inline val <T> Matrix<T>.lastColumnIndex get() = if (isEmpty()) -1 else this[0].lastIndex
 
 inline val <T> Array<Array<T>>.rowSize get() = size
 
-inline val <T> Matrix<T>.columnSize get() = lastIndexColumns + 1
+inline val <T> Matrix<T>.columnSize get() = lastColumnIndex + 1
 
 inline val <T> Array<Array<T>>.totalSize get() = fold(0) { acc, col -> acc + col.size }

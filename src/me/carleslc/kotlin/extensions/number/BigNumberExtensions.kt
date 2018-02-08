@@ -7,7 +7,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
-import java.util.Random
+import java.util.*
 
 val LOG2 by lazy { Math.log(2.0) }
 val TWO_BIG by lazy { 2.toBigInteger() }
@@ -97,12 +97,12 @@ inline fun probablePrime(bits: Int, random: Random = Random()) = BigInteger.prob
 inline fun BigInteger.isPrime(certainty: Int = 5, precise: Boolean = false): Boolean {
     if (!isProbablePrime(certainty)) return false else if (!precise) return true
 
-    if (TWO_BIG != this && mod(TWO_BIG) == BigInteger.ZERO) return false;
+    if (TWO_BIG != this && mod(TWO_BIG) == BigInteger.ZERO) return false
 
     var index = BigInteger.ONE
     val indices = generateSequence { index += TWO_BIG; if (index.multiply(index) <= this) index else null }
     indices.forEach {
-        if (mod(it) == BigInteger.ZERO) return false;
+        if (mod(it) == BigInteger.ZERO) return false
     }
     return true;
 }

@@ -46,12 +46,24 @@ object Durations {
 
 inline fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanoseconds
 
-inline fun measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
+inline fun <T> measureAndReturn(block: () -> T): Pair<Duration, T> {
+    val start = System.nanoTime()
+    val ret = block()
+    val duration = (System.nanoTime() - start).nanoseconds
+    return duration to ret
+}
+
+inline fun <T> measureAndPrint(limit: TimeUnit = TimeUnit.NANOSECONDS,
                            formatter: TimeUnitFormatter = TimeUnitFormatter.LONG,
                            roundingLast: MathContext = MathContext(1),
                            noinline transformation: ((String) -> String)? = null,
                            outputStream: PrintStream = System.out,
-                           block: () -> Unit) = measure(block).humanize(limit, formatter, roundingLast, transformation).run(outputStream::println)
+                           block: () -> T): T {
+    measureAndReturn(block).let {
+        it.first.humanize(limit, formatter, roundingLast, transformation).run(outputStream::println)
+        return it.second
+    }
+}
 
 fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUnitFormatter = TimeUnitFormatter.LONG, roundingLast: MathContext = MathContext(1), transformation: ((String) -> String)? = null): String {
     val builder = StringBuilder()
