@@ -80,7 +80,7 @@ fun Duration.humanize(limit: TimeUnit = TimeUnit.NANOSECONDS, formatter: TimeUni
 
     fun lastAppend(threshold: Long, unit: TimeUnit) {
         if (nanos > threshold || builder.isEmpty()) {
-            val value = if (threshold > 0.0) nanos.roundDiv(threshold, roundingLast) else nanos
+            val value = if (threshold > 0.0) nanos.roundDiv(threshold, roundingLast).toLong() else nanos
             builder.append(formatter.formatLast(value, unit))
         }
         finished = true
