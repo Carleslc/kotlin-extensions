@@ -4,6 +4,7 @@ package me.carleslc.kotlin.extensions.number
 
 import com.google.common.math.DoubleMath
 import com.google.common.math.LongMath
+import me.carleslc.kotlin.extensions.strings.toFixed
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -64,8 +65,8 @@ inline fun lcm(a: Byte, b: Byte): Byte = lcm(a.toLong(), b.toLong()).toByte()
 inline fun lcm(a: Short, b: Short): Short = lcm(a.toLong(), b.toLong()).toShort()
 inline fun lcm(a: Int, b: Int): Int = lcm(a.toLong(), b.toLong()).toInt()
 
-inline fun Double.round(): Long = Math.round(this)
-inline fun Float.round(): Int = Math.round(this)
+inline fun Double.roundToLong(): Long = Math.round(this)
+inline fun Float.roundToInt(): Int = Math.round(this)
 
 inline infix fun Number.fdiv(y: Number): Float = toFloat() / y.toFloat()
 inline infix fun Number.ddiv(y: Number): Double = toDouble() / y.toDouble()
@@ -82,6 +83,9 @@ inline fun Long.isPowerOfTwo() = LongMath.isPowerOfTwo(this)
 inline fun Number.isPowerOfTwo() = toLong().isPowerOfTwo()
 
 inline fun Number.isPrime() = LongMath.isPrime(toLong())
+
+inline fun Double.round(digits: Int = 2): String = toFixed(digits).trimEnd('0')
+inline fun Float.round(digits: Int = 2): String = toDouble().round(digits)
 
 inline fun Double.sin(): Double = Math.sin(this)
 inline fun Float.sin(): Float = toDouble().sin().toFloat()

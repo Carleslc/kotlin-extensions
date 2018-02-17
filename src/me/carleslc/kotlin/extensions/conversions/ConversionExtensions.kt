@@ -107,7 +107,7 @@ inline fun Any?.toInt(): Int {
     return when (this) {
         null -> 0
         is Number -> toInt()
-        else -> toString().toIntOrDefault()
+        else -> toString().toDoubleOrDefault().toInt()
     }
 }
 

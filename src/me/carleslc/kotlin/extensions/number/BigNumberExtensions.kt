@@ -42,19 +42,19 @@ inline fun MathContext.round(n: BigDecimal): BigDecimal = run(n::round)
 
 inline fun MathContext.roundFunctionBigDecimal(): (BigDecimal) -> BigDecimal = { round(it) }
 
-inline fun Double.round(mathContext: MathContext = MathContext(1)): Long = run(mathContext::round)
-inline fun Float.round(mathContext: MathContext = MathContext(1)): Int = run(mathContext::round)
+inline fun Double.round(mathContext: MathContext = MathContext(1)): BigDecimal = run(mathContext::round)
+inline fun Float.round(mathContext: MathContext = MathContext(1)): BigDecimal = run(mathContext::round)
 
-inline fun Double.round(precision: Int = 1, roundingMode: RoundingMode = RoundingMode.HALF_UP): Long = round(MathContext(precision, roundingMode))
-inline fun Float.round(precision: Int = 1, roundingMode: RoundingMode = RoundingMode.HALF_UP): Int = round(MathContext(precision, roundingMode))
+inline fun Double.round(precision: Int = 1, roundingMode: RoundingMode = RoundingMode.HALF_UP): BigDecimal = round(MathContext(precision, roundingMode))
+inline fun Float.round(precision: Int = 1, roundingMode: RoundingMode = RoundingMode.HALF_UP): BigDecimal = round(MathContext(precision, roundingMode))
 
-inline fun MathContext.round(n: Double): Long = run(n.toBigDecimal()::round).toLong()
-inline fun MathContext.round(n: Float): Int = run(n.toBigDecimal()::round).toInt()
+inline fun MathContext.round(n: Double): BigDecimal = run(n.toBigDecimal()::round)
+inline fun MathContext.round(n: Float): BigDecimal = run(n.toBigDecimal()::round)
 
-inline fun MathContext.roundFunctionDouble(): (Double) -> Long = { round(it) }
-inline fun MathContext.roundFunctionFloat(): (Float) -> Int = { round(it) }
+inline fun MathContext.roundFunctionDouble(): (Double) -> BigDecimal = { round(it) }
+inline fun MathContext.roundFunctionFloat(): (Float) -> BigDecimal = { round(it) }
 
-inline fun Number.roundDiv(y: Number, mathContext: MathContext): Long = (toBigDecimal().divide(y.toBigDecimal(), mathContext)).toLong()
+inline fun Number.roundDiv(y: Number, mathContext: MathContext): BigDecimal = toBigDecimal().divide(y.toBigDecimal(), mathContext)
 
 inline fun BigInteger.sqrt(roundingMode: RoundingMode = RoundingMode.HALF_EVEN): BigInteger = BigIntegerMath.sqrt(this, roundingMode)
 inline fun BigDecimal.sqrt(roundingMode: RoundingMode = RoundingMode.HALF_EVEN): BigInteger = toBigInteger().sqrt(roundingMode)
