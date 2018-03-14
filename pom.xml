@@ -4,7 +4,7 @@
 
 	<groupId>me.carleslc</groupId>
 	<artifactId>kotlin-extensions</artifactId>
-	<version>0.7.2</version>
+	<version>0.7.3</version>
 	<packaging>jar</packaging>
 
 	<name>KotlinExtensions</name>
@@ -59,8 +59,13 @@
 		<!-- funKTionale -->
 		<dependency>
 			<groupId>org.funktionale</groupId>
-			<artifactId>funktionale-all</artifactId>
-			<version>1.1</version>
+			<artifactId>funktionale-partials</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.funktionale</groupId>
+			<artifactId>funktionale-try</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<!-- Pluralizer -->
 		<dependency>

@@ -22,7 +22,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
     	<groupId>com.github.carleslc</groupId>
     	<artifactId>kotlin-extensions</artifactId>
-    	<version>0.7.2</version>
+    	<version>0.7.3</version>
     </dependency>
 </dependencies>
 ```
@@ -42,7 +42,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.github.carleslc:kotlin-extensions:0.7.2'
+    compile 'com.github.carleslc:kotlin-extensions:0.7.3'
 }
 ```
 
@@ -56,7 +56,7 @@ If you need more powerful extensions and tools check the [optional libraries sec
 
 If you wish, you can use these steps to add the dependency using Maven or Gradle without accessing to the `jitpack.io` remote repository.
 
-Otherwise you will need to add the `kotlin-extensions-0.7.2.jar` from generated `target` folder as external dependency of your project.
+Otherwise you will need to add the `kotlin-extensions-0.7.3.jar` from generated `target` folder as external dependency of your project.
 
 If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
@@ -157,25 +157,11 @@ Follow this rules when doing a pull request in order to be accepted:
 
 ### [funKTionale](https://github.com/MarioAriasC/funKTionale)
 
-This library includes some functional extensions and classes like those of the common and most used functional languages. It is a perfect library to use together with KotlinExtensions.
+This library includes some functional extensions and classes like those of the common and most used functional languages.
 
-```
-import org.funktionale.collections.*
-import org.funktionale.complement.*
-import org.funktionale.composition.*
-import org.funktionale.currying.*
-import org.funktionale.either.*
-import org.funktionale.memoization.*
-import org.funktionale.option.*
-import org.funktionale.pairing.*
-import org.funktionale.partials.*
-import org.funktionale.pipe.*
-import org.funktionale.reverse.*
-import org.funktionale.state.*
-import org.funktionale.tries.*
-import org.funktionale.utils.*
-import org.funktionale.validation.*
-```
+### [Arrow](https://github.com/arrow-kt/arrow)
+
+Like funKTionale this library adds functional stuff to boost your programming with Kotlin. It is a perfect library to use together with KotlinExtensions.
 
 ### [guava](https://github.com/google/guava)
 
