@@ -4,7 +4,7 @@
 
 	<groupId>me.carleslc</groupId>
 	<artifactId>kotlin-extensions</artifactId>
-	<version>0.7</version>
+	<version>0.7.2</version>
 	<packaging>jar</packaging>
 
 	<name>KotlinExtensions</name>
@@ -33,7 +33,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<kotlin.version>1.2.21</kotlin.version>
+		<kotlin.version>1.2.30</kotlin.version>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 	</properties>
 
@@ -68,11 +68,11 @@
 			<artifactId>kotlin-pluralizer</artifactId>
 			<version>0.2.9</version>
 		</dependency>
-		<!-- Guava -->
+		<!-- Guava (Valid for Android) -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>22.0</version>
+			<version>23.3-android</version>
 		</dependency>
 		<!-- Apache Commons Validator -->
 		<dependency>
