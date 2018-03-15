@@ -22,7 +22,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
     	<groupId>com.github.carleslc</groupId>
     	<artifactId>kotlin-extensions</artifactId>
-    	<version>0.7.4</version>
+    	<version>0.7.5</version>
     </dependency>
 </dependencies>
 ```
@@ -42,7 +42,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.github.carleslc:kotlin-extensions:0.7.4'
+    compile 'com.github.carleslc:kotlin-extensions:0.7.5'
 }
 ```
 
@@ -56,7 +56,7 @@ If you need more powerful extensions and tools check the [optional libraries sec
 
 If you wish, you can use these steps to add the dependency using Maven or Gradle without accessing to the `jitpack.io` remote repository.
 
-Otherwise you will need to add the `kotlin-extensions-0.7.4.jar` from generated `target` folder as external dependency of your project.
+Otherwise you will need to add the `kotlin-extensions-0.7.5.jar` from generated `target` folder as external dependency of your project.
 
 If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
@@ -158,11 +158,13 @@ Follow this rules when doing a pull request in order to be accepted:
 ### [Arrow](https://github.com/arrow-kt/arrow)
 
 This library adds functional stuff to boost your programming with Kotlin. It is a perfect library to use together with KotlinExtensions.
-We've already included `arrow.core` and `arrow.data` in KotlinExtensions.
+We've already included `arrow.core`, `arrow.data` and `arrow.syntax` in KotlinExtensions.
 
-### [guava](https://github.com/google/guava)
+### [Guava](https://github.com/google/guava)
 
-This library from Google Developers includes a lot of useful classes and methods to extend the language. It is written in Java but we can use it from Kotlin with no problem. The version used in this project also allows its use for Android.
+This library from Google includes a lot of useful classes and methods to extend the language. It is written in Java but it can be used from Kotlin with no problem.
+
+It is already included with version `23.3-android` in KotlinExtensions, available for Android use.
 
 ### [Anko](https://github.com/Kotlin/anko)
 

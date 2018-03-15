@@ -3,8 +3,6 @@
 package me.carleslc.kotlin.extensions.preconditions
 
 import me.carleslc.kotlin.extensions.standard.*
-import org.apache.commons.validator.routines.EmailValidator
-import org.apache.commons.validator.routines.InetAddressValidator
 import java.math.BigDecimal
 import java.math.BigInteger
 
@@ -81,8 +79,3 @@ inline fun BigInteger.requireNonDefault(): BigInteger = requireNonDefault("canno
 fun BigDecimal.requireNonDefault(throwable: Throwable = IllegalArgumentException("cannot be  ${defaultBigDecimal()}"), elseBlock: () -> Unit = {}): BigDecimal = require({ this != defaultBigDecimal() }, throwable, { run(elseBlock) })
 fun BigDecimal.requireNonDefault(message: String = "cannot be ${defaultBigDecimal()}", elseBlock: () -> Unit = {}): BigDecimal = requireNonDefault(IllegalArgumentException(message), elseBlock)
 inline fun BigDecimal.requireNonDefault(): BigDecimal = requireNonDefault("cannot be ${defaultBigDecimal()}")
-
-inline fun String.isValidEmail() = EmailValidator.getInstance().isValid(this)
-inline fun String.isValidIP() = InetAddressValidator.getInstance().isValid(this)
-inline fun String.isValidIPv4() = InetAddressValidator.getInstance().isValidInet4Address(this)
-inline fun String.isValidIPv6() = InetAddressValidator.getInstance().isValidInet6Address(this)
