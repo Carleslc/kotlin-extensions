@@ -22,10 +22,7 @@ inline fun BigInteger.even() = mod(2L.toBigInteger()) == BigInteger.ZERO
 inline fun BigInteger.odd() = !even()
 
 inline infix fun BigInteger.pow(exp: Int): BigInteger = pow(exp)
-inline infix fun BigInteger.`^`(exp: Int): BigInteger = pow(exp)
-
 inline infix fun BigDecimal.pow(exp: Int): BigDecimal = pow(exp)
-inline infix fun BigDecimal.`^`(exp: Int): BigDecimal = pow(exp)
 
 inline fun BigInteger.fitsInLong(): Boolean = this in (Long.MIN_VALUE.toBigInteger()..Long.MAX_VALUE.toBigInteger())
 inline fun BigInteger.fitsInInt(): Boolean = this in (Int.MIN_VALUE.toBigInteger()..Int.MAX_VALUE.toBigInteger())

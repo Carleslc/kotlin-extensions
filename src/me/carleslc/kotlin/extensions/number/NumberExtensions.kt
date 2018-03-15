@@ -36,19 +36,12 @@ inline fun Byte.clamp(min: Byte, max: Byte): Byte = toLong().clamp(min.toLong(),
 inline fun Number.clamp(min: Number, max: Number): Long = toLong().clamp(min.toLong(), max.toLong())
 
 inline infix fun Double.pow(exp: Double): Double = Math.pow(this, exp)
-inline infix fun Double.`^`(exp: Double): Double = pow(exp)
 inline infix fun Float.pow(exp: Float): Double = toDouble() pow exp.toDouble()
-inline infix fun Float.`^`(exp: Float): Double = pow(exp)
 inline infix fun Long.pow(exp: Int): Long = LongMath.pow(this, exp)
-inline infix fun Long.`^`(exp: Int): Long = pow(exp)
 inline infix fun Int.pow(exp: Int): Long = toLong() pow exp
-inline infix fun Int.`^`(exp: Int): Long = pow(exp)
 inline infix fun Short.pow(exp: Short): Long = toInt() pow exp.toInt()
-inline infix fun Short.`^`(exp: Short): Long = pow(exp)
 inline infix fun Byte.pow(exp: Byte): Long = toInt() pow exp.toInt()
-inline infix fun Byte.`^`(exp: Byte): Long = pow(exp)
 inline infix fun Number.pow(exp: Int): Long = toLong() pow exp
-inline infix fun Number.`^`(exp: Int): Long = pow(exp)
 
 inline fun Double.abs(): Double = Math.abs(this)
 inline fun Long.abs(): Long = Math.abs(this)
