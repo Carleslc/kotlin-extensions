@@ -4,7 +4,7 @@
 
 	<groupId>me.carleslc</groupId>
 	<artifactId>kotlin-extensions</artifactId>
-	<version>0.7.6</version>
+	<version>0.7.7</version>
 	<packaging>jar</packaging>
 
 	<name>KotlinExtensions</name>
@@ -53,7 +53,7 @@
 		<!-- Kotlin -->
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-stdlib-jdk8</artifactId>
+			<artifactId>kotlin-stdlib</artifactId>
 			<version>${kotlin.version}</version>
 		</dependency>
 		<!-- Arrow -->
