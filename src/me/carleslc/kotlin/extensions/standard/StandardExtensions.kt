@@ -2,10 +2,13 @@
 
 package me.carleslc.kotlin.extensions.standard
 
+import arrow.core.andThen
+import arrow.core.curry
+import arrow.core.toPartialFunction
 import me.carleslc.kotlin.extensions.preconditions.requireSize
-import org.funktionale.partials.bind
-import org.funktionale.partials.partially1
-import org.funktionale.tries.Try
+import arrow.data.Try
+import arrow.data.getOrDefault
+import arrow.data.getOrElse
 import java.io.PrintStream
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -93,17 +96,19 @@ inline fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { a, b -> this(b, a) }
 
 inline fun <R> (() -> R).run() = invoke()
 
-inline infix fun <T, R> ((T) -> R).with(param: T): () -> R = bind(param)
+inline infix fun <T, R> ((T) -> R).bind(param: T): () -> R = with(param)
 
-inline fun <T1, T2, R> ((T1, T2) -> R).with(param1: T1, param2: T2): () -> R = partially1(param1).with(param2)
+inline infix fun <T, R> ((T) -> R).with(param: T): () -> R = { this(param) }
 
-inline fun <T1, T2, T3, R> ((T1, T2, T3) -> R).with(param1: T1, param2: T2, param3: T3): () -> R = partially1(param1).with(param2, param3)
+inline fun <T1, T2, R> ((T1, T2) -> R).with(param1: T1, param2: T2): () -> R = { this(param1, param2) }
 
-inline fun <T1, T2, T3, T4, R> ((T1, T2, T3, T4) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4): () -> R = partially1(param1).with(param2, param3, param4)
+inline fun <T1, T2, T3, R> ((T1, T2, T3) -> R).with(param1: T1, param2: T2, param3: T3): () -> R = { this(param1, param2, param3) }
 
-inline fun <T1, T2, T3, T4, T5, R> ((T1, T2, T3, T4, T5) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5): () -> R = partially1(param1).with(param2, param3, param4, param5)
+inline fun <T1, T2, T3, T4, R> ((T1, T2, T3, T4) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4): () -> R = { this(param1, param2, param3, param4) }
 
-inline fun <T1, T2, T3, T4, T5, T6, R> ((T1, T2, T3, T4, T5, T6) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5, param6: T6): () -> R = partially1(param1).with(param2, param3, param4, param5, param6)
+inline fun <T1, T2, T3, T4, T5, R> ((T1, T2, T3, T4, T5) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5): () -> R = { this(param1, param2, param3, param4, param5) }
+
+inline fun <T1, T2, T3, T4, T5, T6, R> ((T1, T2, T3, T4, T5, T6) -> R).with(param1: T1, param2: T2, param3: T3, param4: T4, param5: T5, param6: T6): () -> R = { this(param1, param2, param3, param4, param5, param6) }
 
 inline fun <T, R> ((T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(1); this(a[0]) }
 
@@ -121,4 +126,4 @@ inline fun Try<Boolean>.getOrTrue() = getOrElse { true }
 
 inline fun Try<Boolean>.getOrFalse() = getOrElse { false }
 
-inline fun <T> Try<T>.getOrNull() = if (isFailure()) null else get()
+inline fun <T> Try<T>.getOrNull(): T? = getOrDefault { null }

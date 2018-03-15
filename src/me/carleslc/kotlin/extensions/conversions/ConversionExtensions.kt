@@ -2,8 +2,8 @@
 
 package me.carleslc.kotlin.extensions.conversions
 
+import arrow.data.Try
 import me.carleslc.kotlin.extensions.standard.getOrNull
-import org.funktionale.tries.Try
 
 inline fun Long.toBoolean() = when (this) {
     0L -> false

@@ -56,16 +56,16 @@
 			<artifactId>kotlin-stdlib-jdk8</artifactId>
 			<version>${kotlin.version}</version>
 		</dependency>
-		<!-- funKTionale -->
+		<!-- Arrow -->
 		<dependency>
-			<groupId>org.funktionale</groupId>
-			<artifactId>funktionale-partials</artifactId>
-			<version>1.2</version>
+			<groupId>io.arrow-kt</groupId>
+			<artifactId>arrow-core</artifactId>
+			<version>0.6.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.funktionale</groupId>
-			<artifactId>funktionale-try</artifactId>
-			<version>1.2</version>
+			<groupId>io.arrow-kt</groupId>
+			<artifactId>arrow-data</artifactId>
+			<version>0.6.1</version>
 		</dependency>
 		<!-- Pluralizer -->
 		<dependency>
@@ -83,7 +83,7 @@
 		<dependency>
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
-			<version>1.4.1</version>
+			<version>1.6</version>
 		</dependency>
 	</dependencies>
 
@@ -150,23 +150,6 @@
 						<goals>
 							<goal>testCompile</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Minimize -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<minimizeJar>true</minimizeJar>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

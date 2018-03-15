@@ -1,4 +1,4 @@
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "UNUSED_PARAMETER")
 
 package me.carleslc.kotlin.extensions.bytes
 
