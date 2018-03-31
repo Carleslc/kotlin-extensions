@@ -2,13 +2,10 @@
 
 package me.carleslc.kotlin.extensions.standard
 
-import arrow.core.andThen
-import arrow.core.curry
-import arrow.core.toPartialFunction
-import me.carleslc.kotlin.extensions.preconditions.requireSize
 import arrow.data.Try
 import arrow.data.getOrDefault
 import arrow.data.getOrElse
+import me.carleslc.kotlin.extensions.preconditions.requireSize
 import java.io.PrintStream
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -43,7 +40,9 @@ inline fun <T, R> T?.letOrElse(nullBlock: () -> R, block: (T) -> R): R = this?.l
 
 inline fun <T, R> T?.letOrElse(nullValue: R, block: (T) -> R): R = letOrElse({ nullValue }, block)
 
-inline fun Boolean.letIfTrue(ifBlock: () -> Unit): Unit = letIfTrue(ifBlock) {}
+inline fun Boolean.letIfTrue(block: () -> Unit): Unit = letIfTrue(block, {})
+
+inline fun Boolean.letIfFalse(block: () -> Unit) = letIfTrue({}, block)
 
 inline fun <R> Boolean.letIfTrue(ifBlock: () -> R, elseBlock: () -> R): R = letIf({ this }, { run(ifBlock) }, { run(elseBlock) })
 
@@ -51,7 +50,9 @@ inline fun <T> T.letIf(condition: T.() -> Boolean, ifBlock: (T) -> Unit): Unit =
 
 inline fun <T, R> T.letIf(condition: T.() -> Boolean, ifBlock: (T) -> R, elseBlock: (T) -> R): R = if (run(condition)) run(ifBlock) else run(elseBlock)
 
-inline fun Boolean.alsoIfTrue(ifBlock: () -> Unit): Boolean = alsoIfTrue(ifBlock) {}
+inline fun Boolean.alsoIfTrue(block: () -> Unit): Boolean = alsoIfTrue(block, {})
+
+inline fun Boolean.alsoIfFalse(block: () -> Unit): Boolean = alsoIfTrue({}, block)
 
 inline fun Boolean.alsoIfTrue(ifBlock: () -> Unit, elseBlock: () -> Unit): Boolean = alsoIf({ this }, { run(ifBlock) }, { run(elseBlock) })
 
