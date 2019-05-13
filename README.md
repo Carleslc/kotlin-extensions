@@ -3,7 +3,7 @@
 
 Utility extensions, properties and useful methods to boost your programming with Kotlin.
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C2VFGD)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/carleslc)
 
 ## How to install
 
