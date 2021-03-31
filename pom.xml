@@ -82,7 +82,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>23.3-android</version>
+			<version>29.0-android</version>
 		</dependency>
 	</dependencies>
 
