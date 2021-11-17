@@ -70,6 +70,9 @@ inline fun LocalDateTime.isFriday() = dayOfWeek == DayOfWeek.FRIDAY
 inline fun LocalDateTime.isSaturday() = dayOfWeek == DayOfWeek.SATURDAY
 inline fun LocalDateTime.isSunday() = dayOfWeek == DayOfWeek.SUNDAY
 
+inline fun LocalDateTime.isWeekend() = isSaturday() or isSunday()
+inline fun LocalDateTime.isWeekday() = !isWeekend()
+
 inline fun LocalDate.atTime(time: LocalDateTime): LocalDateTime = atTime(time.toLocalTime())
 
 inline fun LocalDate.atTime(duration: Duration): LocalDateTime {
