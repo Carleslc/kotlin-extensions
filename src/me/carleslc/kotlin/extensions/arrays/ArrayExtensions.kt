@@ -13,7 +13,7 @@ object A {
 
 inline fun <reified T> Int.timesToArrayOf(predicate: (Int) -> T) = timesToListOf(predicate).toTypedArray()
 
-inline fun <T> Array<T>?.isBlank(): Boolean = this == null || isEmpty()
+inline fun <T> Array<T>?.isBlank(): Boolean = isNullOrEmpty()
 
 inline fun <T> Array<T?>.anyNull(): Boolean = any { it == null }
 
@@ -46,14 +46,14 @@ inline fun <reified T> Array<T>.shuffle(generator: Random = Random()): Array<T> 
     }
 }
 
-inline fun <T> array2dOf(): Array<Array<T>> = arrayOf()
+inline fun <reified T> array2dOf(): Array<Array<T>> = arrayOf()
 
-inline fun <T> array2dOf(vararg ts: Array<T>) = Array<Array<T>>(ts.size) { ts[it] }
+inline fun <reified T> array2dOf(vararg ts: Array<T>) = Array<Array<T>>(ts.size) { ts[it] }
 
-inline fun <T> array2d(rows: Int, initCol: (Int) -> Array<T>) = Array<Array<T>>(rows, { row -> initCol(row) })
+inline fun <reified T> array2d(rows: Int, initCol: (Int) -> Array<T>) = Array<Array<T>>(rows) { row -> initCol(row) }
 
 inline fun <reified T> matrix(rows: Int, cols: Int, init: (Int, Int) -> T): Matrix<T> {
-    return array2d(rows) { row -> Array<T>(cols, { col -> init(row, col) }) }
+    return array2d(rows) { row -> Array<T>(cols) { col -> init(row, col) } }
 }
 
 inline fun <reified T> matrixOf(rows: Int, cols: Int, init: T): Matrix<T> {

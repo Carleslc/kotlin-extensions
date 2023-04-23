@@ -2,10 +2,9 @@
 
 package me.carleslc.kotlin.extensions.standard
 
-import arrow.data.Try
-import arrow.data.getOrDefault
-import arrow.data.getOrElse
 import me.carleslc.kotlin.extensions.preconditions.requireSize
+import arrow.core.Either
+import arrow.core.getOrElse
 import java.io.PrintStream
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -123,8 +122,8 @@ inline fun <T, R> ((T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { a
 
 inline fun <T, R> ((T, T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R = { a -> a.requireSize(6); this(a[0], a[1], a[2], a[3], a[4], a[5]) }
 
-inline fun Try<Boolean>.getOrTrue() = getOrElse { true }
+inline fun Either<Throwable, Boolean>.getOrTrue() = getOrElse { true }
 
-inline fun Try<Boolean>.getOrFalse() = getOrElse { false }
+inline fun Either<Throwable, Boolean>.getOrFalse() = getOrElse { false }
 
-inline fun <T> Try<T>.getOrNull(): T? = getOrDefault { null }
+inline fun <R> Try(tryBlock: () -> R): Either<Throwable, R> = Either.catch(tryBlock)
