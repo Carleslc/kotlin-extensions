@@ -33,16 +33,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<kotlin.version>1.2.30</kotlin.version>
+		<kotlin.version>1.8.20</kotlin.version>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 	</properties>
 
 	<repositories>
-		<repository>
-			<id>central</id>
-			<name>bintray</name>
-			<url>http://jcenter.bintray.com</url>
-		</repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
