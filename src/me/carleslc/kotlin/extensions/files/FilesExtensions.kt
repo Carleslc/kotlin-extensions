@@ -9,6 +9,6 @@ import java.io.File
  * Throws IllegalStateException is called on a file.
  */
 inline fun File.deleteDirContents() {
-    if(!isDirectory) throw IllegalStateException()
+    if (!isDirectory) throw IllegalStateException()
     walk().filterNot { it.absolutePath == absolutePath }.forEach { it.deleteRecursively() }
 }

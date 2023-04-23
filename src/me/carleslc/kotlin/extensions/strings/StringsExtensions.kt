@@ -61,7 +61,5 @@ inline fun String.capitalizeFirstChar() =
 /**
  * Removes non-numerical characters from a string.
  */
-fun String.removeNonAlpha(str: String) =
+fun String.removeNonAlpha() =
     replace("[^a-zA-Z\\s]".toRegex(), " ").replace(" +".toRegex(), " ").trim()
-
-
