@@ -6,6 +6,7 @@ import com.cesarferreira.pluralize.pluralize
 import com.cesarferreira.pluralize.singularize
 import com.google.common.base.Strings
 import me.carleslc.kotlin.extensions.standard.letOrElse
+import java.util.*
 
 inline infix operator fun String.times(n: Int): String = Strings.repeat(this, n)
 inline infix operator fun Int.times(s: String): String = Strings.repeat(s, this)
@@ -17,7 +18,8 @@ inline fun String?.isNotNullOrBlank() = !isNullOrBlank()
 
 inline fun <T> T.toStringTransform(transform: (T) -> String) = let(transform)
 
-inline fun <T> T?.toStringTransform(nullString: String = null.toString(), transform: (T) -> String) = letOrElse(nullString, transform)
+inline fun <T> T?.toStringTransform(nullString: String = null.toString(), transform: (T) -> String) =
+    letOrElse(nullString, transform)
 
 inline fun String.pluralize() = pluralize()
 inline fun String.pluralize(count: Int) = pluralize(count)
@@ -44,3 +46,22 @@ inline fun String.replace(ignoreCase: Boolean = false, vararg vars: Pair<String,
 }
 
 inline fun String.remove(substring: String) = replace(substring, "")
+
+/**
+ * Capitalizes first character of every word.
+ * Words are separated by one of more space characters.
+ */
+inline fun String.capitalizeFirstChar() =
+    toLowerCase()
+        .split(" +".toRegex())
+        .joinToString(" ", "") { d ->
+            d.replaceRange(0, 1, d.first().toUpperCase().toString())
+        }
+
+/**
+ * Removes non-numerical characters from a string.
+ */
+fun String.removeNonAlpha(str: String) =
+    replace("[^a-zA-Z\\s]".toRegex(), " ").replace(" +".toRegex(), " ").trim()
+
+
