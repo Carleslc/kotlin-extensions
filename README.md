@@ -160,14 +160,15 @@ Follow this rules when doing a pull request in order to be accepted:
 ### [Arrow](https://github.com/arrow-kt/arrow)
 
 This library adds functional stuff to boost your programming with Kotlin. It is a perfect library to use together with KotlinExtensions.
-We've already included `arrow.core`, `arrow.data` and `arrow.syntax` in KotlinExtensions.
+
+We've already included `arrow.core` in KotlinExtensions.
 
 ### [Guava](https://github.com/google/guava)
 
 This library from Google includes a lot of useful classes and methods to extend the language. It is written in Java but it can be used from Kotlin with no problem.
 
-It is already included with version `23.3-android` in KotlinExtensions, available for Android use.
+It is already included with version `29.0-android` in KotlinExtensions, available for Android use.
 
-### [Anko](https://github.com/Kotlin/anko)
+### [Android KTX](https://developer.android.com/kotlin/ktx) and [Splitties](https://github.com/LouisCAD/Splitties)
 
-If you need extensions and useful tools for Android this library is a must for your Android development.
+If you need extensions and useful tools for Android these libraries are recommended for your Android development.
