@@ -52,10 +52,10 @@ inline fun String.remove(substring: String) = replace(substring, "")
  * Words are separated by one of more space characters.
  */
 inline fun String.capitalizeFirstChar() =
-    toLowerCase()
+    lowercase(Locale.getDefault())
         .split(" +".toRegex())
         .joinToString(" ", "") { d ->
-            d.replaceRange(0, 1, d.first().toUpperCase().toString())
+            d.replaceRange(0, 1, d.first().uppercaseChar().toString())
         }
 
 /**
@@ -63,3 +63,12 @@ inline fun String.capitalizeFirstChar() =
  */
 fun String.removeNonAlpha() =
     replace("[^a-zA-Z\\s]".toRegex(), " ").replace(" +".toRegex(), " ").trim()
+
+/**
+ * Removes duplicates words from a string. Words are separated by one of more space characters.
+ * @return String with duplicate words removed
+ */
+fun String.uniquifyWords(): String {
+    val multipleSpacesRegex = " +".toRegex()
+    return this.split(multipleSpacesRegex).distinct().joinToString(" ")
+}
