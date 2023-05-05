@@ -22,9 +22,13 @@ inline fun <T> T?.toStringTransform(nullString: String = null.toString(), transf
     letOrElse(nullString, transform)
 
 inline fun String.pluralize() = pluralize()
+
+// TODO: bug in cesarferreira repo for pluralize(count: Int)
 inline fun String.pluralize(count: Int) = pluralize(count)
 
 inline fun String.singularize() = singularize()
+
+// TODO: bug in cesarferreira repo for singularize(count: Int)
 inline fun String.singularize(count: Int) = singularize(count)
 
 inline fun String.splitLines() = split('\n')
