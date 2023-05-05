@@ -67,77 +67,77 @@ If you need more powerful extensions and tools check the [optional libraries sec
 In order to use any of the extensions or methods of KotlinExtensions you only need to import them.
 
 ### Import a single extension
-`import me.carleslc.kotlin.extensions.standard.times`
+`import main.kotlin.extensions.standard.times`
 
 ### Import all extensions of a package
-`import me.carleslc.kotlin.extensions.standard.*`
+`import main.kotlin.extensions.standard.*`
 
 ## Packages available
 
 ### Arrays
-`import me.carleslc.kotlin.extensions.arrays.*`
+`import main.kotlin.extensions.arrays.*`
 
 Extensions for arrays, a syntactic-sugar way to create literal arrays like `A[1, 2, 3]` instead typical `arrayOf(1, 2, 3)`
 and methods to work with 2D arrays and matrices (2D arrays with fixed columns size) easier.
 
 ### Bytes
-`import me.carleslc.kotlin.extensions.bytes.*`
+`import main.kotlin.extensions.bytes.*`
 
 Extensions for memory size conversions _(from bits to pebibytes and petabytes)_.
 
 Inspired from [ktunits](https://github.com/sargunster/ktunits) library.
 
 ### Collections
-`import me.carleslc.kotlin.extensions.collections.*`
+`import main.kotlin.extensions.collections.*`
 
 Extensions for collections, sintactic-sugar for list and set literals with `L[values]` or `S[values]` and other global methods to create collections.
 
 ### Conversions
-`import me.carleslc.kotlin.extensions.conversions.*`
+`import main.kotlin.extensions.conversions.*`
 
 Extensions for conversions between basic types.
 
 ### HTML
-`import me.carleslc.kotlin.extensions.html.*`
+`import main.kotlin.extensions.html.*`
 
 Extensions to generate HTML in a more readable way.
 
 ### Map
-`import me.carleslc.kotlin.extensions.map.*`
+`import main.kotlin.extensions.map.*`
 
 Extensions for maps and sintactic-sugar for Map literals with `M[pairs]`.
 
 ### Number
-`import me.carleslc.kotlin.extensions.number.*`
+`import main.kotlin.extensions.number.*`
 
 Extensions for numbers and math operations.
 
 ### Strings
-`import me.carleslc.kotlin.extensions.strings.*`
+`import main.kotlin.extensions.strings.*`
 
 Extensions for strings.
 
 `pluralize` and `singularize` methods are extracted from [kotlin-pluralizer](https://github.com/cesarferreira/kotlin-pluralizer).
 
 ### Time
-`import me.carleslc.kotlin.extensions.time.*`
+`import main.kotlin.extensions.time.*`
 
 Extensions for timing, format and manage time or dates easily.
 
 Inspired from [kxdate](https://github.com/yole/kxdate) and [khronos](https://github.com/hotchemi/khronos) libraries.
 
 ### Tuples
-`import me.carleslc.kotlin.extensions.tuples.*`
+`import main.kotlin.extensions.tuples.*`
 
 Extensions for pairs and triples.
 
 ### Preconditions
-`import me.carleslc.kotlin.extensions.preconditions.*`
+`import main.kotlin.extensions.preconditions.*`
 
 Extensions to ensure preconditions easily.
 
 ### Standard
-`import me.carleslc.kotlin.extensions.standard.*`
+`import main.kotlin.extensions.standard.*`
 
 General purpose extensions and global methods that do not match any other package category (_e.g._ looping with `10 times { code }` or `10 * { code }`).
 
