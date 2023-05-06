@@ -13,7 +13,7 @@ object S {
     inline operator fun <reified T> get(vararg ts: T) = if (ts.isNotEmpty()) ts.toSet() else emptySet()
 }
 
-inline fun <T> Collection<T>?.isBlank(): Boolean = this == null || isEmpty()
+inline fun <T> Collection<T>?.isBlank(): Boolean = isNullOrEmpty()
 
 inline fun <T> Collection<T?>.anyNull(): Boolean = any { it == null }
 
