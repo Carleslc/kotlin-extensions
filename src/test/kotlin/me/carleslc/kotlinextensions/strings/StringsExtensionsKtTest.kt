@@ -1,5 +1,6 @@
 package me.carleslc.kotlinextensions.strings
 
+import me.carleslc.kotlinextensions.collections.uniqueRandoms
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import strings.*
@@ -212,5 +213,13 @@ class StringsExtensionsKtTest {
 
         Assertions.assertEquals(expected, result)
 
+    }
+
+    @Test
+    fun uniqueRandomsTest(){
+//        val uniqueRandNums1 = uniqueRandoms(10, 1..10L)
+        val uniqueRandNums2 = uniqueRandoms(5, 1..100L)
+        println(uniqueRandNums2)
+//        Assertions.assertEquals(10, uniqueRandNums1.size)
     }
 }

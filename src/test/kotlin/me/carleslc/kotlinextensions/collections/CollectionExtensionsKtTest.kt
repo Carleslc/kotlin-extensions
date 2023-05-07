@@ -82,4 +82,13 @@ class CollectionExtensionsKtTest {
         Assertions.assertIterableEquals(expected4, input4.trimNulls())
     }
 
+    @Test
+    fun trimNullsToMutableListTest(){
+        val input = listOf(1,null,2,null)
+        val result = input.trimNullsToMutableList()
+        val expected = listOf(1,2)
+        Assertions.assertTrue(result is MutableList<*>)
+        Assertions.assertIterableEquals(expected,result)
+    }
+
 }
