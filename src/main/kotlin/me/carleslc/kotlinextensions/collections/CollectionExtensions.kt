@@ -100,15 +100,15 @@ inline fun <T> Collection<T>.split(): Pair<List<T>, List<T>> = split(half)
 
 fun uniqueRandoms(n: Int, range: LongRange): Set<Long> {
 
-    if (range.size() < n) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
+    if (range.size < n) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
 
     val uniqueRands = mutableSetOf<Long>()
-    val gap = range.size() / n
+    val gap = range.size / n
     var next = range.random()
 
     for (i in 0 until n) {
         next += nextLong(1, gap + 1)
-        next = (next - range.first) % range.size() + range.first
+        next = (next - range.first) % range.size + range.first
         uniqueRands.add(next)
     }
 
