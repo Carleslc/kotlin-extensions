@@ -218,8 +218,10 @@ class StringsExtensionsKtTest {
     @Test
     fun uniqueRandomsTest(){
 //        val uniqueRandNums1 = uniqueRandoms(10, 1..10L)
-        val uniqueRandNums2 = uniqueRandoms(5, 1..100L)
+        val uniqueRandNums2 = uniqueRandoms(10, 1..10L)
+
         println(uniqueRandNums2)
+        println(uniqueRandNums2.size)
 //        Assertions.assertEquals(10, uniqueRandNums1.size)
     }
 }

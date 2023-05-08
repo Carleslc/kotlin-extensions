@@ -2,10 +2,12 @@
 
 package me.carleslc.kotlinextensions.collections
 
+import me.carleslc.kotlinextensions.ranges.size
 import java.lang.IllegalArgumentException
 import java.util.Random
 import java.util.Collections
 import kotlin.math.max
+import kotlin.random.Random.Default.nextLong
 
 object L {
     inline operator fun <reified T> get(vararg ts: T) = if (ts.isNotEmpty()) ts.asList() else emptyList()
@@ -96,25 +98,28 @@ inline fun <T> Collection<T>.secondHalf(): List<T> = drop(half)
 inline fun <T> Collection<T>.split(index: Int): Pair<List<T>, List<T>> = take(index) to drop(index)
 inline fun <T> Collection<T>.split(): Pair<List<T>, List<T>> = split(half)
 
-fun uniqueRandoms(n: Int, range:LongRange): Set<Long> {
+fun uniqueRandoms(n: Int, range: LongRange): Set<Long> {
 
-    val rangeSize = range.last-range.first+1
-    if(rangeSize<n) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
+    if (range.size() < n) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
 
     val uniqueRands = mutableSetOf<Long>()
-    val gap = max((range.last - range.first) / n, 1)
-    var next = range.first - 1
-//    var next = kotlin.random.Random.nextLong(range.first, range.last+1)
+    val gap = range.size() / n
+    var next = range.random()
 
     for (i in 0 until n) {
-        next = kotlin.random.Random.nextLong(next + 1, next + 1 + gap)
+        next += nextLong(1, gap + 1)
+        next %= range.last
+        if (next == 0L) next = range.last
         uniqueRands.add(next)
     }
+
 
     return uniqueRands
 
 }
 
-fun uniqueRandoms2(n: Int, range:LongRange){
+fun uniqueRandoms2(n: Int, range: LongRange) {
+    val div = kotlin.random.Random.nextLong(range.first, range.last + 1)
+
 
 }
