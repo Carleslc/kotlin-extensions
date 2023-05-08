@@ -54,7 +54,6 @@ class StringsExtensionsKtTest {
     }
 
 
-
     @Test
     fun pluralizeTest() {
         Assertions.assertEquals("people", "person".pluralize())
@@ -216,9 +215,10 @@ class StringsExtensionsKtTest {
     }
 
     @Test
-    fun uniqueRandomsTest(){
+    fun uniqueRandomsTest() {
+
 //        val uniqueRandNums1 = uniqueRandoms(10, 1..10L)
-        val uniqueRandNums2 = uniqueRandoms(10, 1..10L)
+        val uniqueRandNums2 = uniqueRandoms(10, -30..30L)
 
         println(uniqueRandNums2)
         println(uniqueRandNums2.size)

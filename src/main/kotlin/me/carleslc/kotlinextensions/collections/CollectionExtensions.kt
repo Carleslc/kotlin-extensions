@@ -108,11 +108,9 @@ fun uniqueRandoms(n: Int, range: LongRange): Set<Long> {
 
     for (i in 0 until n) {
         next += nextLong(1, gap + 1)
-        next %= range.last
-        if (next == 0L) next = range.last
+        next = (next - range.first) % range.size() + range.first
         uniqueRands.add(next)
     }
-
 
     return uniqueRands
 
