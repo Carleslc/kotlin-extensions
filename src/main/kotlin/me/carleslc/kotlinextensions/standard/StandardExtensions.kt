@@ -15,6 +15,8 @@ inline fun FIXME(reason: String): Nothing = throw Error("An operation needs a fi
 
 inline fun loop(block: () -> Unit) = run { while (true) block() }
 
+
+
 inline infix operator fun Int.times(predicate: (Int) -> Unit) = repeat(this, predicate)
 
 inline infix fun <T> T.with(noinline block: (T.() -> T)?): T = block?.invoke(this) ?: this

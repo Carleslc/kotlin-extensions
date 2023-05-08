@@ -115,9 +115,3 @@ fun uniqueRandoms(n: Int, range: LongRange): Set<Long> {
     return uniqueRands
 
 }
-
-fun uniqueRandoms2(n: Int, range: LongRange) {
-    val div = kotlin.random.Random.nextLong(range.first, range.last + 1)
-
-
-}
