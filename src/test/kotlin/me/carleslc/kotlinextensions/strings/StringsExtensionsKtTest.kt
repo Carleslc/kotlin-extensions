@@ -53,7 +53,6 @@ class StringsExtensionsKtTest {
     }
 
 
-
     @Test
     fun pluralizeTest() {
         Assertions.assertEquals("people", "person".pluralize())
@@ -213,4 +212,5 @@ class StringsExtensionsKtTest {
         Assertions.assertEquals(expected, result)
 
     }
+
 }
