@@ -1,8 +1,11 @@
 package me.carleslc.kotlinextensions.collections
 
+import me.carleslc.kotlinextensions.ranges.size
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import kotlin.math.exp
+import kotlin.system.measureNanoTime
+import kotlin.system.measureTimeMillis
 
 
 class CollectionExtensionsKtTest {
@@ -91,4 +94,9 @@ class CollectionExtensionsKtTest {
         Assertions.assertIterableEquals(expected,result)
     }
 
+    @Test
+    fun nice(){
+        val r = Long.MIN_VALUE..Long.MAX_VALUE
+        println(r.size)
+    }
 }

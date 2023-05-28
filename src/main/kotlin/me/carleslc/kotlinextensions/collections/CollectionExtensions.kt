@@ -4,6 +4,7 @@ package me.carleslc.kotlinextensions.collections
 
 import me.carleslc.kotlinextensions.ranges.size
 import java.lang.IllegalArgumentException
+import java.math.BigInteger
 import java.util.Random
 import java.util.Collections
 import kotlin.math.max
@@ -100,18 +101,18 @@ inline fun <T> Collection<T>.split(): Pair<List<T>, List<T>> = split(half)
 
 fun uniqueRandoms(n: Int, range: LongRange): Set<Long> {
 
-    if (range.size < n) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
+    val elements = n.toBigInteger()
 
-    val uniqueRands = mutableSetOf<Long>()
-    val gap = range.size / n
-    var next = range.random()
+    if (range.size < elements) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
 
-    for (i in 0 until n) {
-        next += nextLong(1, gap + 1)
-        next = (next - range.first) % range.size + range.first
-        uniqueRands.add(next)
+    val uniqueRands: Sequence<Long> = if (elements > range.size / BigInteger.valueOf(2)) {
+        range.shuffled().asSequence()
+    } else {
+        generateSequence { range.random() }.distinct()
     }
 
     return uniqueRands
+        .take(n)
+        .toSet()
 
 }

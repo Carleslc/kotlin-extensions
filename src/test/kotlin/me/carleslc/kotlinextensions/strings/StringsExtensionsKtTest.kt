@@ -1,6 +1,5 @@
 package me.carleslc.kotlinextensions.strings
 
-import me.carleslc.kotlinextensions.collections.uniqueRandoms
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import strings.*

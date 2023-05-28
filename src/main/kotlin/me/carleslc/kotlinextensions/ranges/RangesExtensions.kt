@@ -1,7 +1,9 @@
 package me.carleslc.kotlinextensions.ranges
 
+import java.math.BigInteger
+
 inline val CharRange.size: Int get() = last - first + 1
-inline val IntRange.size: Int get() = last - first + 1
-inline val LongRange.size: Long get() = last - first + 1
-inline val ULongRange.size: ULong get() = last - first + 1.toULong()
-inline val UIntRange.size: UInt get() = last - first + 1.toUInt()
+inline val IntRange.size: Long get() = last.toLong() - first.toLong() + 1L
+inline val UIntRange.size: Long get() = last.toLong() - first.toLong() + 1L
+inline val LongRange.size: BigInteger get() = BigInteger.valueOf(last) - BigInteger.valueOf(first) + BigInteger.ONE
+inline val ULongRange.size: BigInteger get() = BigInteger(last.toString()) - BigInteger(first.toString()) + BigInteger.ONE
