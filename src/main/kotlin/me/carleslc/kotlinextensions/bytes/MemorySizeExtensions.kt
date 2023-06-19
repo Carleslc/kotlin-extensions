@@ -1,8 +1,8 @@
-@file:Suppress("NOTHING_TO_INLINE", "UNUSED_PARAMETER")
+@file:Suppress("NOTHING_TO_INLINE")
 
 package me.carleslc.kotlinextensions.bytes
 
-fun getMemoryUsage(transform: (Long, Long, Long, Long, Int) -> String = { total, free, max, usage, percent -> "$usage / $max MB in use ($percent%)" }): Pair<Int, String> {
+fun getMemoryUsage(transform: (Long, Long, Long, Long, Int) -> String = { _, _, max, usage, percent -> "$usage / $max MB in use ($percent%)" }): Pair<Int, String> {
     val total = Runtime.getRuntime().totalMemory().bytes.toMegaBytes
     val free = Runtime.getRuntime().freeMemory().bytes.toMegaBytes
     val max = Runtime.getRuntime().maxMemory().bytes.toMegaBytes

@@ -1,14 +1,10 @@
-@file:Suppress("NOTHING_TO_INLINE", "UNUSED_PARAMETER")
+@file:Suppress("NOTHING_TO_INLINE")
 
 package me.carleslc.kotlinextensions.collections
 
+import me.carleslc.kotlinextensions.number.TWO_BIG
 import me.carleslc.kotlinextensions.ranges.size
-import java.lang.IllegalArgumentException
-import java.math.BigInteger
-import java.util.Random
-import java.util.Collections
-import kotlin.math.max
-import kotlin.random.Random.Default.nextLong
+import java.util.*
 
 object L {
     inline operator fun <reified T> get(vararg ts: T) = if (ts.isNotEmpty()) ts.asList() else emptyList()
@@ -35,10 +31,10 @@ inline fun Iterable<String?>.trimToMutableList(): MutableList<String> =
     trimNulls().filterNotTo(mutableListOf()) { it.isBlank() }
 
 inline fun <T1, T2> Iterable<T1>.combine(other: Iterable<T2>): List<Pair<T1, T2>> =
-    combine(other, { thisItem: T1, otherItem: T2 -> Pair(thisItem, otherItem) })
+    combine(other) { thisItem: T1, otherItem: T2 -> Pair(thisItem, otherItem) }
 
 inline fun <T1, T2> Iterable<T1>.combineToMutableList(other: Iterable<T2>): MutableList<Pair<T1, T2>> =
-    combineToMutableList(other, { thisItem: T1, otherItem: T2 -> Pair(thisItem, otherItem) })
+    combineToMutableList(other) { thisItem: T1, otherItem: T2 -> Pair(thisItem, otherItem) }
 
 inline fun <T1, T2, R> Iterable<T1>.combine(
     other: Iterable<T2>,
@@ -56,7 +52,7 @@ inline fun <T, R> Iterable<T>.flatMapToMutableList(transform: (T) -> Iterable<R>
 
 inline fun <T> Int.timesToListOf(predicate: (Int) -> T): List<T> = (0 until this).map { predicate(it) }
 inline fun <T> Int.timesToMutableListOf(predicate: (Int) -> T): MutableList<T> =
-    (0..this - 1).mapToMutableList { predicate(it) }
+    (0 until this).mapToMutableList { predicate(it) }
 
 fun <T> MutableList<T>.swap(i: Int, j: Int): MutableList<T> {
     return apply {
@@ -69,11 +65,6 @@ fun <T> MutableList<T>.swap(i: Int, j: Int): MutableList<T> {
 fun <T> List<T>.swapped(i: Int, j: Int): List<T> = toMutableList().swap(i, j)
 
 inline fun <T> List<T>.getRandom(generator: Random = Random()): T = get(generator.nextInt(size))
-
-inline fun <T> MutableList<T>.shuffle(generator: Random = Random()): MutableList<T> =
-    apply { Collections.shuffle(this, generator) }
-
-inline fun <T> List<T>.shuffled(generator: Random = Random()): List<T> = toMutableList().shuffle()
 
 inline fun randomIntList(size: Int, generator: Random = Random()) = size.timesToListOf { generator.nextInt() }
 inline fun randomIntList(size: Int, bound: Int, generator: Random = Random()) =
@@ -99,13 +90,12 @@ inline fun <T> Collection<T>.secondHalf(): List<T> = drop(half)
 inline fun <T> Collection<T>.split(index: Int): Pair<List<T>, List<T>> = take(index) to drop(index)
 inline fun <T> Collection<T>.split(): Pair<List<T>, List<T>> = split(half)
 
-fun uniqueRandoms(n: Int, range: LongRange): Set<Long> {
-
+fun uniqueRandoms(n: Int, range: LongRange = Long.MIN_VALUE .. Long.MAX_VALUE): Set<Long> {
     val elements = n.toBigInteger()
 
     if (range.size < elements) throw IllegalArgumentException("$n unique numbers not possible between $range, select a bigger range or reduce the number of unique numbers required.")
 
-    val uniqueRands: Sequence<Long> = if (elements > range.size / BigInteger.valueOf(2)) {
+    val uniqueRands: Sequence<Long> = if (elements > range.size / TWO_BIG) {
         range.shuffled().asSequence()
     } else {
         generateSequence { range.random() }.distinct()

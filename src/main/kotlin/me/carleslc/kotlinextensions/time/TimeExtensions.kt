@@ -99,10 +99,8 @@ inline val LocalTime.fromNow: LocalDateTime get() = atDate(now())
 inline val LocalTime.since: LocalDateTime get() = fromNow
 inline val LocalTime.later: LocalDateTime get() = fromNow
 
-inline operator fun Period.plus(dateTime: LocalDateTime) = dateTime + this
-inline operator fun Duration.plus(dateTime: LocalDateTime) = dateTime + this
-
-inline fun Duration.toSeconds(): Long = seconds
+inline operator fun Period.plus(dateTime: LocalDateTime): LocalDateTime = dateTime + this
+inline operator fun Duration.plus(dateTime: LocalDateTime): LocalDateTime = dateTime + this
 
 inline val Duration.ago: LocalDateTime get() = now() - this
 inline val Duration.fromNow: LocalDateTime get() = now() + this

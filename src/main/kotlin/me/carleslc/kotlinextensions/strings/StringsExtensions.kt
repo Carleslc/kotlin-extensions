@@ -23,19 +23,16 @@ inline fun <T> T?.toStringTransform(nullString: String = null.toString(), transf
 
 inline fun String.pluralize() = pluralize()
 
-// TODO: bug in cesarferreira repo for pluralize(count: Int)
 inline fun String.pluralize(count: Int) = pluralize(count)
 
 inline fun String.singularize() = singularize()
 
-// TODO: bug in cesarferreira repo for singularize(count: Int)
 inline fun String.singularize(count: Int) = singularize(count)
 
 inline fun String.splitLines() = split('\n')
 
 inline fun <T> T?.wrap() = "$this"
-
-inline fun <T> T?.wrapString() = if (this is CharSequence) wrap() else toString()
+inline fun <T> T?.wrapString() = wrap()
 
 inline fun concat(vararg params: Any?) = params.joinToString("")
 

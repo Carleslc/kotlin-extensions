@@ -15,5 +15,5 @@ inline fun <K, V> Map<K, V>.joinToString(
         postfix: CharSequence = " }",
         limit: Int = -1,
         truncated: CharSequence = "...",
-        noinline transform: (Pair<K, V>) -> CharSequence = { it.joinToString(": ", secondTransform = { it.wrapString() }) })
+        noinline transform: (Pair<K, V>) -> CharSequence = { it.joinToString(": ", secondTransform = { wrapString() }) })
         = toList().joinToString(separator, prefix, postfix, limit, truncated, transform)
