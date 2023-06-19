@@ -52,15 +52,23 @@ inline fun String.replace(ignoreCase: Boolean = false, vararg vars: Pair<String,
 inline fun String.remove(substring: String) = replace(substring, "")
 
 /**
- * Capitalizes first character of every word.
- * Words are separated by one of more space characters.
+ * Capitalized the first character of every word where word is delimited by a space character.
  */
-inline fun String.capitalizeFirstChar() =
-    lowercase(Locale.getDefault())
-        .split(" +".toRegex())
+fun String.capitalizeFirstChar(): String {
+
+    // to avoid repeated trimming
+    val inputTrimmed = this.trim()
+
+    if (inputTrimmed.isBlank() || inputTrimmed.isEmpty()) return this
+
+    return inputTrimmed
+        .lowercase(Locale.getDefault())
+        .split(" ")
         .joinToString(" ", "") { d ->
             d.replaceRange(0, 1, d.first().uppercaseChar().toString())
         }
+
+}
 
 /**
  * Removes non-numerical characters from a string.
