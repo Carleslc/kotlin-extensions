@@ -22,7 +22,7 @@ inline fun <T> T?.requireNotNull(throwable: Throwable = IllegalArgumentException
 inline fun <T> T?.requireNotNull(message: String = "cannot be null", noinline elseBlock: () -> Unit = {}): T = requireNotNull(IllegalArgumentException(message), elseBlock)
 inline fun <T> T?.requireNotNull(): T = requireNotNull("cannot be null")
 
-inline fun String?.requireNotBlank(throwable: Throwable = IllegalArgumentException("cannot be blank"), noinline elseBlock: () -> Unit = {}): String = if (!isNullOrBlank()) this!! else {
+inline fun String?.requireNotBlank(throwable: Throwable = IllegalArgumentException("cannot be blank"), noinline elseBlock: () -> Unit = {}): String = if (!isNullOrBlank()) this else {
     run(elseBlock.andThrow(throwable))
 }
 

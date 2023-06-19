@@ -1,12 +1,10 @@
 package me.carleslc.kotlinextensions.collections
 
+import me.carleslc.kotlinextensions.number.fitsInLong
 import me.carleslc.kotlinextensions.ranges.size
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import kotlin.math.exp
-import kotlin.system.measureNanoTime
-import kotlin.system.measureTimeMillis
-
+import java.math.BigInteger
 
 class CollectionExtensionsKtTest {
 
@@ -86,17 +84,20 @@ class CollectionExtensionsKtTest {
     }
 
     @Test
-    fun trimNullsToMutableListTest(){
+    fun trimNullsToMutableListTest() {
         val input = listOf(1,null,2,null)
         val result = input.trimNullsToMutableList()
         val expected = listOf(1,2)
-        Assertions.assertTrue(result is MutableList<*>)
-        Assertions.assertIterableEquals(expected,result)
+        Assertions.assertInstanceOf(MutableList::class.java, result)
+        Assertions.assertIterableEquals(expected, result)
     }
 
     @Test
-    fun nice(){
-        val r = Long.MIN_VALUE..Long.MAX_VALUE
-        println(r.size)
+    fun longRangeBoundsTest() {
+        val maxRange = Long.MIN_VALUE..Long.MAX_VALUE
+        val size = maxRange.size
+        val expected = BigInteger.valueOf(2).pow(64)
+        Assertions.assertEquals(expected, size)
+        Assertions.assertFalse(size.fitsInLong())
     }
 }

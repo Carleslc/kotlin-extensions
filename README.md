@@ -9,7 +9,7 @@ Utility extensions, properties and useful methods to boost your programming with
 
 ### Maven
 Add the following repository to your `pom.xml`:
-```
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -19,12 +19,12 @@ Add the following repository to your `pom.xml`:
 ```
 
 Add the following dependencies to your `pom.xml`:
-```
+```xml
 <dependencies>
     <dependency>
-    	<groupId>com.github.carleslc</groupId>
+    	<groupId>me.carleslc</groupId>
     	<artifactId>kotlin-extensions</artifactId>
-    	<version>0.7.8</version>
+    	<version>0.8</version>
     </dependency>
 </dependencies>
 ```
@@ -35,16 +35,16 @@ If you need more powerful extensions and tools check the [optional libraries sec
 
 Add the following repository to your `build.gradle`:
 
-```
+```groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
 ```
 
 Add the following dependency to your `build.gradle`:
-```
+```groovy
 dependencies {
-    compile 'com.github.carleslc:kotlin-extensions:0.7.8'
+    compile 'me.carleslc:kotlin-extensions:0.8'
 }
 ```
 
@@ -58,7 +58,7 @@ If you need more powerful extensions and tools check the [optional libraries sec
 
 If you wish, you can use these steps to add the dependency using Maven or Gradle without accessing to the `jitpack.io` remote repository.
 
-Otherwise you will need to add the `kotlin-extensions-0.7.8.jar` from generated `target` folder as external dependency of your project.
+Otherwise, you will need to add the `kotlin-extensions-0.8.jar` from generated `target` folder as external dependency of your project.
 
 If you need more powerful extensions and tools check the [optional libraries section](https://github.com/Carleslc/kotlin-extensions#optional-libraries).
 
@@ -90,7 +90,7 @@ Inspired from [ktunits](https://github.com/sargunster/ktunits) library.
 ### Collections
 `import main.kotlin.extensions.collections.*`
 
-Extensions for collections, sintactic-sugar for list and set literals with `L[values]` or `S[values]` and other global methods to create collections.
+Extensions for collections, syntactic-sugar for list and set literals with `L[values]` or `S[values]` and other global methods to create collections.
 
 ### Conversions
 `import main.kotlin.extensions.conversions.*`
@@ -167,7 +167,7 @@ We've already included `arrow.core` in KotlinExtensions.
 
 This library from Google includes a lot of useful classes and methods to extend the language. It is written in Java but it can be used from Kotlin with no problem.
 
-It is already included with version `29.0-android` in KotlinExtensions, available for Android use.
+It is already included with version `32.0.0-android` in KotlinExtensions, available for Android use.
 
 ### [Android KTX](https://developer.android.com/kotlin/ktx) and [Splitties](https://github.com/LouisCAD/Splitties)
 

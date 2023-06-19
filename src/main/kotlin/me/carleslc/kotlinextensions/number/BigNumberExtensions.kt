@@ -8,9 +8,10 @@ import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
 import java.util.*
+import kotlin.math.ln
 
-val LOG2 by lazy { Math.log(2.0) }
-val TWO_BIG by lazy { 2.toBigInteger() }
+val LOG2 by lazy { ln(2.0) }
+val TWO_BIG: BigInteger by lazy { BigInteger.valueOf(2) }
 
 inline fun Long.toBigInteger() = BigInteger(toString())
 inline fun Number.toBigInteger() = toLong().toBigInteger()
@@ -20,9 +21,6 @@ inline fun Number.toBigDecimal(mathContext: MathContext = MathContext.UNLIMITED)
 
 inline fun BigInteger.even() = mod(2L.toBigInteger()) == BigInteger.ZERO
 inline fun BigInteger.odd() = !even()
-
-inline infix fun BigInteger.pow(exp: Int): BigInteger = pow(exp)
-inline infix fun BigDecimal.pow(exp: Int): BigDecimal = pow(exp)
 
 inline fun BigInteger.fitsInLong(): Boolean = this in (Long.MIN_VALUE.toBigInteger()..Long.MAX_VALUE.toBigInteger())
 inline fun BigInteger.fitsInInt(): Boolean = this in (Int.MIN_VALUE.toBigInteger()..Int.MAX_VALUE.toBigInteger())
@@ -81,7 +79,7 @@ inline infix fun Number.binomial(k: Int): BigInteger = toInt() binomial k
 
 inline fun Number.fibonacci(): BigInteger = toBigInteger().fibonacci()
 fun BigInteger.fibonacci(): BigInteger {
-    require(this >= BigInteger.ZERO, { "Cannot compute fibonacci for negative numbers" })
+    require(this >= BigInteger.ZERO) { "Cannot compute fibonacci for negative numbers" }
     fun fib(n: BigInteger): Pair<BigInteger, BigInteger> {
         if (n == BigInteger.ZERO) return BigInteger.ZERO to BigInteger.ONE
         val (a, b) = fib(n / TWO_BIG)
