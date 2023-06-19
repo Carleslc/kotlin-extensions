@@ -1,11 +1,20 @@
 package me.carleslc.kotlinextensions.strings
 
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import strings.*
-
+import java.util.*
 
 class StringsExtensionsKtTest {
+
+    companion object {
+        @BeforeAll
+        @JvmStatic
+        fun setStandardLocaleFormat() {
+            Locale.setDefault(Locale.Category.FORMAT, Locale.ENGLISH)
+        }
+    }
 
     @Test
     fun toFixedDoubleTest() {
@@ -59,6 +68,8 @@ class StringsExtensionsKtTest {
         Assertions.assertEquals("apples", "apple".pluralize())
         Assertions.assertEquals("cars", "car".pluralize())
         Assertions.assertEquals("geese", "goose".pluralize())
+        Assertions.assertEquals("octopi", "octopus".pluralize(2))
+        Assertions.assertEquals("apples", "apple".pluralize(2))
     }
 
     @Test
@@ -67,6 +78,8 @@ class StringsExtensionsKtTest {
         Assertions.assertEquals("apple", "apples".singularize())
         Assertions.assertEquals("car", "cars".singularize())
         Assertions.assertEquals("goose", "geese".singularize())
+        Assertions.assertEquals("octopi", "octopus".singularize(2))
+        Assertions.assertEquals("apples", "apple".singularize(2))
     }
 
     @Test
@@ -85,7 +98,6 @@ class StringsExtensionsKtTest {
     @Test
     fun timesIntTest() {
         val input = "kotlin"
-        val times = 5
         val expected = input.repeat(5)
         val result = 5 times "kotlin"
         Assertions.assertEquals(expected, result)
@@ -113,12 +125,9 @@ class StringsExtensionsKtTest {
     fun wrapTest() {
         val expected = "1000"
         val result = 1000.wrap()
+        val result2 = 1000.wrapString()
         Assertions.assertEquals(expected, result)
-    }
-
-    @Test
-    fun wrapString() {
-        // TODO: how is wrapString different from wrap?
+        Assertions.assertEquals(expected, result2)
     }
 
 
