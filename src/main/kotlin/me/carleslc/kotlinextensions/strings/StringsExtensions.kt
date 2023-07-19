@@ -6,6 +6,7 @@ import com.cesarferreira.pluralize.pluralize
 import com.cesarferreira.pluralize.singularize
 import com.google.common.base.Strings
 import me.carleslc.kotlinextensions.standard.letOrElse
+import java.lang.IllegalArgumentException
 import java.util.*
 
 inline infix operator fun String.times(n: Int): String = Strings.repeat(this, n)
@@ -51,18 +52,18 @@ inline fun String.remove(substring: String) = replace(substring, "")
 /**
  * Capitalized the first character of every word where word is delimited by a space character.
  */
-fun String.capitalizeFirstChar(): String {
+fun String.capitalizeFirstChar(saveSpacing: Boolean = true): String {
 
-    // to avoid repeated trimming
-    val inputTrimmed = this.trim()
+    if (isEmpty() || isBlank()) throw IllegalArgumentException("Blank or empty String cannot be used.")
 
-    if (inputTrimmed.isBlank() || inputTrimmed.isEmpty()) return this
+    val deliminator = if (saveSpacing) " " else " +"
 
-    return inputTrimmed
+    return this
         .lowercase(Locale.getDefault())
-        .split(" ")
-        .joinToString(" ", "") { d ->
-            d.replaceRange(0, 1, d.first().uppercaseChar().toString())
+        .split(deliminator.toRegex())
+        .joinToString(" ") {
+            if (it.isEmpty()) it
+            else it.replaceRange(0, 1, it.first().uppercaseChar().toString())
         }
 
 }
