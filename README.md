@@ -24,7 +24,7 @@ Add the following dependencies to your `pom.xml`:
     <dependency>
     	<groupId>me.carleslc</groupId>
     	<artifactId>kotlin-extensions</artifactId>
-    	<version>0.8</version>
+    	<version>0.8.1</version>
     </dependency>
 </dependencies>
 ```
@@ -44,7 +44,7 @@ repositories {
 Add the following dependency to your `build.gradle`:
 ```groovy
 dependencies {
-    compile 'me.carleslc:kotlin-extensions:0.8'
+    compile 'me.carleslc:kotlin-extensions:0.8.1'
 }
 ```
 
@@ -150,10 +150,17 @@ Simply fork and do a pull request. Then if it makes sense I will merge it creati
 Follow this rules when doing a pull request in order to be accepted:
 
 1. Match the code style of this project (default in _IntelliJ_). You can do `⌘ + Option + L` in Mac with _IntelliJ_ IDE to reformat your code. 
-2. Unit Test your code.
-3. Inline your extensions when possible. Include `@file:Suppress("NOTHING_TO_INLINE")` to suppress warnings at top of your file.
-4. Ensure that your extensions/methods are general enough to be used in many different contexts.
-5. Be descriptive in the title and description of your pull request.
+2. Inline your extensions when possible. Include `@file:Suppress("NOTHING_TO_INLINE")` to suppress warnings at top of your file.
+3. Ensure that your extensions/methods are general enough to be used in many different contexts.
+4. Be descriptive in the title and description of your pull request.
+5. Unit Test your code.
+
+```sh
+# sdk install maven
+
+# Run tests
+mvn test
+```
 
 ## Optional Libraries
 
@@ -167,7 +174,7 @@ We've already included `arrow.core` in KotlinExtensions.
 
 This library from Google includes a lot of useful classes and methods to extend the language. It is written in Java but it can be used from Kotlin with no problem.
 
-It is already included with version `32.0.0-android` in KotlinExtensions, available for Android use.
+It is already included in KotlinExtensions, available for Android use.
 
 ### [Android KTX](https://developer.android.com/kotlin/ktx) and [Splitties](https://github.com/LouisCAD/Splitties)
 
