@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import strings.*
+import java.lang.IllegalArgumentException
 import java.util.*
 
 class StringsExtensionsKtTest {
@@ -189,17 +190,27 @@ class StringsExtensionsKtTest {
     @Test
     fun capitalizeFirstCharTest() {
 
-        val expected = "Petro Canada"
+        val result1 = "aa bb cc dd".capitalizeFirstChar()
+        val result2 = "aa  bb   cc dd".capitalizeFirstChar()
+        val result3 = " aa bb ".capitalizeFirstChar()
+        val result4 = " aa   bb ".capitalizeFirstChar()
+        val result5 = "aa bb cc dd".capitalizeFirstChar(false)
+        val result6 = "aa  bb   cc dd".capitalizeFirstChar(false)
+        val result7 = " aa bb ".capitalizeFirstChar(false)
+        val result8 = " aa   bb ".capitalizeFirstChar(false)
 
-        val result1 = "petro canada".capitalizeFirstChar()
-        val result2 = "PETRO CANADA".capitalizeFirstChar()
-        val result3 = "PEtRO CAnaDA".capitalizeFirstChar()
-        val result4 = "pEtRO cAnaDA".capitalizeFirstChar()
+        Assertions.assertEquals("Aa Bb Cc Dd", result1)
+        Assertions.assertEquals("Aa  Bb   Cc Dd", result2)
+        Assertions.assertEquals(" Aa Bb ", result3)
+        Assertions.assertEquals(" Aa   Bb ", result4)
+        Assertions.assertEquals("Aa Bb Cc Dd", result5)
+        Assertions.assertEquals("Aa Bb Cc Dd", result6)
+        Assertions.assertEquals(" Aa Bb ", result7)
+        Assertions.assertEquals(" Aa Bb ", result8)
 
-        Assertions.assertEquals(expected, result1)
-        Assertions.assertEquals(expected, result2)
-        Assertions.assertEquals(expected, result3)
-        Assertions.assertEquals(expected, result4)
+        Assertions.assertThrows(IllegalArgumentException::class.java) { "".capitalizeFirstChar() }
+        Assertions.assertThrows(IllegalArgumentException::class.java) { " ".capitalizeFirstChar() }
+        Assertions.assertThrows(IllegalArgumentException::class.java) { "   ".capitalizeFirstChar() }
 
     }
 
