@@ -51,10 +51,10 @@ inline fun String.remove(substring: String) = replace(substring, "")
 
 /**
  * Capitalized the first character of every word where word is delimited by a space character.
+ * @param saveSpacing whether to save or trim extra spacing between words
  */
 fun String.capitalizeFirstChar(saveSpacing: Boolean = true): String {
-
-    if (isEmpty() || isBlank()) throw IllegalArgumentException("Blank or empty String cannot be used.")
+    if (isBlank()) return this
 
     val deliminator = if (saveSpacing) " " else " +"
 
@@ -65,7 +65,6 @@ fun String.capitalizeFirstChar(saveSpacing: Boolean = true): String {
             if (it.isEmpty()) it
             else it.replaceRange(0, 1, it.first().uppercaseChar().toString())
         }
-
 }
 
 /**

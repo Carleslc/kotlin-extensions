@@ -62,7 +62,6 @@ class StringsExtensionsKtTest {
         Assertions.assertEquals(expected, result)
     }
 
-
     @Test
     fun pluralizeTest() {
         Assertions.assertEquals("people", "person".pluralize())
@@ -134,7 +133,6 @@ class StringsExtensionsKtTest {
 
     @Test
     fun concatTest() {
-
         val expected = "javakotlinpythonrust"
         val result = concat("java", "kotlin", "python", "rust")
 
@@ -144,7 +142,6 @@ class StringsExtensionsKtTest {
 
     @Test
     fun joinTest() {
-
         val expected = "java kotlin python rust"
         val result = join("java", "kotlin", "python", "rust")
 
@@ -154,7 +151,6 @@ class StringsExtensionsKtTest {
 
     @Test
     fun joinWithTest() {
-
         val expected = "java0kotlin0python"
         val result = joinWith("0", "java", "kotlin", "python")
 
@@ -163,18 +159,15 @@ class StringsExtensionsKtTest {
 
     @Test
     fun replaceTest() {
-
         val expected = "this is java, hello from java"
         val input = "this is kotlin, hello from kotlin"
         val result = input.replace(true, Pair("kotlin", "java"))
 
         Assertions.assertEquals(expected, result)
-
     }
 
     @Test
     fun removeTest() {
-
         val expected1 = " world"
         val result1 = "hello world".remove("hello")
 
@@ -183,13 +176,10 @@ class StringsExtensionsKtTest {
 
         Assertions.assertEquals(expected1, result1)
         Assertions.assertEquals(expected2, result2)
-
-
     }
 
     @Test
     fun capitalizeFirstCharTest() {
-
         val result1 = "aa bb cc dd".capitalizeFirstChar()
         val result2 = "aa  bb   cc dd".capitalizeFirstChar()
         val result3 = " aa bb ".capitalizeFirstChar()
@@ -208,10 +198,8 @@ class StringsExtensionsKtTest {
         Assertions.assertEquals(" Aa Bb ", result7)
         Assertions.assertEquals(" Aa Bb ", result8)
 
-        Assertions.assertThrows(IllegalArgumentException::class.java) { "".capitalizeFirstChar() }
-        Assertions.assertThrows(IllegalArgumentException::class.java) { " ".capitalizeFirstChar() }
-        Assertions.assertThrows(IllegalArgumentException::class.java) { "   ".capitalizeFirstChar() }
-
+        Assertions.assertEquals("", "".capitalizeFirstChar())
+        Assertions.assertEquals(" ", " ".capitalizeFirstChar())
     }
 
     @Test
@@ -224,13 +212,10 @@ class StringsExtensionsKtTest {
 
     @Test
     fun uniquifyWordsTest() {
-
         val input = "java kotlin java c++ python python rust"
         val expected = "java kotlin c++ python rust"
         val result = input.uniquifyWords()
 
         Assertions.assertEquals(expected, result)
-
     }
-
 }
